@@ -1,58 +1,29 @@
 #!/usr/bin/env bash
 # ==============================================================================
-#  Galaxy S24 Ultra — Optional Enhancements (Performance & Privacy) v2
+#  Galaxy S24 Ultra — Optional Enhancements (Performance & Privacy)
 #  Robust, reversible: generates revert-enhancements.sh with PREVIOUS values
 #  - Strict mode, device selection, dry-run, detailed logs
 #  - Records old settings and writes exact restore commands
 #  - Disables optional bloat and writes corresponding re-enable lines
-#  - NEW: ART optimize/reset, Data Saver, Private DNS, Refresh-rate, Scan toggles
 # ==============================================================================
+
 set -Eeuo pipefail
 
 # --------------------------- Configuration ------------------------------------
 # DRY_RUN=1 will show intended changes without applying them
 DRY_RUN="${DRY_RUN:-0}"
 
-# UI performance tweaks
-ANIM_SCALE="${ANIM_SCALE:-0.5}"              # 0..1 (0 disables, 1 default)
-SET_APP_STANDBY="${SET_APP_STANDBY:-1}"     # 1 ensures App Standby is on
-BACKGROUND_PROCESS_LIMIT="${BACKGROUND_PROCESS_LIMIT:-}"  # e.g., 1..4 or empty
-ACTIVITY_MAX_CACHED="${ACTIVITY_MAX_CACHED:-}"            # device_config hint
+# Optional tunables (uncomment or override via env)
+ANIM_SCALE="${ANIM_SCALE:-0.5}"              # 0..1 (0 disables, 1 default); typical 0.5 for snappy feel
+SET_APP_STANDBY="${SET_APP_STANDBY:-1}"     # 1 to ensure App Standby is on
+# Limit cached/background processes (developer option). Empty = do not change.
+# Values commonly seen: 1,2,3,4 (cap), or 0/empty for default platform behavior.
+BACKGROUND_PROCESS_LIMIT="${BACKGROUND_PROCESS_LIMIT:-}"
 
-# NEW: Data Saver (global background restrict via netpolicy)
-#   DATA_SAVER=on|off|""   (empty = no change)
-DATA_SAVER="${DATA_SAVER:-}"
+# Advanced (optional, experimental per-build): ActivityManager device_config
+# Example: ACTIVITY_MAX_CACHED=4 to hint lower cache. Leave empty to skip.
+ACTIVITY_MAX_CACHED="${ACTIVITY_MAX_CACHED:-}"
 
-# NEW: Private DNS (DoT). Modes: off | opportunistic | hostname
-#   Example: PRIVATE_DNS_MODE=hostname  PRIVATE_DNS_HOST=dns.adguard-dns.com
-PRIVATE_DNS_MODE="${PRIVATE_DNS_MODE:-}"    # off/opportunistic/hostname/""
-PRIVATE_DNS_HOST="${PRIVATE_DNS_HOST:-}"    # required if mode=hostname
-
-# NEW: Refresh rate tuning (System). Leave empty to skip.
-#   Examples:
-#     REFRESH_MIN=60.0  REFRESH_MAX=120.0   (pin 60–120)
-#     REFRESH_MIN=120.0 REFRESH_MAX=120.0   (force 120 – more power usage)
-#     REFRESH_MIN=""    REFRESH_MAX=""      (skip)
-REFRESH_MIN="${REFRESH_MIN:-}"
-REFRESH_MAX="${REFRESH_MAX:-}"
-
-# NEW: Scan behavior (battery vs discovery). All optional.
-#   DISABLE_ALWAYS_SCANNING=1 will turn OFF Wi-Fi/BLE "always scanning".
-DISABLE_ALWAYS_SCANNING="${DISABLE_ALWAYS_SCANNING:-0}"
-#   WIFI_SCAN_THROTTLE=1 (default behavior, saves battery) or 0 (more scans)
-WIFI_SCAN_THROTTLE="${WIFI_SCAN_THROTTLE:-}"
-
-# NEW: ART (code compilation) – choose ONE action or leave blank:
-#   ART_ACTION=""                   (no change)
-#   ART_ACTION="bg"                 (run bg-dexopt-job after usage profiling)
-#   ART_ACTION="speed-profile-all"  (AOT speed-profile all apps)
-#   ART_ACTION="speed-all"          (AOT speed all apps, bigger storage use)
-ART_ACTION="${ART_ACTION:-}"
-
-# Optional: list of package names to speed-profile only (space-separated)
-ART_SPEED_PROFILE_PKGS="${ART_SPEED_PROFILE_PKGS:-}"
-
-# Output
 TS="$(date +%Y%m%d-%H%M%S)"
 OUTDIR="${OUTDIR:-./adb-enhancements-$TS}"
 mkdir -p "$OUTDIR"
@@ -68,7 +39,6 @@ printf "type,target,scope,key,value,action,status,message\n" > "$ACTIONS_CSV"
 info() { printf "[*] %s\n" "$*"; }
 warn() { printf "[!] %s\n" "$*" >&2; }
 die()  { printf "[ERROR] %s\n" "$*" >&2; exit 1; }
-run()  { if [[ "$DRY_RUN" == "1" ]]; then echo "DRY: $*"; else eval "$@"; fi; }
 
 cleanup(){ :; }
 trap cleanup EXIT
@@ -104,7 +74,7 @@ ONEUI="$(adb shell getprop ro.build.version.oneui | tr -d '\r' || true)"
 info "Target: $MODEL ($DEVICE) Android $ANDROID_VER OneUI ${ONEUI:-unknown}"
 echo "============================================================================="
 echo " This script tweaks animation scales, standby, background limits (optional),"
-echo " privacy toggles, DNS & Data Saver, refresh-rate, scan behavior, and debloat."
+echo " privacy toggles, and disables optional Samsung/partner bloat (reversible)."
 echo " It will generate: $REENABLE_SCRIPT  (to restore ALL previous values)"
 echo " Dry-run: DRY_RUN=$DRY_RUN"
 echo "============================================================================="
@@ -121,12 +91,15 @@ put_setting()   { adb shell settings put "$1" "$2" "$3" >/dev/null 2>&1; }
 del_setting()   { adb shell settings delete "$1" "$2" >/dev/null 2>&1; }
 
 ensure_revert_recorded() {
+  # $1=scope, $2=key
   local scope="$1" key="$2" marker="$scope:$key"
   if grep -qxF "$marker" "$REVERT_MARKERS"; then return; fi
   local old; old="$(get_setting "$scope" "$key")" || old=""
+  # When a key is not set, AOSP 'settings get' typically prints 'null'
   if [[ "$old" == "null" || -z "$old" ]]; then
     echo "adb shell settings delete $scope $key" >> "$REENABLE_SCRIPT"
   else
+    # shell-escape value for safety
     local esc; esc=$(printf "%q" "$old")
     echo "adb shell settings put $scope $key $esc" >> "$REENABLE_SCRIPT"
   fi
@@ -134,6 +107,7 @@ ensure_revert_recorded() {
 }
 
 apply_setting() {
+  # $1=scope, $2=key, $3=new value (empty means delete)
   local scope="$1" key="$2" val="${3-}"
   ensure_revert_recorded "$scope" "$key"
   if [[ "$DRY_RUN" == "1" ]]; then
@@ -180,6 +154,7 @@ ensure_dc_revert_recorded() {
 }
 
 apply_device_config() {
+  # $1=namespace, $2=key, $3=value (empty => delete)
   local ns="$1" key="$2" val="${3-}"
   ensure_dc_revert_recorded "$ns" "$key"
   if [[ "$DRY_RUN" == "1" ]]; then
@@ -202,7 +177,7 @@ apply_device_config() {
     if dc_put "$ns" "$key" "$val"; then
       printf "device_config,,%s,%s,%s,put,ok,\n" "$ns" "$key" "$val" >> "$ACTIONS_CSV"
     else
-      printf "device_config,,%s,%s,%s,put,fail,\n" "$ns" "$key" >> "$ACTIONS_CSV"
+      printf "device_config,,%s,%s,%s,put,fail,\n" "$ns" "$key" "$val" >> "$ACTIONS_CSV"
     fi
   fi
 }
@@ -230,114 +205,9 @@ disable_pkg() {
   fi
 }
 
-# --------------------------- NEW: Command helpers -----------------------------
-# Data Saver state via netpolicy (official CLI takes 'set'; we parse dumpsys)
-get_data_saver_state() {
-  # returns "true" or "false" (fallbacks to false)
-  local out
-  out="$(adb shell 'dumpsys netpolicy | grep -i restrictBackground' 2>/dev/null | tr -d "\r" | awk -F': ' '{print $2}' | tr -d ' ')" || true
-  [[ "$out" == "true" ]] && echo "true" && return
-  echo "false"
-}
-
-apply_data_saver() {
-  local desired="$1"  # true|false
-  [[ -z "$desired" ]] && return
-  local current; current="$(get_data_saver_state)"
-  # Revert line
-  if ! grep -q "cmd netpolicy set restrict-background" "$REENABLE_SCRIPT"; then
-    echo "adb shell cmd netpolicy set restrict-background $current" >> "$REENABLE_SCRIPT"
-  fi
-  if [[ "$DRY_RUN" == "1" ]]; then
-    info "DRY-RUN netpolicy restrict-background -> $desired"
-    printf "cmd,netpolicy,,,,set,dry-run,restrict-background=$desired\n" >> "$ACTIONS_CSV"
-  else
-    if adb shell "cmd netpolicy set restrict-background $desired" >/dev/null 2>&1; then
-      printf "cmd,netpolicy,,,,set,ok,restrict-background=$desired\n" >> "$ACTIONS_CSV"
-    else
-      printf "cmd,netpolicy,,,,set,fail,restrict-background\n" >> "$ACTIONS_CSV"
-    fi
-  fi
-}
-
-# ART optimization commands (write a reset to revert)
-record_art_revert_once() {
-  if ! grep -q "cmd package compile --reset -a" "$REENABLE_SCRIPT"; then
-    echo "adb shell cmd package compile --reset -a" >> "$REENABLE_SCRIPT"
-  fi
-}
-art_optimize() {
-  local mode="$1"
-  [[ -z "$mode" ]] && return
-  case "$mode" in
-    bg)
-      record_art_revert_once
-      if [[ "$DRY_RUN" == "1" ]]; then
-        info "DRY-RUN: cmd package bg-dexopt-job"
-        printf "cmd,package,,,,bg-dexopt-job,dry-run,\n" >> "$ACTIONS_CSV"
-      else
-        if adb shell "cmd package bg-dexopt-job" >/dev/null 2>&1; then
-          printf "cmd,package,,,,bg-dexopt-job,ok,\n" >> "$ACTIONS_CSV"
-        else
-          printf "cmd,package,,,,bg-dexopt-job,fail,\n" >> "$ACTIONS_CSV"
-        fi
-      fi
-      ;;
-    speed-profile-all)
-      record_art_revert_once
-      if [[ "$DRY_RUN" == "1" ]]; then
-        info "DRY-RUN: compile -m speed-profile -a"
-        printf "cmd,package,,,,compile,dry-run,speed-profile-all\n" >> "$ACTIONS_CSV"
-      else
-        if adb shell "cmd package compile -m speed-profile -a" >/dev/null 2>&1; then
-          printf "cmd,package,,,,compile,ok,speed-profile-all\n" >> "$ACTIONS_CSV"
-        else
-          printf "cmd,package,,,,compile,fail,speed-profile-all\n" >> "$ACTIONS_CSV"
-        fi
-      fi
-      ;;
-    speed-all)
-      record_art_revert_once
-      if [[ "$DRY_RUN" == "1" ]]; then
-        info "DRY-RUN: compile -m speed -f -a"
-        printf "cmd,package,,,,compile,dry-run,speed-all\n" >> "$ACTIONS_CSV"
-      else
-        if adb shell "cmd package compile -m speed -f -a" >/dev/null 2>&1; then
-          printf "cmd,package,,,,compile,ok,speed-all\n" >> "$ACTIONS_CSV"
-        else
-          printf "cmd,package,,,,compile,fail,speed-all\n" >> "$ACTIONS_CSV"
-        fi
-      fi
-      ;;
-    *)
-      warn "Unknown ART_ACTION '$mode' (ignored)"
-      ;;
-  esac
-
-  # Optional per-package speed-profile
-  if [[ -n "$ART_SPEED_PROFILE_PKGS" ]]; then
-    record_art_revert_once
-    for pkg in $ART_SPEED_PROFILE_PKGS; do
-      if [[ "$DRY_RUN" == "1" ]]; then
-        info "DRY-RUN: compile -m speed-profile $pkg"
-        printf "cmd,package,%s,,,compile,dry-run,speed-profile\n" "$pkg" >> "$ACTIONS_CSV"
-      else
-        if adb shell "cmd package compile -m speed-profile $pkg" >/dev/null 2>&1; then
-          printf "cmd,package,%s,,,compile,ok,speed-profile\n" "$pkg" >> "$ACTIONS_CSV"
-        else
-          printf "cmd,package,%s,,,compile,fail,speed-profile\n" "$pkg" >> "$ACTIONS_CSV"
-        fi
-      fi
-    done
-  fi
-
-  # Snapshot dexopt status (for your review)
-  adb shell "dumpsys package dexopt" > "$OUTDIR/dexopt-status.txt" 2>/dev/null || true
-}
-
 # --------------------------- Apply Tweaks -------------------------------------
 info "Applying UI animation scale = $ANIM_SCALE (Global)"
-apply_setting global window_animation_scale "$ANIM_SCALE"      # AOSP Settings.Global.WINDOW_ANIMATION_SCALE
+apply_setting global window_animation_scale "$ANIM_SCALE"
 apply_setting global transition_animation_scale "$ANIM_SCALE"
 apply_setting global animator_duration_scale "$ANIM_SCALE"
 
@@ -360,80 +230,10 @@ else
 fi
 
 info "Privacy toggles (best-effort)"
+# Note: These keys may be ignored on some builds; still safe to set.
 apply_setting global limit_ad_tracking 1
+# Disable print service recommendations/selection list (clears list)
 apply_setting secure enabled_print_services ""
-
-# --------------------------- NEW: Data Saver ----------------------------------
-if [[ -n "$DATA_SAVER" ]]; then
-  case "$DATA_SAVER" in
-    on)  apply_data_saver "true" ;;
-    off) apply_data_saver "false" ;;
-    *)   warn "DATA_SAVER must be 'on' or 'off' (got '$DATA_SAVER')";;
-  esac
-else
-  info "Data Saver: unchanged"
-fi
-
-# --------------------------- NEW: Private DNS ---------------------------------
-if [[ -n "$PRIVATE_DNS_MODE" ]]; then
-  case "$PRIVATE_DNS_MODE" in
-    off)
-      info "Private DNS: off"
-      apply_setting global private_dns_mode off
-      apply_setting global private_dns_specifier ""
-      ;;
-    opportunistic)
-      info "Private DNS: opportunistic (automatic)"
-      apply_setting global private_dns_mode opportunistic
-      apply_setting global private_dns_specifier ""
-      ;;
-    hostname)
-      [[ -z "$PRIVATE_DNS_HOST" ]] && warn "PRIVATE_DNS_HOST required for mode=hostname" || {
-        info "Private DNS: hostname=$PRIVATE_DNS_HOST"
-        apply_setting global private_dns_mode hostname
-        apply_setting global private_dns_specifier "$PRIVATE_DNS_HOST"
-      }
-      ;;
-    *)
-      warn "Unsupported PRIVATE_DNS_MODE '$PRIVATE_DNS_MODE' (ignored)"
-      ;;
-  esac
-else
-  info "Private DNS: unchanged"
-fi
-
-# --------------------------- NEW: Refresh-rate tuning -------------------------
-if [[ -n "$REFRESH_MIN" || -n "$REFRESH_MAX" ]]; then
-  [[ -n "$REFRESH_MAX" ]] && { info "Set peak_refresh_rate = $REFRESH_MAX"; apply_setting system peak_refresh_rate "$REFRESH_MAX"; }
-  [[ -n "$REFRESH_MIN" ]] && { info "Set min_refresh_rate  = $REFRESH_MIN";  apply_setting system min_refresh_rate  "$REFRESH_MIN"; }
-else
-  info "Refresh-rate: unchanged"
-fi
-
-# --------------------------- NEW: Scan behavior -------------------------------
-if [[ "$DISABLE_ALWAYS_SCANNING" == "1" ]]; then
-  info "Disabling 'always scanning' for Wi-Fi & BLE (Global)"
-  # (keys are best-effort; not present on all builds)
-  apply_setting global wifi_scan_always_enabled 0
-  apply_setting global ble_scan_always_enabled 0
-else
-  info "Always scanning: unchanged"
-fi
-
-if [[ -n "$WIFI_SCAN_THROTTLE" ]]; then
-  info "Wi-Fi scan throttling (Global) = $WIFI_SCAN_THROTTLE"
-  apply_setting global wifi_scan_throttle_enabled "$WIFI_SCAN_THROTTLE"
-else
-  info "Wi-Fi scan throttling: unchanged"
-fi
-
-# --------------------------- NEW: ART optimization ----------------------------
-if [[ -n "$ART_ACTION" || -n "$ART_SPEED_PROFILE_PKGS" ]]; then
-  info "Applying ART optimization: ART_ACTION='${ART_ACTION:-none}' PKGS='${ART_SPEED_PROFILE_PKGS:-}'"
-  art_optimize "$ART_ACTION"
-else
-  info "ART: unchanged"
-fi
 
 # --------------------------- Optional Samsung/Partner Debloat ------------------
 info "Optional bloat (Likely Safe) — reversible"
@@ -457,8 +257,6 @@ LIKELY_SAFE=(
   com.microsoft.skydrive                    # OneDrive preload
   com.microsoft.office.officehubrow         # Office Hub
   com.skype.raider                          # Skype
-  com.samsung.android.wellbeing             # Digital Wellbeing (Samsung)
-  com.google.android.apps.wellbeing         # Digital Wellbeing (Google variant)
 )
 
 info "Optional bloat (Use Caution) — reversible"
@@ -477,13 +275,13 @@ USE_CAUTION=(
   com.samsung.android.beaconmanager
 )
 
+# Disable sets (comment out any you want to keep)
 for p in "${LIKELY_SAFE[@]}"; do disable_pkg "$p"; done
 for p in "${USE_CAUTION[@]}"; do disable_pkg "$p"; done
 
 # --------------------------- Summary ------------------------------------------
 DISABLED_COUNT="$(awk -F, '$1=="package" && $6=="disable" && $7=="ok"{c++} END{print c+0}' "$ACTIONS_CSV")"
-SET_OK_COUNT="$(awk -F, '$1!="package" && $1!="cmd" && $7=="ok"{c++} END{print c+0}' "$ACTIONS_CSV")"
-CMD_OK_COUNT="$(awk -F, '$1=="cmd" && $7=="ok"{c++} END{print c+0}' "$ACTIONS_CSV")"
+SET_OK_COUNT="$(awk -F, '$1!="package" && $7=="ok"{c++} END{print c+0}' "$ACTIONS_CSV")"
 DRY_COUNT="$(awk -F, '$7=="dry-run"{c++} END{print c+0}' "$ACTIONS_CSV")"
 
 echo "============================================================================="
@@ -492,8 +290,8 @@ echo "   - Revert helper     : $REENABLE_SCRIPT"
 echo "   - Actions CSV       : $ACTIONS_CSV"
 echo "   - Markers (settings): $REVERT_MARKERS"
 echo "   - Markers (dev.conf): $REVERT_MARKERS_DC"
-echo "   - Dexopt status     : $OUTDIR/dexopt-status.txt (if ART used)"
-echo " Result: settings changed=$SET_OK_COUNT  packages disabled=$DISABLED_COUNT  commands ok=$CMD_OK_COUNT  dry-run=$DRY_COUNT"
+echo " Result: settings changed=$SET_OK_COUNT  packages disabled=$DISABLED_COUNT  dry-run=$DRY_COUNT"
 echo " Reboot is recommended to settle services."
 echo " To revert ALL changes: $REENABLE_SCRIPT"
 echo "============================================================================="
+
