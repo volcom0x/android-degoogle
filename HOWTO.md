@@ -1,4 +1,3 @@
-````markdown
 # HOWTO: De-Google & Enhance Your Galaxy (S24 Ultra focused, One UI) — Deep-Dive Guide
 
 > This HOWTO explains, in detail, how to use **both** scripts in this repo:
