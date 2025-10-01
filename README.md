@@ -1,8 +1,3 @@
-Absolutely—here’s a more **generalized** `README.md` you can drop in at the root of the repo.
-
----
-
-````markdown
 # android-degoogle
 
 **Safely de-Google and optimize modern Samsung Galaxy devices (tested on Galaxy S24 Ultra / One UI) using ADB—reversibly and without root.**
