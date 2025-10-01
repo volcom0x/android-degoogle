@@ -1,313 +1,390 @@
 #!/usr/bin/env bash
 # ==============================================================================
-#  Galaxy S24 Ultra — De-Google (Reversible) via ADB — v2 (hardened)
-#  Primary method: pm disable-user --user 0  (safe & reversible per-user)
-#  Highlights:
-#    - Strict mode, robust preflight (ADB, auth, device, user)
-#    - Multi-user aware: always targets --user 0 explicitly
-#    - Dry-run mode, CSV action log, inventories, re-enable helper
-#    - Safe-mode (Google-only prefixes). Optional opt-in to non-Google extras.
-#    - Protect list (e.g., WebView), exclude list, and role guards (SMS/Dialer)
+#  Galaxy S24 Ultra — De-Google (Reversible) via ADB — v6
+#  - Non-root, per-user safe disable (pm disable-user --user N)
+#  - 3 privacy profiles + granular keep flags
+#  - CSC-aware carrier/Samsung toggles (THL/EUX/auto)
+#  - microG preset (keeps GmsCore/Gsf/Store; warns if no signature spoofing)
+#  - Dry-run, CSV logs, re-enable helper, role safety checks
+#  - Constants & user-config are readonly after parsing
 # ==============================================================================
-
 set -Eeuo pipefail
 shopt -s lastpipe
+IFS=$'\n\t'; umask 077
 
-# --------------------------- Configuration ------------------------------------
-# Extra package list file (one package name per line, '#' for comments)
-EXTRA_PKG_FILE="${EXTRA_PKG_FILE:-./extra-google-packages.txt}"
+# ------------------------- Defaults (frozen after parse) -----------------------
+MODE="balanced"                  # strict|balanced|permissive
+WITH_FLAGS=""                    # comma list: push,store,sync,rcs,auto,wear,ar,tts
+CSC="auto"                       # auto|THL|EUX
+INCLUDE_CARRIER="off"            # off|on  (add CSC carriers to targets)
+INCLUDE_SAMSUNG="off"            # off|on  (add Samsung extras to targets)
+KEEP_SAMSUNG=""                  # comma list to KEEP: wallet,pass,tvplus,free,game,smartthings,globalgoals
+PRESET=""                        # microg|"" (microG keeps GmsCore/Gsf/Store)
+DETECT_MICROG="on"               # on|off (auto-detect org.microg.* and protect)
+SAFE_MODE=1                      # 1=target Google prefixes only unless allowed
+ALLOW_NON_GOOGLE=0               # override SAFE_MODE guard
+USER_ID=0                        # Android user
+DRY_RUN=0
+LIST_TARGETS=0
+NO_PROMPT=0
+OUTDIR=""
+INCLUDE_FILE=""
+EXCLUDE_FILE=""
+ONLY_FILE=""
 
-# Optional exclude/keep file (one package per line) that should never be disabled
-EXCLUDE_PKG_FILE="${EXCLUDE_PKG_FILE:-}"
+usage() {
+  cat <<'USAGE'
+Usage:
+  s24u-degoogle.sh [--mode strict|balanced|permissive]
+                   [--with push,store,sync,rcs,auto,wear,ar,tts]
+                   [--preset microg] [--detect-microg on|off]
+                   [--csc auto|THL|EUX] [--include-carrier on|off]
+                   [--include-samsung on|off] [--keep-samsung flags]
+                   [--include-file PATH] [--exclude-file PATH] [--only-file PATH]
+                   [--allow-non-google] [--safe-mode 0|1] [--user-id N]
+                   [--list-targets] [--dry-run] [--no-prompt] [--outdir DIR]
 
-# Dry-run only prints actions and writes logs, but does NOT change the device
-DRY_RUN="${DRY_RUN:-0}"
+Profiles
+  strict       : remove Google consumer apps + most Google/ads services (opt-in keeps via --with)
+  balanced     : remove consumer apps; KEEP Play/GSF/Store/Sync by default
+  permissive   : remove consumer apps only (maximum compatibility)
 
-# Safe mode: only allow packages that start with common Google prefixes unless
-# ALLOW_NON_GOOGLE=1 is provided (helps prevent accidental breakage).
-SAFE_MODE="${SAFE_MODE:-1}"
-ALLOW_NON_GOOGLE="${ALLOW_NON_GOOGLE:-0}"
+Freedom Controls
+  --with FLAGS : KEEP services even in strict mode (comma list):
+                 push (GMS), store (Play), sync (contacts/calendar),
+                 rcs (Carrier Services), auto (Android Auto),
+                 wear (Wear OS), ar (ARCore/VR), tts (Google TTS)
 
-# Directory for artifacts
-TS="$(date +%Y%m%d-%H%M%S)"
-OUTDIR="${OUTDIR:-./adb-degoogle-$TS}"
-mkdir -p "$OUTDIR"
+CSC-aware toggles
+  --csc auto|THL|EUX          : detect via getprop or force region
+  --include-carrier on|off    : if on, include regional carrier apps (safe; only if present)
+  --include-samsung on|off    : if on, include Samsung extras (TV Plus, Free/News, Wallet, Pass, Game*)
+  --keep-samsung flags        : comma KEEP list among wallet,pass,tvplus,free,game,smartthings,globalgoals
 
-REENABLE_SCRIPT="$OUTDIR/reenable.sh"
-INVENTORY_ALL="$OUTDIR/packages-all.txt"
-INVENTORY_ENABLED="$OUTDIR/packages-enabled.txt"
-INVENTORY_DISABLED="$OUTDIR/packages-disabled.txt"
-ACTIONS_CSV="$OUTDIR/actions.csv"
-SESSION_LOG="$OUTDIR/session.log"
+microG preset
+  --preset microg             : protect com.google.android.gms/gsf/com.android.vending for microG
+  --detect-microg on|off      : auto-protect when org.microg.* present
 
-# Log also to a session file (best-effort)
-exec > >(tee -a "$SESSION_LOG") 2>&1
+Safety & scope
+  --only-file PATH            : disable ONLY packages from this file (overrides profiles)
+  --include-file PATH         : add extra packages to targets (one per line)
+  --exclude-file PATH         : NEVER disable listed packages (whitelist)
+  --user-id N                 : target user (default 0)
+  --safe-mode 0|1             : 1 (default) target only Google prefixes unless allowed
+  --allow-non-google          : permit disabling non-Google when safe-mode=1
 
-# --------------------------- Utility: printing & traps -------------------------
-info()  { printf "[*] %s\n" "$*"; }
-warn()  { printf "[!] %s\n" "$*" >&2; }
-err()   { printf "[ERROR] %s\n" "$*" >&2; }
-die()   { err "$*"; exit 1; }
-
-cleanup() { :; }
-trap cleanup EXIT
-
-# --------------------------- Verify ADB / device state -------------------------
-command -v adb >/dev/null 2>&1 || die "adb not found in PATH. Install Android platform-tools."
-
-# Select a target device (handles multiple devices)
-select_device() {
-  mapfile -t lines < <(adb devices | awk 'NR>1 && NF{print $1" "$2}')
-  local count="${#lines[@]}"
-  (( count == 0 )) && die "No device found. Connect via USB and enable USB debugging. (See Android adb docs)"
-  if (( count == 1 )); then
-    local serial status; read -r serial status <<<"${lines[0]}"
-    [[ "$status" != "device" ]] && die "Device state is '$status'. Authorize USB debugging or reconnect."
-    export ANDROID_SERIAL="$serial"; return
-  fi
-  info "Multiple devices detected:"
-  local i=1; for l in "${lines[@]}"; do printf "  [%d] %s\n" "$i" "$l"; ((i++)); done
-  read -r -p "Select device [1-$count]: " pick
-  [[ "$pick" =~ ^[0-9]+$ ]] || die "Invalid selection."
-  local idx=$((pick-1)) serial status; read -r serial status <<<"${lines[$idx]}"
-  [[ "$status" != "device" ]] && die "Selected device state is '$status'."
-  export ANDROID_SERIAL="$serial"
+Ops
+  --list-targets              : print final target list and exit
+  --dry-run                   : simulate (log + reenable script, no changes)
+  --no-prompt                 : skip confirmation prompt
+  --outdir DIR                : output dir (default ./adb-degoogle-TS)
+USAGE
 }
 
-select_device
+# ------------------------------ Parse CLI -------------------------------------
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --mode) MODE="${2:?}"; shift 2;;
+    --with) WITH_FLAGS="${2:?}"; shift 2;;
+    --preset) PRESET="${2:?}"; shift 2;;
+    --detect-microg) DETECT_MICROG="${2:?}"; shift 2;;
+    --csc) CSC="${2:?}"; shift 2;;
+    --include-carrier) INCLUDE_CARRIER="${2:?}"; shift 2;;
+    --include-samsung) INCLUDE_SAMSUNG="${2:?}"; shift 2;;
+    --keep-samsung) KEEP_SAMSUNG="${2:?}"; shift 2;;
+    --include-file) INCLUDE_FILE="${2:?}"; shift 2;;
+    --exclude-file) EXCLUDE_FILE="${2:?}"; shift 2;;
+    --only-file) ONLY_FILE="${2:?}"; shift 2;;
+    --allow-non-google) ALLOW_NON_GOOGLE=1; shift;;
+    --safe-mode) SAFE_MODE="${2:?}"; shift 2;;
+    --user-id) USER_ID="${2:?}"; shift 2;;
+    --list-targets) LIST_TARGETS=1; shift;;
+    --dry-run) DRY_RUN=1; shift;;
+    --no-prompt) NO_PROMPT=1; shift;;
+    --outdir) OUTDIR="${2:?}"; shift 2;;
+    --help|-h) usage; exit 0;;
+    *) printf '[ERROR] Unknown arg: %s\n' "$1"; usage; exit 1;;
+  esac
+done
 
-# Quick sanity: shell reachable?
-adb shell true 1>/dev/null 2>&1 || die "adb shell failed. Check cable, drivers, and authorization."
+# --------------------------- Freeze config (readonly) --------------------------
+readonly MODE WITH_FLAGS PRESET DETECT_MICROG CSC INCLUDE_CARRIER INCLUDE_SAMSUNG \
+         KEEP_SAMSUNG SAFE_MODE ALLOW_NON_GOOGLE USER_ID DRY_RUN LIST_TARGETS \
+         NO_PROMPT INCLUDE_FILE EXCLUDE_FILE ONLY_FILE
+TS="$(date +%Y%m%d-%H%M%S)"; readonly TS
+OUTDIR="${OUTDIR:-./adb-degoogle-$TS}"; readonly OUTDIR
+mkdir -p "$OUTDIR"
+ACTIONS_CSV="$OUTDIR/actions.csv"; readonly ACTIONS_CSV
+REENABLE_SCRIPT="$OUTDIR/reenable.sh"; readonly REENABLE_SCRIPT
+SESSION_LOG="$OUTDIR/session.log"; readonly SESSION_LOG
 
-# Device identity (helpful in logs)
+# --------------------------- Logging & helpers --------------------------------
+exec > >(tee -a "$SESSION_LOG") 2>&1
+info(){ printf "[*] %s\n" "$*"; }
+warn(){ printf "[!] %s\n" "$*" >&2; }
+die(){ printf "[ERROR] %s\n" "$*" >&2; exit 1; }
+
+# ------------------------------ ADB sanity ------------------------------------
+command -v adb >/dev/null 2>&1 || die "adb not found (install Android platform-tools)."
+adb get-state >/dev/null 2>&1 || die "No device. Connect USB & enable USB debugging."
+adb shell true >/dev/null 2>&1 || die "adb shell unreachable."
 MODEL="$(adb shell getprop ro.product.model | tr -d '\r')"
-DEVICE="$(adb shell getprop ro.product.device | tr -d '\r')"
 ANDROID_VER="$(adb shell getprop ro.build.version.release | tr -d '\r')"
 ONEUI="$(adb shell getprop ro.build.version.oneui | tr -d '\r' || true)"
-info "Target: $MODEL ($DEVICE), Android $ANDROID_VER, One UI ${ONEUI:-unknown}"
-
-# Confirm multi-user targeting best-practice: we always address --user 0 explicitly.
-# (Android recommends specifying user ID to avoid ambiguity across commands.)  # Ref in notes.
-CURRENT_USER="$(adb shell 'am get-current-user' 2>/dev/null | tr -d '\r' || echo 0)"
-[[ "$CURRENT_USER" != "0" ]] && warn "Current foreground user is $CURRENT_USER; script will still target --user 0 explicitly."
-
-# --------------------------- Confirm Understanding -----------------------------
-echo "============================================================================="
-echo "  DE-GOOGLE (reversible) for Galaxy S24 Ultra"
-echo "  This disables Google apps/services for USER 0 using:"
-echo "     pm disable-user --user 0 <package>"
-echo "  You can undo with:"
-echo "     adb shell pm enable --user 0 <package>"
-echo "  DRY_RUN=$DRY_RUN  SAFE_MODE=$SAFE_MODE  ALLOW_NON_GOOGLE=$ALLOW_NON_GOOGLE"
-echo "============================================================================="
-read -r -p "Type 'I UNDERSTAND' to proceed: " ACK
-[[ "$ACK" == "I UNDERSTAND" ]] || { warn "Aborting by user."; exit 1; }
-
-# --------------------------- Export inventories --------------------------------
-info "Exporting package inventories to $OUTDIR ..."
-adb shell "cmd package list packages -u -f" | sed 's/\r$//' > "$INVENTORY_ALL"
-adb shell "cmd package list packages"       | sed 's/\r$//' > "$INVENTORY_ENABLED"
-adb shell "cmd package list packages -d"    | sed 's/\r$//' > "$INVENTORY_DISABLED"
 printf "package,group,action,status,message\n" > "$ACTIONS_CSV"
+printf "#!/usr/bin/env bash\nset -Eeuo pipefail\n" > "$REENABLE_SCRIPT"; chmod +x "$REENABLE_SCRIPT"
 
-# Prepare re-enable helper
-printf "#!/usr/bin/env bash\nset -Eeuo pipefail\n" > "$REENABLE_SCRIPT"
-chmod +x "$REENABLE_SCRIPT"
+pkg_exists(){ adb shell "pm path $1" >/dev/null 2>&1; }
+in_list(){ local x="$1"; shift; for y in "$@"; do [[ "$x" == "$y" ]] && return 0; done; return 1; }
 
-# --------------------------- Helpers -------------------------------------------
-pm_supports_disable_user() {
-  adb shell "pm help | grep -q 'disable-user'" >/dev/null 2>&1
+# -------------------------- CSC detection (THL/EUX) ---------------------------
+detect_csc() {
+  # Prefer ro.csc.sales_code on Samsung; fallbacks if needed.
+  local sc; sc="$(adb shell getprop ro.csc.sales_code | tr -d '\r')" || true
+  [[ -z "$sc" || "$sc" == "null" ]] && sc="$(adb shell getprop ro.csc.country_code | tr -d '\r')" || true
+  [[ -z "$sc" || "$sc" == "null" ]] && sc="$(adb shell getprop ro.boot.hwc | tr -d '\r')" || true
+  echo "$sc"
 }
-pm_supports_disable_user || warn "pm may restrict disabling certain system packages. If errors occur, enable 'USB debugging' and OEM options correctly."
 
-pkg_exists() { adb shell "pm path $1" >/dev/null 2>&1; }
+if [[ "${CSC,,}" == "auto" ]]; then
+  DETECTED_CSC="$(detect_csc)"
+  [[ -n "$DETECTED_CSC" ]] && CSC="$DETECTED_CSC"
+fi
+# Normalize to high-level region family if it's multi-CSC like EUX/THL.
+case "${CSC^^}" in
+  THL*) CSC_FAMILY="THL";;
+  EUX*|OXM*) CSC_FAMILY="EUX";;   # EUX usually inside OXM multi-CSC
+  *) CSC_FAMILY="OTHER";;
+esac
+readonly CSC CSC_FAMILY
+info "CSC: requested=${CSC} → family=${CSC_FAMILY}"
 
-# Protect list: never disable these
+# ------------------------------ microG detect ---------------------------------
+has_pkg(){ adb shell "pm path $1" >/dev/null 2>&1; }
+detect_microg_env(){
+  # Heuristic: presence of org.microg.* components
+  has_pkg org.microg.gms.droidguard || has_pkg org.microg.nlp || has_pkg org.microg.nlp.backend.ichnaea
+}
+[[ "${DETECT_MICROG,,}" == "on" ]] && { detect_microg_env && MICROG_PRESENT="yes" || MICROG_PRESENT="no"; } || MICROG_PRESENT="skip"
+readonly MICROG_PRESENT
+
+# ------------------------------ Guards & policies -----------------------------
+safe_mode_allows(){
+  [[ "$SAFE_MODE" != "1" ]] && return 0
+  [[ "$ALLOW_NON_GOOGLE" == "1" ]] && return 0
+  [[ "$1" =~ ^com\.google\. ]] || [[ "$1" == "com.android.vending" ]] \
+    || [[ "$1" == "com.google.android.gsf" ]] || [[ "$1" == "com.google.android.gsf.login" ]]
+}
+
 PROTECT_LIST=(
-  com.google.android.webview
-  com.android.webview
-  # Core telephony / contacts providers (defensive; normally not Google)
-  com.android.providers.contacts
-  com.android.providers.telephony
-  com.samsung.android.dialer
-  com.samsung.android.messaging
-  com.android.server.telecom
-  com.samsung.android.contacts
-  com.android.phone
-  com.android.mms.service
-  com.samsung.android.incallui
+  # Do-not-touch: critical telephony/contacts stacks + WebView
+  com.google.android.webview com.android.webview
+  com.android.providers.contacts com.android.providers.telephony
+  com.android.phone com.android.server.telecom
+  com.samsung.android.dialer com.samsung.android.messaging
+  com.samsung.android.contacts com.samsung.android.incallui
 )
 
-# Exclude list: user-provided
-EXCLUDE_LIST=()
-if [[ -n "${EXCLUDE_PKG_FILE}" && -f "$EXCLUDE_PKG_FILE" ]]; then
-  while IFS= read -r line; do
-    [[ -z "$line" || "$line" =~ ^# ]] && continue
-    EXCLUDE_LIST+=("$line")
-  done < "$EXCLUDE_PKG_FILE"
+# microG preset extends PROTECT_LIST
+if [[ "${PRESET,,}" == "microg" || "$MICROG_PRESENT" == "yes" ]]; then
+  PROTECT_LIST+=(
+    com.google.android.gms          # GmsCore (microG uses same package ID)
+    com.google.android.gsf          # GsfProxy (same ID)
+    com.android.vending             # (FakeStore or real Play Store)
+  )
+  warn "microG preset active — GMS/GSF/Store will be KEPT. Ensure your ROM supports signature spoofing." \
+    && echo "# microG preset protected core" >> "$REENABLE_SCRIPT"
 fi
 
-in_list() {
-  local x="$1"; shift
-  local y
-  for y in "$@"; do [[ "$x" == "$y" ]] && return 0; done
-  return 1
-}
+# Merge user whitelist
+if [[ -n "$EXCLUDE_FILE" && -f "$EXCLUDE_FILE" ]]; then
+  while IFS= read -r line; do [[ -n "$line" && ! "$line" =~ ^# ]] && PROTECT_LIST+=("$line"); done < "$EXCLUDE_FILE"
+fi
+readonly -a PROTECT_LIST
 
-safe_mode_allows() {
+should_skip(){
   local p="$1"
-  # Common Google prefixes we intend to target
-  [[ "$p" =~ ^com\.google\. ]] || [[ "$p" == "com.android.vending" ]] || [[ "$p" == "com.google.android.gsf" ]] || [[ "$p" == "com.google.android.gsf.login" ]]
-}
-
-should_skip() {
-  local pkg="$1"
-  in_list "$pkg" "${PROTECT_LIST[@]}" && { printf "protected"; return 0; }
-  in_list "$pkg" "${EXCLUDE_LIST[@]}"   && { printf "excluded";  return 0; }
-  if [[ "$SAFE_MODE" == "1" && "$ALLOW_NON_GOOGLE" != "1" ]]; then
-    safe_mode_allows "$pkg" || { printf "non-google (safe-mode)"; return 0; }
-  fi
+  in_list "$p" "${PROTECT_LIST[@]}" && { printf "protected"; return 0; }
+  safe_mode_allows "$p" || { printf "non-google (safe-mode)"; return 0; }
   return 1
 }
 
-disable_pkg() {
-  local pkg="$1" group="$2"
-  local reason
-  if reason="$(should_skip "$pkg")"; then
-    info "Skip ($reason): $pkg"
-    printf "%s,%s,disable,skip,%s\n" "$pkg" "$group" "$reason" >> "$ACTIONS_CSV"
-    return
-  fi
-  if ! pkg_exists "$pkg"; then
-    info "Skip (not installed): $pkg"
-    printf "%s,%s,disable,skip,not installed\n" "$pkg" "$group" >> "$ACTIONS_CSV"
-    return
-  fi
-  if [[ "$DRY_RUN" == "1" ]]; then
-    info "DRY-RUN would disable: $pkg"
-    printf "%s,%s,disable,dry-run,\n" "$pkg" "$group" >> "$ACTIONS_CSV"
-    return
-  fi
-  if adb shell "pm disable-user --user 0 $pkg" >/dev/null 2>&1; then
-    info "Disabled: $pkg"
+disable_pkg(){
+  local pkg="$1" group="$2" reason
+  if reason="$(should_skip "$pkg")"; then printf "%s,%s,disable,skip,%s\n" "$pkg" "$group" "$reason" >> "$ACTIONS_CSV"; return; fi
+  if ! pkg_exists "$pkg"; then printf "%s,%s,disable,skip,not-installed\n" "$pkg" "$group" >> "$ACTIONS_CSV"; return; fi
+  if [[ "$DRY_RUN" == "1" ]]; then printf "%s,%s,disable,dry-run,\n" "$pkg" "$group" >> "$ACTIONS_CSV"; return; fi
+  if adb shell "pm disable-user --user $USER_ID $pkg" >/dev/null 2>&1; then
     printf "%s,%s,disable,ok,\n" "$pkg" "$group" >> "$ACTIONS_CSV"
-    echo "adb shell pm enable --user 0 $pkg" >> "$REENABLE_SCRIPT"
+    echo "adb shell pm enable --user $USER_ID $pkg" >> "$REENABLE_SCRIPT"
   else
-    warn "Failed (permission/policy?): $pkg"
-    printf "%s,%s,disable,fail,permission or policy\n" "$pkg" "$group" >> "$ACTIONS_CSV"
+    printf "%s,%s,disable,fail,permission-or-policy\n" "$pkg" "$group" >> "$ACTIONS_CSV"
   fi
 }
 
-# --------------------------- Role/Default-app guards ---------------------------
-# If Google Messages is your current SMS app, disabling it will break texting.
-# We check roles via 'cmd role holders' and warn. (Non-fatal; user can proceed.)
-role_holders() { adb shell "cmd role holders $1" 2>/dev/null | tr -d '\r' || true; }
-
-SMS_ROLE="android.app.role.SMS"
-DIALER_ROLE="android.app.role.DIALER"
-SMS_HOLDERS="$(role_holders "$SMS_ROLE")"
-DIALER_HOLDERS="$(role_holders "$DIALER_ROLE")"
-
-if echo "$SMS_HOLDERS" | grep -q "com.google.android.apps.messaging"; then
-  warn "Google Messages is the current SMS app. Disabling it will break SMS until you switch to Samsung Messages or another SMS app."
-  read -r -p "Type 'SWITCHED_SMS' after you change the default SMS app (or 'CONTINUE' to proceed anyway): " SMS_ACK
-  [[ "$SMS_ACK" =~ ^(SWITCHED_SMS|CONTINUE)$ ]] || { warn "Aborting."; exit 1; }
-fi
-
-# --------------------------- Package Sets -------------------------------------
-# Presence varies by firmware/region; missing packages are auto-skipped.
-
-GOOGLE_CORE_PLAY_STACK=(
-  com.android.vending                         # Play Store
-  com.google.android.gms                      # Play services
-  com.google.android.gsf                      # Google Services Framework
-  com.google.android.gsf.login                # Google Account Manager (some builds)
-  com.google.android.feedback                 # Feedback
-  com.google.android.backuptransport          # Google Backup Transport
-  com.google.android.onetimeinitializer       # One-time init
-  com.google.android.partnersetup             # Partner Setup
-  com.google.android.apps.restore             # Device restore helper
-)
+# ------------------------------ Google stacks ---------------------------------
+CORE_PLAY_STACK=( com.android.vending com.google.android.gms com.google.android.gsf com.google.android.gsf.login )
+SYNC_STACK=( com.google.android.syncadapters.contacts com.google.android.syncadapters.calendar )
+RCS_STACK=( com.google.android.ims )
+AUTO_STACK=( com.google.android.projection.gearhead )
+WEAR_STACK=( com.google.android.wearable.app com.google.android.apps.wear.companion )
+AR_STACK=( com.google.ar.core com.google.vr.vrcore )
+TTS_STACK=( com.google.android.tts )
+ADSERVICES_STACK=( com.google.android.adservices.api )
 
 GOOGLE_APPS=(
-  com.google.android.googlequicksearchbox     # Google app (Assistant/Discover)
-  com.google.android.youtube                  # YouTube
-  com.google.android.apps.youtube.music       # YouTube Music
-  com.google.android.gm                       # Gmail
-  com.google.android.apps.maps                # Maps
-  com.google.android.apps.docs                # Drive
-  com.google.android.apps.photos              # Photos
-  com.google.android.apps.meetings            # Google Meet
-  com.google.android.apps.tachyon             # Duo (legacy)
-  com.google.android.chrome                   # Chrome
-  com.google.android.calendar                 # Google Calendar
-  com.google.android.contacts                  # Google Contacts app
-  com.google.android.apps.messaging           # Google Messages
-  com.google.android.play.games               # Play Games
-  com.google.android.apps.podcasts            # Podcasts
-  com.google.android.keep                     # Keep
-  com.google.android.videos                   # Play Movies & TV
-  com.google.android.apps.nbu.files           # Files by Google
+  com.google.android.googlequicksearchbox com.google.android.youtube
+  com.google.android.apps.youtube.music com.google.android.gm
+  com.google.android.apps.maps com.google.android.apps.docs
+  com.google.android.apps.photos com.google.android.apps.meetings
+  com.google.android.apps.tachyon com.google.android.chrome
+  com.google.android.calendar com.google.android.contacts
+  com.google.android.apps.messaging com.google.android.play.games
+  com.google.android.apps.podcasts com.google.android.keep
+  com.google.android.videos com.google.android.apps.nbu.files
 )
+readonly -a CORE_PLAY_STACK SYNC_STACK RCS_STACK AUTO_STACK WEAR_STACK AR_STACK \
+            TTS_STACK ADSERVICES_STACK GOOGLE_APPS
 
-GOOGLE_SERVICES_MISC=(
-  com.google.android.syncadapters.contacts    # Contacts sync
-  com.google.android.syncadapters.calendar    # Calendar sync
-  com.google.android.ims                      # Carrier Services / RCS (disable only if not needed)
-  com.google.android.projection.gearhead      # Android Auto
-  com.google.android.wearable.app             # Wear OS
-  com.google.android.apps.wear.companion      # Wear OS companion
-  com.google.ar.core                          # ARCore
-  com.google.vr.vrcore                        # Google VR Services
-  com.google.android.printservice.recommendation # Print svc recommender
-  com.google.android.tts                      # Google TTS (keep if you need TTS)
-  com.google.android.adservices.api           # Privacy Sandbox / Ads services (module API)
+# --------------------------- Samsung + CSC bundles ----------------------------
+# Samsung extras (disable if INCLUDE_SAMSUNG=on, unless kept)
+SAMSUNG_EXTRAS_common=(
+  com.samsung.android.app.spage      # Samsung Free/News panel
+  com.samsung.android.tvplus         # Samsung TV Plus (phone/tablet)
+  com.samsung.android.game.gamehome  # Game Launcher
+  com.samsung.android.game.gos       # Game Optimizing Service
+  com.samsung.sree                   # Global Goals
+  com.samsung.android.oneconnect     # SmartThings
+  com.samsung.android.app.tips       # Tips
 )
+# Wallet & Pass are split with keep flags because many users want them
+SAMSUNG_WALLET=( com.samsung.android.spay )
+SAMSUNG_PASS=( com.samsung.android.samsungpass )
 
-GOOGLE_OPTIONAL=(
-  com.google.android.inputmethod.latin        # Gboard (keep Samsung Keyboard if preferred)
-  com.google.android.deskclock                # Google Clock
-  com.google.android.calculator               # Google Calculator
-  com.google.android.as                       # Action Services / Live Caption deps (varies)
-  com.google.android.apps.subscriptions.red   # Google One (varies/region)
-  com.google.android.marvin.talkback          # TalkBack (KEEP if you rely on accessibility)
-)
+# THL carriers (Thailand): AIS, dtac, True
+THL_CARRIERS=( com.ais.mimo.eservice th.co.crie.tron2.android com.truelife.mobile.android.trueiservice )
+# EUX common carrier self-care apps (examples; safe if not present)
+EUX_CARRIERS=( com.myvodafoneapp uk.co.o2.android.myo2 de.telekom.android.customercenter com.orange.orangeetmoi )
+readonly -a SAMSUNG_EXTRAS_common SAMSUNG_WALLET SAMSUNG_PASS THL_CARRIERS EUX_CARRIERS
 
-# Load extra packages (user-provided). In SAFE_MODE, non-Google entries are refused unless ALLOW_NON_GOOGLE=1.
-if [[ -f "$EXTRA_PKG_FILE" ]]; then
-  info "Loading extra package names from $EXTRA_PKG_FILE ..."
-  while IFS= read -r line; do
-    [[ -z "$line" || "$line" =~ ^# ]] && continue
-    GOOGLE_OPTIONAL+=("$line")
-  done < "$EXTRA_PKG_FILE"
+# Parse keep-samsung flags
+IFS=',' read -r -a KEEP_SAM_ARR <<<"${KEEP_SAMSUNG,,}"
+keep_sam_flag(){ local f="${1,,}"; for x in "${KEEP_SAM_ARR[@]:-}"; do [[ "$x" == "$f" ]] && return 0; done; return 1; }
+
+# ------------------------------- WITH flags -----------------------------------
+IFS=',' read -r -a WITH <<<"${WITH_FLAGS,,}"; readonly -a WITH
+want_flag(){ local f="${1,,}"; for x in "${WITH[@]:-}"; do [[ "$x" == "$f" ]] && return 0; done; return 1; }
+
+# ----------------------------- Build TARGETS ----------------------------------
+declare -a TARGETS=()
+if [[ -n "$ONLY_FILE" ]]; then
+  while IFS= read -r line; do [[ -n "$line" && ! "$line" =~ ^# ]] && TARGETS+=("$line"); done < "$ONLY_FILE"
+else
+  case "${MODE,,}" in
+    strict)
+      TARGETS+=( "${GOOGLE_APPS[@]}" "${ADSERVICES_STACK[@]}" )
+      want_flag push  || TARGETS+=( "${CORE_PLAY_STACK[@]}" )
+      want_flag store || TARGETS+=( com.android.vending )
+      want_flag sync  || TARGETS+=( "${SYNC_STACK[@]}" )
+      want_flag rcs   || TARGETS+=( "${RCS_STACK[@]}" )
+      want_flag auto  || TARGETS+=( "${AUTO_STACK[@]}" )
+      want_flag wear  || TARGETS+=( "${WEAR_STACK[@]}" )
+      want_flag ar    || TARGETS+=( "${AR_STACK[@]}" )
+      want_flag tts   || TARGETS+=( "${TTS_STACK[@]}" )
+      ;;
+    balanced|default)
+      TARGETS+=( "${GOOGLE_APPS[@]}" "${ADSERVICES_STACK[@]}" )
+      [[ "$(want_flag rcs; echo $?)" -ne 0 ]]  && TARGETS+=( "${RCS_STACK[@]}" )
+      [[ "$(want_flag auto; echo $?)" -ne 0 ]] && TARGETS+=( "${AUTO_STACK[@]}" )
+      [[ "$(want_flag wear; echo $?)" -ne 0 ]] && TARGETS+=( "${WEAR_STACK[@]}" )
+      [[ "$(want_flag ar; echo $?)" -ne 0 ]]   && TARGETS+=( "${AR_STACK[@]}" )
+      [[ "$(want_flag tts; echo $?)" -ne 0 ]]  && TARGETS+=( "${TTS_STACK[@]}" )
+      ;;
+    permissive)
+      TARGETS+=( "${GOOGLE_APPS[@]}" )
+      if ! want_flag push && ! want_flag store; then TARGETS+=( "${ADSERVICES_STACK[@]}" ); fi
+      ;;
+    *) die "Unknown --mode '$MODE'";;
+  esac
+
+  # Samsung extras if requested
+  if [[ "${INCLUDE_SAMSUNG,,}" == "on" ]]; then
+    # add common extras; then conditionally wallet/pass unless kept
+    TARGETS+=( "${SAMSUNG_EXTRAS_common[@]}" )
+    keep_sam_flag wallet || TARGETS+=( "${SAMSUNG_WALLET[@]}" )
+    keep_sam_flag pass   || TARGETS+=( "${SAMSUNG_PASS[@]}" )
+    keep_sam_flag tvplus && TARGETS=( "${TARGETS[@]/com.samsung.android.tvplus}" )
+    keep_sam_flag free   && TARGETS=( "${TARGETS[@]/com.samsung.android.app.spage}" )
+    keep_sam_flag game   && TARGETS=( "${TARGETS[@]/com.samsung.android.game.gamehome}" )
+    keep_sam_flag smartthings && TARGETS=( "${TARGETS[@]/com.samsung.android.oneconnect}" )
+    keep_sam_flag globalgoals && TARGETS=( "${TARGETS[@]/com.samsung.sree}" )
+  fi
+
+  # CSC carriers (safe; skip if not installed)
+  if [[ "${INCLUDE_CARRIER,,}" == "on" ]]; then
+    case "$CSC_FAMILY" in
+      THL) TARGETS+=( "${THL_CARRIERS[@]}" );;
+      EUX) TARGETS+=( "${EUX_CARRIERS[@]}" );;
+    esac
+  fi
+
+  # include-file extras
+  if [[ -n "$INCLUDE_FILE" && -f "$INCLUDE_FILE" ]]; then
+    while IFS= read -r line; do [[ -n "$line" && ! "$line" =~ ^# ]] && TARGETS+=("$line"); done < "$INCLUDE_FILE"
+  fi
 fi
 
-# --------------------------- Execution ----------------------------------------
-info "Disabling Google Core Play Stack..."
-for p in "${GOOGLE_CORE_PLAY_STACK[@]}"; do disable_pkg "$p" "core"; done
+# microG preset: ensure we do NOT target GMS/GSF/Store
+if [[ "${PRESET,,}" == "microg" || "$MICROG_PRESENT" == "yes" ]]; then
+  # remove these from TARGETS if present
+  TMP=()
+  for p in "${TARGETS[@]}"; do
+    case "$p" in
+      com.google.android.gms|com.google.android.gsf|com.android.vending) continue;;
+    esac
+    TMP+=("$p")
+  done
+  TARGETS=("${TMP[@]}")
+fi
 
-info "Disabling Google Apps..."
-for p in "${GOOGLE_APPS[@]}"; do disable_pkg "$p" "apps"; done
+mapfile -t TARGETS < <(printf "%s\n" "${TARGETS[@]}" | awk 'NF' | sort -u)
+readonly -a TARGETS
 
-info "Disabling Google Services / Android Auto / Wear / AR / misc..."
-for p in "${GOOGLE_SERVICES_MISC[@]}"; do disable_pkg "$p" "services"; done
+# ------------------------------ Role guards -----------------------------------
+role_holders(){ adb shell "cmd role holders $1" 2>/dev/null | tr -d '\r' || true; }
+SMS_ROLE="android.app.role.SMS"; DIALER_ROLE="android.app.role.DIALER"; readonly SMS_ROLE DIALER_ROLE
+if printf "%s\n" "${TARGETS[@]}" | grep -qx "com.google.android.apps.messaging"; then
+  if role_holders "$SMS_ROLE" | grep -q "com.google.android.apps.messaging"; then
+    warn "Google Messages holds the SMS role; change default SMS before disabling."
+  fi
+fi
 
-info "Disabling Optional Google components..."
-for p in "${GOOGLE_OPTIONAL[@]}"; do disable_pkg "$p" "optional"; done
+# ----------------------------- Confirm / Execute ------------------------------
+[[ "$LIST_TARGETS" == "1" ]] && { printf "%s\n" "${TARGETS[@]}"; exit 0; }
 
-# --------------------------- Summary ------------------------------------------
-DISABLED_COUNT="$(awk -F, '$3=="disable" && $4=="ok"{c++} END{print c+0}' "$ACTIONS_CSV")"
-SKIP_COUNT="$(awk -F, '$4=="skip"{c++} END{print c+0}' "$ACTIONS_CSV")"
-FAIL_COUNT="$(awk -F, '$4=="fail"{c++} END{print c+0}' "$ACTIONS_CSV")"
-DRY_COUNT="$(awk -F, '$4=="dry-run"{c++} END{print c+0}' "$ACTIONS_CSV")"
+if [[ "$NO_PROMPT" != "1" ]]; then
+  echo "=============================================================================="
+  echo " Device: $MODEL  Android $ANDROID_VER  OneUI ${ONEUI:-unknown}"
+  echo " Mode=$MODE  WITH=${WITH_FLAGS:-<none>}  USER=$USER_ID  SAFE_MODE=$SAFE_MODE  DRY_RUN=$DRY_RUN"
+  echo " CSC=$CSC (family=$CSC_FAMILY)  microG_present=$MICROG_PRESENT  targets=${#TARGETS[@]}"
+  read -r -p "Type 'I UNDERSTAND' to proceed: " ACK; [[ "$ACK" == "I UNDERSTAND" ]] || { echo "Aborted."; exit 1; }
+fi
 
-echo "============================================================================="
-echo " Done. Artifacts:"
-echo "   - Re-enable helper: $REENABLE_SCRIPT"
-echo "   - Inventory (all):  $INVENTORY_ALL"
-echo "   - Inventory (on):   $INVENTORY_ENABLED"
-echo "   - Inventory (off):  $INVENTORY_DISABLED"
-echo "   - Actions (CSV):    $ACTIONS_CSV"
-echo " Result: disabled=$DISABLED_COUNT  skipped=$SKIP_COUNT  failed=$FAIL_COUNT  dry-run=$DRY_COUNT"
-echo " Re-enable any package: adb shell pm enable --user 0 <package>"
-echo "============================================================================="
+for p in "${TARGETS[@]}"; do disable_pkg "$p" "bundle"; done
+
+# Bonus: common partner bloat (reversible; only if present)
+for p in com.facebook.katana com.facebook.appmanager com.facebook.services com.facebook.system; do
+  disable_pkg "$p" "partner"
+done
+
+DIS="$(awk -F, '$3=="disable"&&$4=="ok"{c++}END{print c+0}' "$ACTIONS_CSV")"
+SK="$(awk -F, '$4=="skip"{c++}END{print c+0}' "$ACTIONS_CSV")"
+FA="$(awk -F, '$4=="fail"{c++}END{print c+0}' "$ACTIONS_CSV")"
+DR="$(awk -F, '$4=="dry-run"{c++}END{print c+0}' "$ACTIONS_CSV")"
+
+echo "=============================================================================="
+echo " Re-enable helper: $REENABLE_SCRIPT"
+echo " Actions CSV     : $ACTIONS_CSV"
+echo " Result: disabled=$DIS skipped=$SK failed=$FA dry-run=$DR"
+echo " Re-enable: adb shell pm enable --user $USER_ID <package>"
+echo "=============================================================================="
