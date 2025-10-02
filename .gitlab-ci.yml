@@ -1,6 +1,6 @@
 variables:
-  PUSH_TO_GITHUB: "true"
-  GITHUB_REPO_PRIVATE: "false"
+  PUSH_TO_GITHUB: "false"
+  GITHUB_REPO_PRIVATE: "true"
 
 include:
   - project: '${SHARED_CONFIGURATION}'

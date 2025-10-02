@@ -1,0 +1,75 @@
+# Preset (applies defaults; env overrides still win)
+PROFILE=""
+
+# Core controls
+DRY_RUN="0"
+
+# UI / multitasking
+ANIM_SCALE="0.5"
+BACKGROUND_PROCESS_LIMIT=""
+ACTIVITY_MAX_CACHED=""
+
+# Network policy / sync clamps
+DATA_SAVER=""
+BACKGROUND_SYNC_BLACKLIST=""
+
+# Private DNS
+PRIVATE_DNS_MODE=""
+PRIVATE_DNS_HOST=""
+
+# Refresh rate
+REFRESH_MIN=""
+REFRESH_MAX=""
+
+# Scanning / radios
+DISABLE_ALWAYS_SCANNING="0"
+WIFI_SCAN_THROTTLE=""
+
+# ART compilation
+ART_ACTION=""
+ART_SPEED_PROFILE_PKGS=""
+ART_INCLUDE_SECONDARY="0"
+ART_RESET_FIRST="0"
+
+# Process policy
+PHANTOM_MODE="default"
+STANDBY_BUCKETS=""
+
+# Permissions / AppOps (manual lists)
+PERMISSIONS_TO_REVOKE=""
+PERMISSIONS_REVOKE_PACKAGES=""
+APP_OPS_PACKAGES=""
+APP_OPS_BLOCK_OPS=""
+
+# Automatic AppOps clamp for BACKGROUND_SYNC_BLACKLIST
+APP_OPS_CLAMP_BLACKLIST="on"
+APP_OPS_CLAMP_OPS="RUN_IN_BACKGROUND RUN_ANY_IN_BACKGROUND WAKE_LOCK"
+
+# Doze tests
+TEST_DOZE="off"
+
+# CSC hints
+CSC="auto"
+INCLUDE_SAMSUNG_HINTS="off"
+
+# Output directory (auto-timestamped by default)
+OUTDIR="./adb-enhancements-$(date +%Y%m%d-%H%M%S)"
+
+
+PROFILE=maxperf \
+PRIVATE_DNS_MODE=hostname PRIVATE_DNS_HOST=family.dns.mullvad.net \
+BACKGROUND_SYNC_BLACKLIST="\
+com.facebook.katana \
+com.google.android.youtube \
+com.google.android.gm \
+com.linkedin.android \
+com.whatsapp \
+com.instagram.android" \
+STANDBY_BUCKETS="\
+com.facebook.katana:rare \
+com.google.android.youtube:rare \
+com.linkedin.android:rare \
+com.whatsapp:frequent \
+com.google.android.gm:rare \
+com.instagram.android:rare" \
+./s24u-enhancements.sh

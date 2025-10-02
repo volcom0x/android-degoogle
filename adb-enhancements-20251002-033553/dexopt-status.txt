@@ -1,0 +1,2114 @@
+Dexopt state:
+  [android]
+  [android.auto_generated_rro_product__]
+  [android.auto_generated_rro_vendor__]
+    path: /vendor/overlay/framework-res__auto_generated_rro_vendor.apk
+      arm64: [status=unknown] [reason=unknown] [primary-abi]
+        [location is none]
+  [android.autoinstalls.config.samsung]
+  [com.android.apps.tag]
+    path: /system/priv-app/Tag/Tag.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@Tag@Tag.apk@classes.dex]
+  [com.android.avatarpicker]
+    path: /system_ext/priv-app/AvatarPicker/AvatarPicker.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system_ext@priv-app@AvatarPicker@AvatarPicker.apk@classes.dex]
+  [com.android.backupconfirm]
+    path: /system/priv-app/BackupRestoreConfirmation/BackupRestoreConfirmation.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@BackupRestoreConfirmation@BackupRestoreConfirmation.apk@classes.dex]
+  [com.android.bips]
+    path: /system/priv-app/BuiltInPrintService/BuiltInPrintService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@BuiltInPrintService@BuiltInPrintService.apk@classes.dex]
+  [com.android.bluetooth]
+    path: /apex/com.android.bt/app/Bluetooth@BP2A.250605.031.A3/Bluetooth.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/apex@com.android.bt@app@Bluetooth@BP2A.250605.031.A3@Bluetooth.apk@classes.dex]
+  [com.android.bluetoothmidiservice]
+    path: /system/app/BluetoothMidiService/BluetoothMidiService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@BluetoothMidiService@BluetoothMidiService.apk@classes.dex]
+  [com.android.bookmarkprovider]
+    path: /system/app/BookmarkProvider/BookmarkProvider.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@BookmarkProvider@BookmarkProvider.apk@classes.dex]
+  [com.android.calllogbackup]
+    path: /system/priv-app/CallLogBackup/CallLogBackup.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@CallLogBackup@CallLogBackup.apk@classes.dex]
+  [com.android.cameraextensions]
+    path: /system/app/CameraExtensionsProxy/CameraExtensionsProxy.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@CameraExtensionsProxy@CameraExtensionsProxy.apk@classes.dex]
+  [com.android.carrierconfig]
+    path: /system_ext/priv-app/CarrierConfig/CarrierConfig.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system_ext@priv-app@CarrierConfig@CarrierConfig.apk@classes.dex]
+  [com.android.carrierdefaultapp]
+    path: /system/app/CarrierDefaultApp/CarrierDefaultApp.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@CarrierDefaultApp@CarrierDefaultApp.apk@classes.dex]
+  [com.android.certinstaller]
+    path: /system/app/CertInstaller/CertInstaller.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@CertInstaller@CertInstaller.apk@classes.dex]
+  [com.android.chrome]
+    path: /product/app/Chrome64/Chrome64.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/product@app@Chrome64@Chrome64.apk@classes.dex]
+  [com.android.companiondevicemanager]
+    path: /system/app/CompanionDeviceManager/CompanionDeviceManager.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@CompanionDeviceManager@CompanionDeviceManager.apk@classes.dex]
+  [com.android.companiondevicemanager.auto_generated_characteristics_rro]
+  [com.android.compos.payload]
+  [com.android.credentialmanager]
+    path: /system/priv-app/CredentialManager/CredentialManager.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@CredentialManager@CredentialManager.apk@classes.dex]
+  [com.android.cts.ctsshim]
+  [com.android.cts.priv.ctsshim]
+  [com.android.devicediagnostics]
+    path: /system/priv-app/DeviceDiagnostics/DeviceDiagnostics.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@DeviceDiagnostics@DeviceDiagnostics.apk@classes.dex]
+  [com.android.dreams.basic]
+    path: /system/app/BasicDreams/BasicDreams.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@BasicDreams@BasicDreams.apk@classes.dex]
+  [com.android.dreams.phototable]
+    path: /system/app/PhotoTable/PhotoTable.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@PhotoTable@PhotoTable.apk@classes.dex]
+  [com.android.dynsystem]
+    path: /system/priv-app/DynamicSystemInstallationService/DynamicSystemInstallationService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@DynamicSystemInstallationService@DynamicSystemInstallationService.apk@classes.dex]
+  [com.android.egg]
+    path: /system/app/EasterEgg/EasterEgg.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@EasterEgg@EasterEgg.apk@classes.dex]
+  [com.android.externalstorage]
+    path: /system/priv-app/ExternalStorageProvider/ExternalStorageProvider.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@ExternalStorageProvider@ExternalStorageProvider.apk@classes.dex]
+  [com.android.hotspot2.osulogin]
+    path: /apex/com.android.wifi/app/OsuLogin@BP2A.250605.031.A3/OsuLogin.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/apex@com.android.wifi@app@OsuLogin@BP2A.250605.031.A3@OsuLogin.apk@classes.dex]
+  [com.android.hotwordenrollment.okgoogle]
+    path: /product/priv-app/HotwordEnrollmentOKGoogleEx4HEXAGON/HotwordEnrollmentOKGoogleEx4HEXAGON.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/product@priv-app@HotwordEnrollmentOKGoogleEx4HEXAGON@HotwordEnrollmentOKGoogleEx4HEXAGON.apk@classes.dex]
+  [com.android.hotwordenrollment.xgoogle]
+    path: /product/priv-app/HotwordEnrollmentXGoogleEx4HEXAGON/HotwordEnrollmentXGoogleEx4HEXAGON.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/product@priv-app@HotwordEnrollmentXGoogleEx4HEXAGON@HotwordEnrollmentXGoogleEx4HEXAGON.apk@classes.dex]
+  [com.android.htmlviewer]
+    path: /system/app/SecHTMLViewer/SecHTMLViewer.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@SecHTMLViewer@SecHTMLViewer.apk@classes.dex]
+  [com.android.inputdevices]
+    path: /system/priv-app/InputDevices/InputDevices.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@InputDevices@InputDevices.apk@classes.dex]
+  [com.android.intentresolver]
+    path: /system/priv-app/IntentResolver/IntentResolver.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@IntentResolver@IntentResolver.apk@classes.dex]
+  [com.android.internal.display.cutout.emulation.corner]
+  [com.android.internal.display.cutout.emulation.double]
+  [com.android.internal.display.cutout.emulation.hole]
+  [com.android.internal.display.cutout.emulation.tall]
+  [com.android.internal.display.cutout.emulation.waterfall]
+  [com.android.internal.systemui.navbar.gestural]
+  [com.android.internal.systemui.navbar.threebutton]
+  [com.android.internal.systemui.navbar.transparent]
+  [com.android.keychain]
+    path: /system/app/KeyChain/KeyChain.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@KeyChain@KeyChain.apk@classes.dex]
+  [com.android.localtransport]
+    path: /system/priv-app/LocalTransport/LocalTransport.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@LocalTransport@LocalTransport.apk@classes.dex]
+  [com.android.location.fused]
+    path: /system/priv-app/FusedLocation/FusedLocation.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@FusedLocation@FusedLocation.apk@classes.dex]
+  [com.android.managedprovisioning]
+    path: /system/priv-app/ManagedProvisioning/ManagedProvisioning.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@ManagedProvisioning@ManagedProvisioning.apk@classes.dex]
+  [com.android.microdroid.empty_payload]
+  [com.android.mms.service]
+    path: /system/priv-app/MmsService/MmsService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@MmsService@MmsService.apk@classes.dex]
+  [com.android.mtp]
+    path: /system/priv-app/MtpService/MtpService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@MtpService@MtpService.apk@classes.dex]
+      used by other apps: [com.android.providers.downloads (isa=arm64), com.samsung.android.mtp (isa=arm64)]
+  [com.android.nfc]
+    path: /system/priv-app/NfcNci/NfcNci.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@NfcNci@NfcNci.apk@classes.dex]
+  [com.android.ons]
+    path: /system/priv-app/ONS/ONS.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@ONS@ONS.apk@classes.dex]
+      used by other apps: [com.android.phone (isa=arm64)]
+  [com.android.pacprocessor]
+    path: /system/app/PacProcessor/PacProcessor.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@PacProcessor@PacProcessor.apk@classes.dex]
+  [com.android.phone]
+    path: /system/priv-app/TeleService/TeleService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@TeleService@TeleService.apk@classes.dex]
+  [com.android.phone.auto_generated_characteristics_rro]
+  [com.android.printspooler]
+    path: /system/app/PrintSpooler/PrintSpooler.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@PrintSpooler@PrintSpooler.apk@classes.dex]
+  [com.android.providers.blockednumber]
+    path: /system/priv-app/BlockedNumberProvider/BlockedNumberProvider.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@BlockedNumberProvider@BlockedNumberProvider.apk@classes.dex]
+      used by other apps: [com.samsung.android.providers.contacts (isa=arm64)]
+  [com.android.providers.calendar]
+    path: /system/priv-app/SamsungCalendarProvider/SamsungCalendarProvider.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SamsungCalendarProvider@SamsungCalendarProvider.apk@classes.dex]
+  [com.android.providers.contactkeys]
+    path: /system/priv-app/E2eeContactKeysProvider/E2eeContactKeysProvider.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@E2eeContactKeysProvider@E2eeContactKeysProvider.apk@classes.dex]
+      used by other apps: [com.android.providers.blockednumber (isa=arm64), com.samsung.android.providers.contacts (isa=arm64)]
+  [com.android.providers.downloads]
+    path: /system/priv-app/SecDownloadProvider/SecDownloadProvider.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SecDownloadProvider@SecDownloadProvider.apk@classes.dex]
+      used by other apps: [com.samsung.android.mtp (isa=arm64)]
+  [com.android.providers.downloads.ui]
+    path: /system/priv-app/DownloadProviderUi/DownloadProviderUi.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@DownloadProviderUi@DownloadProviderUi.apk@classes.dex]
+  [com.android.providers.media]
+    path: /system/priv-app/MediaProviderLegacy/MediaProviderLegacy.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@MediaProviderLegacy@MediaProviderLegacy.apk@classes.dex]
+      used by other apps: [com.android.providers.downloads (isa=arm64), com.samsung.android.mtp (isa=arm64)]
+  [com.android.providers.partnerbookmarks]
+    path: /system/app/PartnerBookmarksProvider/PartnerBookmarksProvider.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@PartnerBookmarksProvider@PartnerBookmarksProvider.apk@classes.dex]
+  [com.android.providers.settings]
+    path: /system/priv-app/SettingsProvider/SettingsProvider.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SettingsProvider@SettingsProvider.apk@classes.dex]
+  [com.android.providers.telephony]
+    path: /system/priv-app/SecTelephonyProvider/SecTelephonyProvider.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SecTelephonyProvider@SecTelephonyProvider.apk@classes.dex]
+      used by other apps: [com.android.phone (isa=arm64)]
+  [com.android.providers.telephony.auto_generated_characteristics_rro]
+  [com.android.providers.userdictionary]
+    path: /system/priv-app/UserDictionaryProvider/UserDictionaryProvider.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@UserDictionaryProvider@UserDictionaryProvider.apk@classes.dex]
+      used by other apps: [com.android.providers.blockednumber (isa=arm64), com.samsung.android.providers.contacts (isa=arm64)]
+  [com.android.proxyhandler]
+    path: /system/priv-app/ProxyHandler/ProxyHandler.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@ProxyHandler@ProxyHandler.apk@classes.dex]
+  [com.android.role.notes.enabled]
+  [com.android.se]
+    path: /system/app/SecureElement/SecureElement.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@SecureElement@SecureElement.apk@classes.dex]
+  [com.android.server.telecom]
+    path: /system/priv-app/Telecom/Telecom.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@Telecom@Telecom.apk@classes.dex]
+  [com.android.settings]
+    path: /system/priv-app/SecSettings/SecSettings.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SecSettings@SecSettings.apk@classes.dex]
+  [com.android.settings.intelligence]
+    path: /system/priv-app/SecSettingsIntelligence/SecSettingsIntelligence.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SecSettingsIntelligence@SecSettingsIntelligence.apk@classes.dex]
+  [com.android.sharedstoragebackup]
+    path: /system/priv-app/SharedStorageBackup/SharedStorageBackup.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SharedStorageBackup@SharedStorageBackup.apk@classes.dex]
+  [com.android.shell]
+    path: /system/priv-app/Shell/Shell.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@Shell@Shell.apk@classes.dex]
+  [com.android.simappdialog]
+    path: /system/app/SimAppDialog/SimAppDialog.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@SimAppDialog@SimAppDialog.apk@classes.dex]
+  [com.android.stk]
+    path: /system/app/Stk/Stk.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@Stk@Stk.apk@classes.dex]
+      used by other apps: [com.android.phone (isa=arm64)]
+  [com.android.stk2]
+    path: /system/app/Stk2/Stk2.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@Stk2@Stk2.apk@classes.dex]
+      used by other apps: [com.android.phone (isa=arm64)]
+  [com.android.storagemanager]
+    path: /system_ext/priv-app/StorageManager/StorageManager.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system_ext@priv-app@StorageManager@StorageManager.apk@classes.dex]
+  [com.android.systemui]
+    path: /system_ext/priv-app/SystemUI/SystemUI.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system_ext@priv-app@SystemUI@SystemUI.apk@classes.dex]
+  [com.android.theme.font.notoserifsource]
+  [com.android.traceur]
+    path: /system/app/Traceur/Traceur.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@Traceur@Traceur.apk@classes.dex]
+  [com.android.uwb.resources]
+  [com.android.vending]
+    path: /data/app/~~pn6IX8U4TmzTXbauIm1EIA==/com.android.vending-NrG4vBUKBMbTLvvNbCU6Ew==/base.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/~~pn6IX8U4TmzTXbauIm1EIA==/com.android.vending-NrG4vBUKBMbTLvvNbCU6Ew==/oat/arm64/base.odex]
+    known secondary dex files:
+      /data/user/0/com.android.vending/app_dg_cache/A72791450A1FC105CEB7A9E1E50E1CB9966A8618/the.apk
+        arm64: [status=verify] [reason=vdex] [primary-abi]
+          [location is /data/user/0/com.android.vending/app_dg_cache/A72791450A1FC105CEB7A9E1E50E1CB9966A8618/oat/arm64/the.vdex]
+        class loader context: PCL[];PCL[/data/app/~~pn6IX8U4TmzTXbauIm1EIA==/com.android.vending-NrG4vBUKBMbTLvvNbCU6Ew==/base.apk]{PCL[/system/framework/org.apache.http.legacy.jar]#PCL[/system_ext/framework/androidx.window.extensions.jar]#PCL[/system_ext/framework/androidx.window.sidecar.jar]}
+  [com.android.virtualization.terminal]
+    path: /apex/com.android.virt/priv-app/VmTerminalApp@BP2A.250605.031.A3/VmTerminalApp.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/apex@com.android.virt@priv-app@VmTerminalApp@BP2A.250605.031.A3@VmTerminalApp.apk@classes.dex]
+  [com.android.virtualmachine.res]
+  [com.android.vpndialogs]
+    path: /system/priv-app/VpnDialogs/VpnDialogs.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@VpnDialogs@VpnDialogs.apk@classes.dex]
+  [com.android.wallpaper.livepicker]
+    path: /system/priv-app/LiveWallpapersPicker/LiveWallpapersPicker.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@LiveWallpapersPicker@LiveWallpapersPicker.apk@classes.dex]
+  [com.android.wallpaperbackup]
+    path: /system/app/WallpaperBackup/WallpaperBackup.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@WallpaperBackup@WallpaperBackup.apk@classes.dex]
+  [com.android.wallpapercropper]
+    path: /system_ext/priv-app/WallpaperCropper/WallpaperCropper.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system_ext@priv-app@WallpaperCropper@WallpaperCropper.apk@classes.dex]
+  [com.android.wifi.dialog]
+    path: /apex/com.android.wifi/app/WifiDialog@BP2A.250605.031.A3/WifiDialog.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/apex@com.android.wifi@app@WifiDialog@BP2A.250605.031.A3@WifiDialog.apk@classes.dex]
+  [com.android.wifi.resources]
+  [com.facebook.appmanager]
+    path: /system/app/FBAppManager_NS/FBAppManager_NS.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@FBAppManager_NS@FBAppManager_NS.apk@classes.dex]
+  [com.facebook.katana]
+    path: /data/app/Facebook_stub_preload/Facebook_stub_preload.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/Facebook_stub_preload/oat/arm64/Facebook_stub_preload.odex]
+  [com.facebook.services]
+    path: /system/priv-app/FBServices/FBServices.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@FBServices@FBServices.apk@classes.dex]
+  [com.facebook.system]
+    path: /system/priv-app/FBInstaller_NS/FBInstaller_NS.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@FBInstaller_NS@FBInstaller_NS.apk@classes.dex]
+  [com.google.android.adservices.api]
+    path: /apex/com.android.adservices/priv-app/AdServicesApkGoogle@360738140/AdServicesApkGoogle.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/apex@com.android.adservices@priv-app@AdServicesApkGoogle@360738140@AdServicesApkGoogle.apk@classes.dex]
+  [com.google.android.aicore]
+    path: /product/priv-app/AICore/AICore.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/product@priv-app@AICore@AICore.apk@classes.dex]
+  [com.google.android.apps.accessibility.voiceaccess]
+    path: /system/app/VoiceAccess/VoiceAccess.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@VoiceAccess@VoiceAccess.apk@classes.dex]
+  [com.google.android.apps.aiwallpapers]
+    path: /product/priv-app/AiWallpaper/AiWallpaper.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/product@priv-app@AiWallpaper@AiWallpaper.apk@classes.dex]
+  [com.google.android.apps.bard]
+    path: /product/app/BardShell/BardShell.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/product@app@BardShell@BardShell.apk@classes.dex]
+  [com.google.android.apps.carrier.carrierwifi]
+    path: /product/priv-app/CarrierWifi/CarrierWifi.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/product@priv-app@CarrierWifi@CarrierWifi.apk@classes.dex]
+  [com.google.android.apps.docs]
+    path: /data/app/~~N4wrSCJZkOdsxTE_PZlD2Q==/com.google.android.apps.docs-XiWScvvN1eaau0dk2hJuyg==/base.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/~~N4wrSCJZkOdsxTE_PZlD2Q==/com.google.android.apps.docs-XiWScvvN1eaau0dk2hJuyg==/oat/arm64/base.odex]
+  [com.google.android.apps.maps]
+    path: /product/app/Maps/Maps.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/product@app@Maps@Maps.apk@classes.dex]
+  [com.google.android.apps.messaging]
+    path: /product/priv-app/Messages/Messages.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/product@priv-app@Messages@Messages.apk@classes.dex]
+  [com.google.android.apps.photos]
+    path: /data/app/~~ZFOVCqX-rmvAtYY6v9RDoA==/com.google.android.apps.photos-f6gaqDtkhozPJPlOaR5qTw==/base.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/~~ZFOVCqX-rmvAtYY6v9RDoA==/com.google.android.apps.photos-f6gaqDtkhozPJPlOaR5qTw==/oat/arm64/base.odex]
+  [com.google.android.apps.restore]
+    path: /data/app/~~FQo_o6Sf7gqeTfulC2Gh3A==/com.google.android.apps.restore-GEJJSzTyRh0Vd5GwNHbRjQ==/base.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/~~FQo_o6Sf7gqeTfulC2Gh3A==/com.google.android.apps.restore-GEJJSzTyRh0Vd5GwNHbRjQ==/oat/arm64/base.odex]
+  [com.google.android.apps.tachyon]
+    path: /data/app/~~XfEYLAVYGvEP9BCSXGwf-w==/com.google.android.apps.tachyon-j7qc1xeixhl952_rCRYqhw==/base.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/~~XfEYLAVYGvEP9BCSXGwf-w==/com.google.android.apps.tachyon-j7qc1xeixhl952_rCRYqhw==/oat/arm64/base.odex]
+  [com.google.android.apps.turbo]
+    path: /product/priv-app/Turbo/Turbo.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/product@priv-app@Turbo@Turbo.apk@classes.dex]
+  [com.google.android.apps.youtube.music]
+    path: /data/app/~~fe29pLGdiZ8eJgvBna_y_w==/com.google.android.apps.youtube.music-QOv2A936McQ8A4bFsUh-Bw==/base.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/~~fe29pLGdiZ8eJgvBna_y_w==/com.google.android.apps.youtube.music-QOv2A936McQ8A4bFsUh-Bw==/oat/arm64/base.odex]
+  [com.google.android.appsearch.apk]
+    path: /apex/com.android.appsearch/priv-app/com.google.android.appsearch.apk@360743400/com.google.android.appsearch.apk.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/apex@com.android.appsearch@priv-app@com.google.android.appsearch.apk@360743400@com.google.android.appsearch.apk.apk@classes.dex]
+  [com.google.android.as]
+    path: /product/priv-app/AndroidSystemIntelligence/AndroidSystemIntelligence.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/product@priv-app@AndroidSystemIntelligence@AndroidSystemIntelligence.apk@classes.dex]
+  [com.google.android.as.oss]
+    path: /product/priv-app/PrivateComputeServices/PrivateComputeServices.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/product@priv-app@PrivateComputeServices@PrivateComputeServices.apk@classes.dex]
+  [com.google.android.captiveportallogin]
+    path: /system/app/CaptivePortalLoginGoogle/CaptivePortalLoginGoogle.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@CaptivePortalLoginGoogle@CaptivePortalLoginGoogle.apk@classes.dex]
+  [com.google.android.cellbroadcastreceiver]
+    path: /apex/com.android.cellbroadcast/priv-app/GoogleCellBroadcastApp@360735060/GoogleCellBroadcastApp.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/apex@com.android.cellbroadcast@priv-app@GoogleCellBroadcastApp@360735060@GoogleCellBroadcastApp.apk@classes.dex]
+  [com.google.android.cellbroadcastservice]
+    path: /apex/com.android.cellbroadcast/priv-app/GoogleCellBroadcastServiceModule@360735060/GoogleCellBroadcastServiceModule.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/apex@com.android.cellbroadcast@priv-app@GoogleCellBroadcastServiceModule@360735060@GoogleCellBroadcastServiceModule.apk@classes.dex]
+      used by other apps: [com.google.android.networkstack (isa=arm64)]
+  [com.google.android.configupdater]
+    path: /product/priv-app/ConfigUpdater/ConfigUpdater.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/product@priv-app@ConfigUpdater@ConfigUpdater.apk@classes.dex]
+  [com.google.android.connectivity.resources]
+  [com.google.android.contactkeys]
+    path: /data/app/~~QS8LVia8OziVo73Jijh-aw==/com.google.android.contactkeys--pJg3X3KyLM_IZohwiMuuA==/base.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/~~QS8LVia8OziVo73Jijh-aw==/com.google.android.contactkeys--pJg3X3KyLM_IZohwiMuuA==/oat/arm64/base.odex]
+  [com.google.android.documentsui]
+    path: /system/priv-app/DocumentsUIGoogle/DocumentsUIGoogle.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@DocumentsUIGoogle@DocumentsUIGoogle.apk@classes.dex]
+  [com.google.android.ext.services]
+    path: /apex/com.android.extservices/priv-app/GoogleExtServices@360737100/GoogleExtServices.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/apex@com.android.extservices@priv-app@GoogleExtServices@360737100@GoogleExtServices.apk@classes.dex]
+  [com.google.android.ext.shared]
+    path: /system/app/GoogleExtShared/GoogleExtShared.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@GoogleExtShared@GoogleExtShared.apk@classes.dex]
+  [com.google.android.federatedcompute]
+    path: /apex/com.android.ondevicepersonalization/app/FederatedComputeGoogle@360738140/FederatedComputeGoogle.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/apex@com.android.ondevicepersonalization@app@FederatedComputeGoogle@360738140@FederatedComputeGoogle.apk@classes.dex]
+  [com.google.android.feedback]
+    path: /system_ext/priv-app/GoogleFeedback/GoogleFeedback.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system_ext@priv-app@GoogleFeedback@GoogleFeedback.apk@classes.dex]
+  [com.google.android.gm]
+    path: /product/app/Gmail2/Gmail2.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/product@app@Gmail2@Gmail2.apk@classes.dex]
+  [com.google.android.gms]
+    path: /data/app/~~uN3p0-dPXXlWr4OvDHGnAQ==/com.google.android.gms-WGezQKmNB-x1JcCITk0iPw==/base.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/~~uN3p0-dPXXlWr4OvDHGnAQ==/com.google.android.gms-WGezQKmNB-x1JcCITk0iPw==/oat/arm64/base.odex]
+      used by other apps: [com.google.android.apps.messaging (isa=arm64), com.google.android.gm (isa=arm64), com.google.android.youtube (isa=arm64), com.samsung.android.fmm (isa=arm64), com.samsung.android.rubin.app (isa=arm64), com.sec.android.app.samsungapps (isa=arm64)]
+    path: /data/app/~~uN3p0-dPXXlWr4OvDHGnAQ==/com.google.android.gms-WGezQKmNB-x1JcCITk0iPw==/split_AdsDynamite_installtime.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/~~uN3p0-dPXXlWr4OvDHGnAQ==/com.google.android.gms-WGezQKmNB-x1JcCITk0iPw==/oat/arm64/split_AdsDynamite_installtime.odex]
+      used by other apps: [com.samsung.android.rubin.app (isa=arm64), com.sec.spp.push (isa=arm64)]
+    path: /data/app/~~uN3p0-dPXXlWr4OvDHGnAQ==/com.google.android.gms-WGezQKmNB-x1JcCITk0iPw==/split_CronetDynamite_installtime.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/~~uN3p0-dPXXlWr4OvDHGnAQ==/com.google.android.gms-WGezQKmNB-x1JcCITk0iPw==/oat/arm64/split_CronetDynamite_installtime.odex]
+      used by other apps: [com.google.android.gm (isa=arm64), com.google.android.googlequicksearchbox (isa=arm64)]
+    path: /data/app/~~uN3p0-dPXXlWr4OvDHGnAQ==/com.google.android.gms-WGezQKmNB-x1JcCITk0iPw==/split_DynamiteLoader_installtime.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/~~uN3p0-dPXXlWr4OvDHGnAQ==/com.google.android.gms-WGezQKmNB-x1JcCITk0iPw==/oat/arm64/split_DynamiteLoader_installtime.odex]
+      used by other apps: [com.google.android.apps.maps (isa=arm64), com.google.android.apps.photos (isa=arm64), com.google.android.apps.restore (isa=arm64), com.google.android.apps.tachyon (isa=arm64), com.google.android.gm (isa=arm64), com.google.android.googlequicksearchbox (isa=arm64), com.google.android.safetycore (isa=arm64), com.google.android.youtube (isa=arm64), com.osp.app.signin (isa=arm64), com.samsung.android.app.find (isa=arm64), com.samsung.android.app.parentalcare (isa=arm64), com.samsung.android.app.smartcapture (isa=arm64), com.samsung.android.app.spage (isa=arm64), com.samsung.android.dkey (isa=arm64), com.samsung.android.fmm (isa=arm64), com.samsung.android.game.gamehome (isa=arm64), com.samsung.android.rubin.app (isa=arm64), com.samsung.android.themestore (isa=arm64), com.samsung.ssu (isa=arm64), com.sec.android.app.samsungapps (isa=arm64), com.sec.spp.push (isa=arm64)]
+    path: /data/app/~~uN3p0-dPXXlWr4OvDHGnAQ==/com.google.android.gms-WGezQKmNB-x1JcCITk0iPw==/split_DynamiteModulesA_installtime.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/~~uN3p0-dPXXlWr4OvDHGnAQ==/com.google.android.gms-WGezQKmNB-x1JcCITk0iPw==/oat/arm64/split_DynamiteModulesA_installtime.odex]
+    path: /data/app/~~uN3p0-dPXXlWr4OvDHGnAQ==/com.google.android.gms-WGezQKmNB-x1JcCITk0iPw==/split_DynamiteModulesC_installtime.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/~~uN3p0-dPXXlWr4OvDHGnAQ==/com.google.android.gms-WGezQKmNB-x1JcCITk0iPw==/oat/arm64/split_DynamiteModulesC_installtime.odex]
+    path: /data/app/~~uN3p0-dPXXlWr4OvDHGnAQ==/com.google.android.gms-WGezQKmNB-x1JcCITk0iPw==/split_GoogleCertificates_installtime.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/~~uN3p0-dPXXlWr4OvDHGnAQ==/com.google.android.gms-WGezQKmNB-x1JcCITk0iPw==/oat/arm64/split_GoogleCertificates_installtime.odex]
+      used by other apps: [com.google.android.apps.maps (isa=arm64), com.google.android.apps.photos (isa=arm64), com.google.android.apps.restore (isa=arm64), com.google.android.apps.tachyon (isa=arm64), com.google.android.safetycore (isa=arm64)]
+    path: /data/app/~~uN3p0-dPXXlWr4OvDHGnAQ==/com.google.android.gms-WGezQKmNB-x1JcCITk0iPw==/split_MapsDynamite_installtime.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/~~uN3p0-dPXXlWr4OvDHGnAQ==/com.google.android.gms-WGezQKmNB-x1JcCITk0iPw==/oat/arm64/split_MapsDynamite_installtime.odex]
+    path: /data/app/~~uN3p0-dPXXlWr4OvDHGnAQ==/com.google.android.gms-WGezQKmNB-x1JcCITk0iPw==/split_MeasurementDynamite_installtime.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/~~uN3p0-dPXXlWr4OvDHGnAQ==/com.google.android.gms-WGezQKmNB-x1JcCITk0iPw==/oat/arm64/split_MeasurementDynamite_installtime.odex]
+      used by other apps: [com.google.android.googlequicksearchbox (isa=arm64), com.google.android.youtube (isa=arm64), com.osp.app.signin (isa=arm64), com.samsung.android.app.find (isa=arm64), com.samsung.android.app.parentalcare (isa=arm64), com.samsung.android.app.spage (isa=arm64), com.samsung.android.dkey (isa=arm64), com.samsung.android.fmm (isa=arm64), com.samsung.android.rubin.app (isa=arm64), com.samsung.android.themestore (isa=arm64), com.samsung.ssu (isa=arm64)]
+    path: /data/app/~~uN3p0-dPXXlWr4OvDHGnAQ==/com.google.android.gms-WGezQKmNB-x1JcCITk0iPw==/split_maps_core_dynamite_ondemand.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/~~uN3p0-dPXXlWr4OvDHGnAQ==/com.google.android.gms-WGezQKmNB-x1JcCITk0iPw==/oat/arm64/split_maps_core_dynamite_ondemand.odex]
+    known secondary dex files:
+      /data/user/0/com.google.android.gms/app_dg_cache/3642FB9396B6AD178BB2CA18CC3E3F4B1B69876C/the.apk
+        arm64: [status=verify] [reason=vdex] [primary-abi]
+          [location is /data/user/0/com.google.android.gms/app_dg_cache/3642FB9396B6AD178BB2CA18CC3E3F4B1B69876C/oat/arm64/the.vdex]
+        class loader context: PCL[];PCL[/data/app/~~uN3p0-dPXXlWr4OvDHGnAQ==/com.google.android.gms-WGezQKmNB-x1JcCITk0iPw==/base.apk]{PCL[/system/framework/org.apache.http.legacy.jar]#PCL[/system/framework/com.android.media.remotedisplay.jar]#PCL[/system/framework/com.android.location.provider.jar]#PCL[/system_ext/framework/org.carconnectivity.android.digitalkey.rangingintent.jar]#PCL[/system_ext/framework/org.carconnectivity.android.digitalkey.secureelement.jar]#PCL[/system_ext/framework/org.carconnectivity.android.digitalkey.timesync.jar]#PCL[/system_ext/framework/androidx.window.extensions.jar]#PCL[/system_ext/framework/androidx.window.sidecar.jar]}
+      /data/user/0/com.google.android.gms/app_dg_cache/A72791450A1FC105CEB7A9E1E50E1CB9966A8618/the.apk (public)
+        arm64: [status=verify] [reason=vdex] [primary-abi]
+          [location is /data/user/0/com.google.android.gms/app_dg_cache/A72791450A1FC105CEB7A9E1E50E1CB9966A8618/oat/arm64/the.vdex]
+        class loader context: PCL[];PCL[/data/app/~~uN3p0-dPXXlWr4OvDHGnAQ==/com.google.android.gms-WGezQKmNB-x1JcCITk0iPw==/base.apk]{PCL[/system/framework/org.apache.http.legacy.jar]#PCL[/system/framework/com.android.media.remotedisplay.jar]#PCL[/system/framework/com.android.location.provider.jar]#PCL[/system_ext/framework/org.carconnectivity.android.digitalkey.rangingintent.jar]#PCL[/system_ext/framework/org.carconnectivity.android.digitalkey.secureelement.jar]#PCL[/system_ext/framework/org.carconnectivity.android.digitalkey.timesync.jar]#PCL[/system_ext/framework/androidx.window.extensions.jar]#PCL[/system_ext/framework/androidx.window.sidecar.jar]}
+      /data/user/0/com.google.android.gms/app_dg_cache/D579FE262AD8DC6BB7445BB7574FF5EB6CC52A35/the.apk
+        arm64: [status=verify] [reason=vdex] [primary-abi]
+          [location is /data/user/0/com.google.android.gms/app_dg_cache/D579FE262AD8DC6BB7445BB7574FF5EB6CC52A35/oat/arm64/the.vdex]
+        class loader context: PCL[];PCL[/product/priv-app/GmsCore/GmsCore.apk]{PCL[/system/framework/org.apache.http.legacy.jar]#PCL[/system/framework/com.android.media.remotedisplay.jar]#PCL[/system/framework/com.android.location.provider.jar]#PCL[/system_ext/framework/org.carconnectivity.android.digitalkey.rangingintent.jar]#PCL[/system_ext/framework/org.carconnectivity.android.digitalkey.secureelement.jar]#PCL[/system_ext/framework/org.carconnectivity.android.digitalkey.timesync.jar]#PCL[/system_ext/framework/androidx.window.extensions.jar]#PCL[/system_ext/framework/androidx.window.sidecar.jar]}
+      /data/user_de/0/com.google.android.gms/app_chimera/m/00000000/AdsDynamite.apk (removed)
+        arm64: [status=unknown] [reason=unknown] [primary-abi]
+          [location is error]
+        class loader context: =VaryingClassLoaderContexts=
+          com.samsung.android.rubin.app: DLC[];PCL[/system/priv-app/RubinVersion37/RubinVersion37.apk]{PCL[/system_ext/framework/androidx.window.extensions.jar]#PCL[/system_ext/framework/androidx.window.sidecar.jar]#PCL[/system/framework/org.apache.http.legacy.jar]}
+          com.sec.android.app.samsungapps: DLC[];PCL[/system/priv-app/GalaxyApps_OPEN/GalaxyApps_OPEN.apk]{PCL[/system/framework/org.apache.http.legacy.jar]#PCL[/system_ext/framework/androidx.window.extensions.jar]#PCL[/system_ext/framework/androidx.window.sidecar.jar]#PCL[/system/framework/samsungkeystoreutils.jar]#PCL[/system/framework/saiv.jar]}
+          com.sec.spp.push: DLC[];PCL[/system/priv-app/SPPPushClient/SPPPushClient.apk]
+        used by other apps: [com.samsung.android.rubin.app (isa=arm64), com.sec.android.app.samsungapps (isa=arm64), com.sec.spp.push (isa=arm64)]
+      /data/user_de/0/com.google.android.gms/app_chimera/m/00000001/CronetDynamite.apk (removed)
+        arm64: [status=unknown] [reason=unknown] [primary-abi]
+          [location is error]
+        class loader context: =VaryingClassLoaderContexts=
+          com.google.android.apps.tachyon: DLC[];PCL[/data/app/Duo/Duo.apk]{PCL[/system_ext/framework/androidx.window.extensions.jar]#PCL[/system_ext/framework/androidx.window.sidecar.jar]}
+          com.google.android.gm: DLC[];PCL[/product/app/Gmail2/Gmail2.apk]{PCL[/system/framework/org.apache.http.legacy.jar]#PCL[/system_ext/framework/androidx.window.extensions.jar]#PCL[/system_ext/framework/androidx.window.sidecar.jar]}
+          com.google.android.gms: DLC[];PCL[/product/priv-app/GmsCore/GmsCore.apk]{PCL[/system/framework/org.apache.http.legacy.jar]#PCL[/system/framework/com.android.media.remotedisplay.jar]#PCL[/system/framework/com.android.location.provider.jar]#PCL[/system_ext/framework/org.carconnectivity.android.digitalkey.rangingintent.jar]#PCL[/system_ext/framework/org.carconnectivity.android.digitalkey.secureelement.jar]#PCL[/system_ext/framework/org.carconnectivity.android.digitalkey.timesync.jar]#PCL[/system_ext/framework/androidx.window.extensions.jar]#PCL[/system_ext/framework/androidx.window.sidecar.jar]}
+          com.google.android.googlequicksearchbox: DLC[];PCL[/product/priv-app/Velvet/Velvet.apk]{PCL[/system/framework/org.apache.http.legacy.jar]#PCL[/system_ext/framework/com.android.extensions.appfunctions.jar]#PCL[/system_ext/framework/androidx.window.extensions.jar]#PCL[/system_ext/framework/androidx.window.sidecar.jar]}
+        used by other apps: [com.google.android.apps.tachyon (isa=arm64), com.google.android.gm (isa=arm64), com.google.android.googlequicksearchbox (isa=arm64)]
+      /data/user_de/0/com.google.android.gms/app_chimera/m/00000002/DynamiteLoader.apk (removed)
+        arm64: [status=unknown] [reason=unknown] [primary-abi]
+          [location is error]
+        class loader context: DLC[];PCL[]
+        used by other apps: [com.android.vending (isa=arm64), com.google.android.apps.maps (isa=arm64), com.google.android.apps.tachyon (isa=arm64), com.google.android.gm (isa=arm64), com.google.android.googlequicksearchbox (isa=arm64), com.google.android.youtube (isa=arm64), com.osp.app.signin (isa=arm64), com.samsung.android.app.find (isa=arm64), com.samsung.android.app.parentalcare (isa=arm64), com.samsung.android.app.spage (isa=arm64), com.samsung.android.dkey (isa=arm64), com.samsung.android.game.gamehome (isa=arm64), com.samsung.android.kmxservice (isa=arm64), com.samsung.android.rubin.app (isa=arm64), com.samsung.android.themestore (isa=arm64), com.samsung.ssu (isa=arm64), com.sec.android.app.samsungapps (isa=arm64), com.sec.spp.push (isa=arm64)]
+      /data/user_de/0/com.google.android.gms/app_chimera/m/00000005/GoogleCertificates.apk (removed)
+        arm64: [status=unknown] [reason=unknown] [primary-abi]
+          [location is error]
+        class loader context: =VaryingClassLoaderContexts=
+          com.google.android.apps.maps: DLC[];PCL[/product/app/Maps/Maps.apk]{PCL[/system/framework/org.apache.http.legacy.jar]#PCL[/system_ext/framework/androidx.window.extensions.jar]#PCL[/system_ext/framework/androidx.window.sidecar.jar]}
+          com.google.android.apps.tachyon: DLC[];PCL[/data/app/~~XfEYLAVYGvEP9BCSXGwf-w==/com.google.android.apps.tachyon-j7qc1xeixhl952_rCRYqhw==/base.apk]{PCL[/system_ext/framework/androidx.window.extensions.jar]#PCL[/system_ext/framework/androidx.window.sidecar.jar]}
+        used by other apps: [com.google.android.apps.maps (isa=arm64), com.google.android.apps.tachyon (isa=arm64)]
+      /data/user_de/0/com.google.android.gms/app_chimera/m/00000007/MeasurementDynamite.apk (removed)
+        arm64: [status=unknown] [reason=unknown] [primary-abi]
+          [location is error]
+        class loader context: =VaryingClassLoaderContexts=
+          com.android.vending: DLC[];PCL[/data/app/~~pn6IX8U4TmzTXbauIm1EIA==/com.android.vending-NrG4vBUKBMbTLvvNbCU6Ew==/base.apk]{PCL[/system/framework/org.apache.http.legacy.jar]#PCL[/system_ext/framework/androidx.window.extensions.jar]#PCL[/system_ext/framework/androidx.window.sidecar.jar]}
+          com.google.android.youtube: DLC[];PCL[/product/app/YouTube/YouTube.apk]{PCL[/system/framework/org.apache.http.legacy.jar]#PCL[/system_ext/framework/androidx.window.extensions.jar]#PCL[/system_ext/framework/androidx.window.sidecar.jar]}
+          com.osp.app.signin: DLC[];PCL[/system/priv-app/SamsungAccount/SamsungAccount.apk]{PCL[/system/framework/org.apache.http.legacy.jar]#PCL[/system/framework/samsungkeystoreutils.jar]#PCL[/system_ext/framework/androidx.window.extensions.jar]#PCL[/system_ext/framework/androidx.window.sidecar.jar]}
+          com.samsung.android.app.find: DLC[];PCL[/data/app/SamsungFind/SamsungFind.apk]{PCL[/system_ext/framework/androidx.window.extensions.jar]#PCL[/system_ext/framework/androidx.window.sidecar.jar]#PCL[/system/framework/org.apache.http.legacy.jar]}
+          com.samsung.android.app.parentalcare: DLC[];PCL[/system/app/ParentalCare/ParentalCare.apk]{PCL[/system_ext/framework/androidx.window.extensions.jar]#PCL[/system_ext/framework/androidx.window.sidecar.jar]}
+          com.samsung.android.app.spage: DLC[];PCL[/data/app/MinusOnePage/MinusOnePage.apk]{PCL[/system/framework/org.apache.http.legacy.jar]#PCL[/system/framework/samsungkeystoreutils.jar]#PCL[/system_ext/framework/androidx.window.extensions.jar]#PCL[/system_ext/framework/androidx.window.sidecar.jar]}
+          com.samsung.android.dkey: DLC[];PCL[/system/priv-app/DigitalKey/DigitalKey.apk]{PCL[/system/framework/sec_platform_library.jar]#PCL[/system/framework/samsungkeystoreutils.jar]#PCL[/system/framework/com.samsung.android.nfc.adapter.jar]#PCL[/system/framework/com.samsung.android.uwb_extras.jar]#PCL[/system_ext/framework/androidx.window.extensions.jar]#PCL[/system_ext/framework/androidx.window.sidecar.jar]}
+          com.samsung.android.kmxservice: DLC[];PCL[/system/priv-app/KmxService/KmxService.apk]{PCL[/system/framework/FabricCryptoLib.jar]#PCL[/system/framework/samsungkeystoreutils.jar]#PCL[/system_ext/framework/androidx.window.extensions.jar]#PCL[/system_ext/framework/androidx.window.sidecar.jar]}
+          com.samsung.android.rubin.app: DLC[];PCL[/system/priv-app/RubinVersion37/RubinVersion37.apk]{PCL[/system_ext/framework/androidx.window.extensions.jar]#PCL[/system_ext/framework/androidx.window.sidecar.jar]#PCL[/system/framework/org.apache.http.legacy.jar]}
+          com.samsung.android.themestore: DLC[];PCL[/system/priv-app/ThemeStore/ThemeStore.apk]{PCL[/system/framework/org.apache.http.legacy.jar]#PCL[/system_ext/framework/androidx.window.extensions.jar]#PCL[/system_ext/framework/androidx.window.sidecar.jar]}
+          com.samsung.ssu: DLC[];PCL[/system/priv-app/SsuService/SsuService.apk]{PCL[/system_ext/framework/androidx.window.extensions.jar]#PCL[/system_ext/framework/androidx.window.sidecar.jar]}
+        used by other apps: [com.android.vending (isa=arm64), com.google.android.youtube (isa=arm64), com.osp.app.signin (isa=arm64), com.samsung.android.app.find (isa=arm64), com.samsung.android.app.parentalcare (isa=arm64), com.samsung.android.app.spage (isa=arm64), com.samsung.android.dkey (isa=arm64), com.samsung.android.kmxservice (isa=arm64), com.samsung.android.rubin.app (isa=arm64), com.samsung.android.themestore (isa=arm64), com.samsung.ssu (isa=arm64)]
+      /data/user_de/0/com.google.android.gms/app_chimera/m/00000009/dl-VisionOcr.optional_252431100000.apk (public)
+        arm64: [status=run-from-apk] [reason=unknown] [primary-abi]
+          [location is error]
+        class loader context: DLC[];PCL[/product/priv-app/GmsCore/GmsCore.apk]{PCL[/system/framework/org.apache.http.legacy.jar]#PCL[/system/framework/com.android.media.remotedisplay.jar]#PCL[/system/framework/com.android.location.provider.jar]#PCL[/system_ext/framework/org.carconnectivity.android.digitalkey.rangingintent.jar]#PCL[/system_ext/framework/org.carconnectivity.android.digitalkey.secureelement.jar]#PCL[/system_ext/framework/org.carconnectivity.android.digitalkey.timesync.jar]#PCL[/system_ext/framework/androidx.window.extensions.jar]#PCL[/system_ext/framework/androidx.window.sidecar.jar]}
+      /data/user_de/0/com.google.android.gms/app_chimera/m/0000000a/dl-MlkitOcrCommon.optional_252431100400.apk (public)
+        arm64: [status=run-from-apk] [reason=unknown] [primary-abi]
+          [location is error]
+        class loader context: DLC[];PCL[/product/priv-app/GmsCore/GmsCore.apk]{PCL[/system/framework/org.apache.http.legacy.jar]#PCL[/system/framework/com.android.media.remotedisplay.jar]#PCL[/system/framework/com.android.location.provider.jar]#PCL[/system_ext/framework/org.carconnectivity.android.digitalkey.rangingintent.jar]#PCL[/system_ext/framework/org.carconnectivity.android.digitalkey.secureelement.jar]#PCL[/system_ext/framework/org.carconnectivity.android.digitalkey.timesync.jar]#PCL[/system_ext/framework/androidx.window.extensions.jar]#PCL[/system_ext/framework/androidx.window.sidecar.jar]}
+      /data/user_de/0/com.google.android.gms/app_chimera/m/0000000e/dl-VisionOcr.optional_253830100000.apk (public)
+        arm64: [status=run-from-apk] [reason=unknown] [primary-abi]
+          [location is error]
+        class loader context: =VaryingClassLoaderContexts=
+          com.google.android.gms: DLC[];PCL[/data/app/~~uN3p0-dPXXlWr4OvDHGnAQ==/com.google.android.gms-WGezQKmNB-x1JcCITk0iPw==/base.apk]{PCL[/system/framework/org.apache.http.legacy.jar]#PCL[/system/framework/com.android.media.remotedisplay.jar]#PCL[/system/framework/com.android.location.provider.jar]#PCL[/system_ext/framework/org.carconnectivity.android.digitalkey.rangingintent.jar]#PCL[/system_ext/framework/org.carconnectivity.android.digitalkey.secureelement.jar]#PCL[/system_ext/framework/org.carconnectivity.android.digitalkey.timesync.jar]#PCL[/system_ext/framework/androidx.window.extensions.jar]#PCL[/system_ext/framework/androidx.window.sidecar.jar]}
+          com.samsung.android.app.smartcapture: DLC[];PCL[/system/app/SmartCapture/SmartCapture.apk]{PCL[/system/framework/saiv.jar]#PCL[/system/framework/SmpsManager.jar]#PCL[/system_ext/framework/androidx.window.extensions.jar]#PCL[/system_ext/framework/androidx.window.sidecar.jar]}
+        used by other apps: [com.samsung.android.app.smartcapture (isa=arm64)]
+      /data/user_de/0/com.google.android.gms/app_chimera/m/00000010/dl-Appsearch.optional_253830100400.apk (public)
+        arm64: [status=run-from-apk] [reason=unknown] [primary-abi]
+          [location is error]
+        class loader context: DLC[];PCL[/data/app/~~uN3p0-dPXXlWr4OvDHGnAQ==/com.google.android.gms-WGezQKmNB-x1JcCITk0iPw==/base.apk]{PCL[/system/framework/org.apache.http.legacy.jar]#PCL[/system/framework/com.android.media.remotedisplay.jar]#PCL[/system/framework/com.android.location.provider.jar]#PCL[/system_ext/framework/org.carconnectivity.android.digitalkey.rangingintent.jar]#PCL[/system_ext/framework/org.carconnectivity.android.digitalkey.secureelement.jar]#PCL[/system_ext/framework/org.carconnectivity.android.digitalkey.timesync.jar]#PCL[/system_ext/framework/androidx.window.extensions.jar]#PCL[/system_ext/framework/androidx.window.sidecar.jar]}
+      /data/user_de/0/com.google.android.gms/app_chimera/m/00000011/dl-MlkitBarcodeUi.optional_253830100400.apk (public)
+        arm64: [status=run-from-apk] [reason=unknown] [primary-abi]
+          [location is error]
+        class loader context: DLC[];PCL[/data/app/~~uN3p0-dPXXlWr4OvDHGnAQ==/com.google.android.gms-WGezQKmNB-x1JcCITk0iPw==/base.apk]{PCL[/system/framework/org.apache.http.legacy.jar]#PCL[/system/framework/com.android.media.remotedisplay.jar]#PCL[/system/framework/com.android.location.provider.jar]#PCL[/system_ext/framework/org.carconnectivity.android.digitalkey.rangingintent.jar]#PCL[/system_ext/framework/org.carconnectivity.android.digitalkey.secureelement.jar]#PCL[/system_ext/framework/org.carconnectivity.android.digitalkey.timesync.jar]#PCL[/system_ext/framework/androidx.window.extensions.jar]#PCL[/system_ext/framework/androidx.window.sidecar.jar]}
+      /data/user_de/0/com.google.android.gms/app_chimera/m/00000013/dl-TfliteDynamiteDynamite.integ_243930802100400.apk (public)
+        arm64: [status=run-from-apk] [reason=unknown] [primary-abi]
+          [location is error]
+        class loader context: DLC[];PCL[/data/app/~~uN3p0-dPXXlWr4OvDHGnAQ==/com.google.android.gms-WGezQKmNB-x1JcCITk0iPw==/base.apk]{PCL[/system/framework/org.apache.http.legacy.jar]#PCL[/system/framework/com.android.media.remotedisplay.jar]#PCL[/system/framework/com.android.location.provider.jar]#PCL[/system_ext/framework/org.carconnectivity.android.digitalkey.rangingintent.jar]#PCL[/system_ext/framework/org.carconnectivity.android.digitalkey.secureelement.jar]#PCL[/system_ext/framework/org.carconnectivity.android.digitalkey.timesync.jar]#PCL[/system_ext/framework/androidx.window.extensions.jar]#PCL[/system_ext/framework/androidx.window.sidecar.jar]}
+      /data/user_de/0/com.google.android.gms/app_chimera/m/00000014/dl-MlkitOcrCommon.optional_253830100400.apk (public)
+        arm64: [status=run-from-apk] [reason=unknown] [primary-abi]
+          [location is error]
+        class loader context: =VaryingClassLoaderContexts=
+          com.google.android.gms: DLC[];PCL[/data/app/~~uN3p0-dPXXlWr4OvDHGnAQ==/com.google.android.gms-WGezQKmNB-x1JcCITk0iPw==/base.apk]{PCL[/system/framework/org.apache.http.legacy.jar]#PCL[/system/framework/com.android.media.remotedisplay.jar]#PCL[/system/framework/com.android.location.provider.jar]#PCL[/system_ext/framework/org.carconnectivity.android.digitalkey.rangingintent.jar]#PCL[/system_ext/framework/org.carconnectivity.android.digitalkey.secureelement.jar]#PCL[/system_ext/framework/org.carconnectivity.android.digitalkey.timesync.jar]#PCL[/system_ext/framework/androidx.window.extensions.jar]#PCL[/system_ext/framework/androidx.window.sidecar.jar]}
+          com.samsung.android.app.smartcapture: DLC[];PCL[/system/app/SmartCapture/SmartCapture.apk]{PCL[/system/framework/saiv.jar]#PCL[/system/framework/SmpsManager.jar]#PCL[/system_ext/framework/androidx.window.extensions.jar]#PCL[/system_ext/framework/androidx.window.sidecar.jar]}
+        used by other apps: [com.samsung.android.app.smartcapture (isa=arm64)]
+      /data/user_de/0/com.google.android.gms/app_chimera/m/00000015/dl-PlayCloudSearch.optional_253830100000.apk (public)
+        arm64: [status=run-from-apk] [reason=unknown] [primary-abi]
+          [location is error]
+        class loader context: DLC[];PCL[/data/app/~~uN3p0-dPXXlWr4OvDHGnAQ==/com.google.android.gms-WGezQKmNB-x1JcCITk0iPw==/base.apk]{PCL[/system/framework/org.apache.http.legacy.jar]#PCL[/system/framework/com.android.media.remotedisplay.jar]#PCL[/system/framework/com.android.location.provider.jar]#PCL[/system_ext/framework/org.carconnectivity.android.digitalkey.rangingintent.jar]#PCL[/system_ext/framework/org.carconnectivity.android.digitalkey.secureelement.jar]#PCL[/system_ext/framework/org.carconnectivity.android.digitalkey.timesync.jar]#PCL[/system_ext/framework/androidx.window.extensions.jar]#PCL[/system_ext/framework/androidx.window.sidecar.jar]}
+      /data/user_de/0/com.google.android.gms/app_chimera/m/00000019/dl-AdsFdrDynamite.integ_251815204100000.apk (public)
+        arm64: [status=run-from-apk] [reason=unknown] [primary-abi]
+          [location is error]
+        class loader context: =VaryingClassLoaderContexts=
+          com.samsung.android.rubin.app: DLC[];PCL[/system/priv-app/RubinVersion37/RubinVersion37.apk]{PCL[/system_ext/framework/androidx.window.extensions.jar]#PCL[/system_ext/framework/androidx.window.sidecar.jar]#PCL[/system/framework/org.apache.http.legacy.jar]}
+          com.sec.android.app.samsungapps: DLC[];PCL[/data/app/~~u_0tGHPavBg6pPehegwLng==/com.sec.android.app.samsungapps-YscPNrlJiaGdBhGIpyL55w==/base.apk]{PCL[/system/framework/org.apache.http.legacy.jar]#PCL[/system_ext/framework/androidx.window.extensions.jar]#PCL[/system_ext/framework/androidx.window.sidecar.jar]#PCL[/system/framework/samsungkeystoreutils.jar]#PCL[/system/framework/saiv.jar]}
+          com.sec.spp.push: DLC[];PCL[/system/priv-app/SPPPushClient/SPPPushClient.apk]
+        used by other apps: [com.samsung.android.rubin.app (isa=arm64), com.sec.android.app.samsungapps (isa=arm64), com.sec.spp.push (isa=arm64)]
+  [com.google.android.gms.location.history]
+    path: /product/app/GoogleLocationHistory/GoogleLocationHistory.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/product@app@GoogleLocationHistory@GoogleLocationHistory.apk@classes.dex]
+  [com.google.android.gms.supervision]
+  [com.google.android.googlequicksearchbox]
+    path: /product/priv-app/Velvet/Velvet.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/product@priv-app@Velvet@Velvet.apk@classes.dex]
+      used by other apps: [com.google.android.googlequicksearchbox (isolated) (isa=arm64)]
+  [com.google.android.gsf]
+  [com.google.android.health.connect.backuprestore]
+    path: /apex/com.android.healthfitness/app/HealthConnectBackupRestoreGoogle@360745040/HealthConnectBackupRestoreGoogle.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/apex@com.android.healthfitness@app@HealthConnectBackupRestoreGoogle@360745040@HealthConnectBackupRestoreGoogle.apk@classes.dex]
+  [com.google.android.healthconnect.controller]
+    path: /apex/com.android.healthfitness/priv-app/HealthConnectControllerGoogle@360745040/HealthConnectControllerGoogle.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/apex@com.android.healthfitness@priv-app@HealthConnectControllerGoogle@360745040@HealthConnectControllerGoogle.apk@classes.dex]
+  [com.google.android.modulemetadata]
+  [com.google.android.networkstack]
+    path: /system/priv-app/NetworkStackGoogle/NetworkStackGoogle.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@NetworkStackGoogle@NetworkStackGoogle.apk@classes.dex]
+  [com.google.android.networkstack.tethering]
+    path: /apex/com.android.tethering/priv-app/TetheringGoogle@360743340/TetheringGoogle.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/apex@com.android.tethering@priv-app@TetheringGoogle@360743340@TetheringGoogle.apk@classes.dex]
+      used by other apps: [com.google.android.networkstack (isa=arm64)]
+  [com.google.android.networkstack.tethering.overlay]
+  [com.google.android.ondevicepersonalization.services]
+    path: /apex/com.android.ondevicepersonalization/priv-app/OnDevicePersonalizationGoogle@360738140/OnDevicePersonalizationGoogle.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/apex@com.android.ondevicepersonalization@priv-app@OnDevicePersonalizationGoogle@360738140@OnDevicePersonalizationGoogle.apk@classes.dex]
+  [com.google.android.onetimeinitializer]
+    path: /product/priv-app/GoogleOneTimeInitializer/GoogleOneTimeInitializer.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/product@priv-app@GoogleOneTimeInitializer@GoogleOneTimeInitializer.apk@classes.dex]
+  [com.google.android.overlay.gmsconfig.asi]
+  [com.google.android.overlay.gmsconfig.common]
+  [com.google.android.overlay.gmsconfig.geotz]
+  [com.google.android.overlay.gmsconfig.gsa]
+  [com.google.android.overlay.gmsconfig.photos]
+  [com.google.android.overlay.gmsconfig.searchselector]
+  [com.google.android.overlay.modules.captiveportallogin.forframework]
+  [com.google.android.overlay.modules.cellbroadcastreceiver]
+  [com.google.android.overlay.modules.cellbroadcastservice]
+  [com.google.android.overlay.modules.documentsui]
+  [com.google.android.overlay.modules.ext.services]
+  [com.google.android.overlay.modules.healthfitness.forframework]
+  [com.google.android.overlay.modules.modulemetadata.forframework]
+  [com.google.android.overlay.modules.permissioncontroller]
+  [com.google.android.overlay.modules.permissioncontroller.forframework]
+  [com.google.android.packageinstaller]
+    path: /system/priv-app/GooglePackageInstaller/GooglePackageInstaller.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@GooglePackageInstaller@GooglePackageInstaller.apk@classes.dex]
+  [com.google.android.partnersetup]
+    path: /product/priv-app/GooglePartnerSetup/GooglePartnerSetup.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/product@priv-app@GooglePartnerSetup@GooglePartnerSetup.apk@classes.dex]
+  [com.google.android.permissioncontroller]
+    path: /apex/com.android.permission/priv-app/GooglePermissionController@360743220/GooglePermissionController.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/apex@com.android.permission@priv-app@GooglePermissionController@360743220@GooglePermissionController.apk@classes.dex]
+  [com.google.android.photopicker]
+    path: /apex/com.android.mediaprovider/priv-app/PhotopickerGoogle@360738340/PhotopickerGoogle.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/apex@com.android.mediaprovider@priv-app@PhotopickerGoogle@360738340@PhotopickerGoogle.apk@classes.dex]
+  [com.google.android.printservice.recommendation]
+    path: /system/app/GooglePrintRecommendationService/GooglePrintRecommendationService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@GooglePrintRecommendationService@GooglePrintRecommendationService.apk@classes.dex]
+  [com.google.android.projection.gearhead]
+    path: /product/priv-app/AndroidAutoStub/AndroidAutoStub.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/product@priv-app@AndroidAutoStub@AndroidAutoStub.apk@classes.dex]
+  [com.google.android.providers.media.module]
+    path: /apex/com.android.mediaprovider/priv-app/MediaProviderGoogle@360738340/MediaProviderGoogle.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/apex@com.android.mediaprovider@priv-app@MediaProviderGoogle@360738340@MediaProviderGoogle.apk@classes.dex]
+  [com.google.android.rkpdapp]
+    path: /apex/com.android.rkpd/priv-app/rkpdapp.google@360671160/rkpdapp.google.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/apex@com.android.rkpd@priv-app@rkpdapp.google@360671160@rkpdapp.google.apk@classes.dex]
+  [com.google.android.safetycenter.resources]
+    path: /apex/com.android.permission/priv-app/GoogleSafetyCenterResources@360743220/GoogleSafetyCenterResources.apk
+      arm64: [status=unknown] [reason=unknown] [primary-abi]
+        [location is none]
+  [com.google.android.safetycore]
+    path: /data/app/~~40f-zQFOm0sf5qRLRz_z-Q==/com.google.android.safetycore-5w-XpBck3i5vaNET6_MFKQ==/base.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/~~40f-zQFOm0sf5qRLRz_z-Q==/com.google.android.safetycore-5w-XpBck3i5vaNET6_MFKQ==/oat/arm64/base.odex]
+  [com.google.android.sdksandbox]
+    path: /apex/com.android.adservices/app/SdkSandboxGoogle@360738140/SdkSandboxGoogle.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/apex@com.android.adservices@app@SdkSandboxGoogle@360738140@SdkSandboxGoogle.apk@classes.dex]
+  [com.google.android.server.deviceconfig.resources]
+  [com.google.android.setupwizard]
+    path: /system_ext/priv-app/SetupWizard/SetupWizard.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system_ext@priv-app@SetupWizard@SetupWizard.apk@classes.dex]
+  [com.google.android.syncadapters.calendar]
+    path: /product/app/GoogleCalendarSyncAdapter/GoogleCalendarSyncAdapter.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/product@app@GoogleCalendarSyncAdapter@GoogleCalendarSyncAdapter.apk@classes.dex]
+  [com.google.android.trichromelibrary_699813533]
+  [com.google.android.tts]
+    path: /product/app/SpeechServicesByGoogle/SpeechServicesByGoogle.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/product@app@SpeechServicesByGoogle@SpeechServicesByGoogle.apk@classes.dex]
+  [com.google.android.videos]
+    path: /data/app/~~_b_-6Z5NzvJYk89autuHLQ==/com.google.android.videos-wj0o-QlauLJPqUccKD8EIg==/base.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/~~_b_-6Z5NzvJYk89autuHLQ==/com.google.android.videos-wj0o-QlauLJPqUccKD8EIg==/oat/arm64/base.odex]
+  [com.google.android.webview]
+    path: /product/app/WebViewGoogle64/WebViewGoogle64.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/product@app@WebViewGoogle64@WebViewGoogle64.apk@classes.dex]
+      used by other apps: [com.google.android.gms (isa=arm64), com.google.android.googlequicksearchbox (isa=arm64), com.microsoft.office.officehubrow (isa=arm64), com.microsoft.office.outlook (isa=arm64), com.microsoft.skydrive (isa=arm64), com.samsung.android.bixby.agent (isa=arm64)]
+  [com.google.android.youtube]
+    path: /product/app/YouTube/YouTube.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/product@app@YouTube@YouTube.apk@classes.dex]
+    known secondary dex files:
+      /data/user/0/com.google.android.youtube/cache/1743000482668.jar (removed)
+        arm64: [status=unknown] [reason=unknown] [primary-abi]
+          [location is error]
+        class loader context: PCL[];PCL[/product/app/YouTube/YouTube.apk]{PCL[/system/framework/org.apache.http.legacy.jar]#PCL[/system_ext/framework/androidx.window.extensions.jar]#PCL[/system_ext/framework/androidx.window.sidecar.jar]}
+  [com.google.ar.core]
+    path: /system/app/ARCore/ARCore.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@ARCore@ARCore.apk@classes.dex]
+  [com.google.audio.hearing.visualization.accessibility.scribe]
+    path: /system/app/LiveTranscribe/LiveTranscribe.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@LiveTranscribe@LiveTranscribe.apk@classes.dex]
+  [com.google.mainline.adservices]
+  [com.google.mainline.telemetry]
+  [com.hiya.star]
+    path: /system/app/HiyaService/HiyaService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@HiyaService@HiyaService.apk@classes.dex]
+  [com.knox.vpn.proxyhandler]
+    path: /system/priv-app/knoxvpnproxyhandler/knoxvpnproxyhandler.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@knoxvpnproxyhandler@knoxvpnproxyhandler.apk@classes.dex]
+  [com.linkedin.android]
+    path: /data/app/~~NkwviADjJJJhG7wdpKpOuw==/com.linkedin.android-fie0a_vSIZK2_pv0zWaf0A==/base.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/~~NkwviADjJJJhG7wdpKpOuw==/com.linkedin.android-fie0a_vSIZK2_pv0zWaf0A==/oat/arm64/base.odex]
+  [com.microsoft.appmanager]
+    path: /system/priv-app/YourPhone_P1_5/YourPhone_P1_5.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@YourPhone_P1_5@YourPhone_P1_5.apk@classes.dex]
+  [com.microsoft.office.officehubrow]
+    path: /data/app/~~WRijDndNfYYhKe07mnsawQ==/com.microsoft.office.officehubrow-xmh_QrjU3Q5hiNeVv9xbYw==/base.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/~~WRijDndNfYYhKe07mnsawQ==/com.microsoft.office.officehubrow-xmh_QrjU3Q5hiNeVv9xbYw==/oat/arm64/base.odex]
+  [com.microsoft.office.outlook]
+    path: /data/app/~~gn3-avkN58Q0gpd9pdVK7g==/com.microsoft.office.outlook-cuMaJfk7Ok44nj8cuam9sA==/base.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/~~gn3-avkN58Q0gpd9pdVK7g==/com.microsoft.office.outlook-cuMaJfk7Ok44nj8cuam9sA==/oat/arm64/base.odex]
+  [com.microsoft.skydrive]
+    path: /system/priv-app/OneDrive_Samsung_v3/OneDrive_Samsung_v3.apk
+      arm64: [status=verify] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@OneDrive_Samsung_v3@OneDrive_Samsung_v3.apk@classes.dex]
+  [com.monotype.android.font.foundation]
+    path: /system/app/Foundation/Foundation.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@Foundation@Foundation.apk@classes.dex]
+  [com.monotype.android.font.roboto]
+    path: /system/app/Roboto/Roboto.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@Roboto@Roboto.apk@classes.dex]
+  [com.monotype.android.font.samsungone]
+    path: /system/app/SamsungOne/SamsungOne.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@SamsungOne@SamsungOne.apk@classes.dex]
+  [com.mygalaxy.service]
+    path: /system/priv-app/MyGalaxyService/MyGalaxyService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@MyGalaxyService@MyGalaxyService.apk@classes.dex]
+  [com.netflix.mediaclient]
+    path: /data/app/Netflix_stub_2_0/Netflix_stub_2_0.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/Netflix_stub_2_0/oat/arm64/Netflix_stub_2_0.odex]
+  [com.osp.app.signin]
+    path: /system/priv-app/SamsungAccount/SamsungAccount.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SamsungAccount@SamsungAccount.apk@classes.dex]
+  [com.qti.qcc]
+    path: /system_ext/app/QCC/QCC.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system_ext@app@QCC@QCC.apk@classes.dex]
+  [com.qti.snapdragon.qdcm_ff]
+    path: /system_ext/app/QdcmFF/QdcmFF.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system_ext@app@QdcmFF@QdcmFF.apk@classes.dex]
+  [com.qualcomm.location]
+    path: /system_ext/priv-app/com.qualcomm.location/com.qualcomm.location.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system_ext@priv-app@com.qualcomm.location@com.qualcomm.location.apk@classes.dex]
+  [com.qualcomm.overlay.target]
+    path: /vendor/overlay/FrameworksResTarget_Vendor.apk
+      arm64: [status=unknown] [reason=unknown] [primary-abi]
+        [location is none]
+  [com.qualcomm.qti.gpudrivers.pineapple.api34]
+  [com.qualcomm.qti.services.systemhelper]
+    path: /system_ext/priv-app/com.qualcomm.qti.services.systemhelper/com.qualcomm.qti.services.systemhelper.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system_ext@priv-app@com.qualcomm.qti.services.systemhelper@com.qualcomm.qti.services.systemhelper.apk@classes.dex]
+  [com.qualcomm.timeservice]
+    path: /vendor/app/TimeService/TimeService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/vendor@app@TimeService@TimeService.apk@classes.dex]
+  [com.rsupport.rs.activity.rsupport.aas2]
+    path: /data/app/~~ZN4HRMnMpMFDLKbVmKnvFg==/com.rsupport.rs.activity.rsupport.aas2-g2rnESJaBzh70_J0HdPnKQ==/base.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/~~ZN4HRMnMpMFDLKbVmKnvFg==/com.rsupport.rs.activity.rsupport.aas2-g2rnESJaBzh70_J0HdPnKQ==/oat/arm64/base.odex]
+  [com.samsung.SMT]
+    path: /system/app/SamsungTTS/SamsungTTS.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@SamsungTTS@SamsungTTS.apk@classes.dex]
+  [com.samsung.SMT.lang_ar_ae_m00]
+    path: /system/app/SamsungTTSVoice_ar_AE_m00/SamsungTTSVoice_ar_AE_m00.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@SamsungTTSVoice_ar_AE_m00@SamsungTTSVoice_ar_AE_m00.apk@classes.dex]
+  [com.samsung.SMT.lang_de_de_f00]
+    path: /system/app/SamsungTTSVoice_de_DE_f00/SamsungTTSVoice_de_DE_f00.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@SamsungTTSVoice_de_DE_f00@SamsungTTSVoice_de_DE_f00.apk@classes.dex]
+  [com.samsung.SMT.lang_en_au_f00]
+    path: /data/app/SamsungTTSVoice_en_AU_f00_Removable/SamsungTTSVoice_en_AU_f00_Removable.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/SamsungTTSVoice_en_AU_f00_Removable/oat/arm64/SamsungTTSVoice_en_AU_f00_Removable.odex]
+  [com.samsung.SMT.lang_en_gb_f00]
+    path: /system/app/SamsungTTSVoice_en_GB_f00/SamsungTTSVoice_en_GB_f00.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@SamsungTTSVoice_en_GB_f00@SamsungTTSVoice_en_GB_f00.apk@classes.dex]
+  [com.samsung.SMT.lang_en_us_l03]
+    path: /system/app/SamsungTTSVoice_en_US_l03/SamsungTTSVoice_en_US_l03.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@SamsungTTSVoice_en_US_l03@SamsungTTSVoice_en_US_l03.apk@classes.dex]
+  [com.samsung.SMT.lang_es_es_f00]
+    path: /system/app/SamsungTTSVoice_es_ES_f00/SamsungTTSVoice_es_ES_f00.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@SamsungTTSVoice_es_ES_f00@SamsungTTSVoice_es_ES_f00.apk@classes.dex]
+  [com.samsung.SMT.lang_es_mx_f00]
+    path: /system/app/SamsungTTSVoice_es_MX_f00/SamsungTTSVoice_es_MX_f00.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@SamsungTTSVoice_es_MX_f00@SamsungTTSVoice_es_MX_f00.apk@classes.dex]
+  [com.samsung.SMT.lang_es_us_f00]
+    path: /system/app/SamsungTTSVoice_es_US_f00/SamsungTTSVoice_es_US_f00.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@SamsungTTSVoice_es_US_f00@SamsungTTSVoice_es_US_f00.apk@classes.dex]
+  [com.samsung.SMT.lang_es_us_l01]
+    path: /data/app/SamsungTTSVoice_es_US_l01_Removable/SamsungTTSVoice_es_US_l01_Removable.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/SamsungTTSVoice_es_US_l01_Removable/oat/arm64/SamsungTTSVoice_es_US_l01_Removable.odex]
+  [com.samsung.SMT.lang_fr_fr_f00]
+    path: /system/app/SamsungTTSVoice_fr_FR_f00/SamsungTTSVoice_fr_FR_f00.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@SamsungTTSVoice_fr_FR_f00@SamsungTTSVoice_fr_FR_f00.apk@classes.dex]
+  [com.samsung.SMT.lang_hi_in_f00]
+    path: /system/app/SamsungTTSVoice_hi_IN_f00/SamsungTTSVoice_hi_IN_f00.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@SamsungTTSVoice_hi_IN_f00@SamsungTTSVoice_hi_IN_f00.apk@classes.dex]
+  [com.samsung.SMT.lang_id_id_f00]
+    path: /system/app/SamsungTTSVoice_id_ID_f00/SamsungTTSVoice_id_ID_f00.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@SamsungTTSVoice_id_ID_f00@SamsungTTSVoice_id_ID_f00.apk@classes.dex]
+  [com.samsung.SMT.lang_it_it_f00]
+    path: /system/app/SamsungTTSVoice_it_IT_f00/SamsungTTSVoice_it_IT_f00.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@SamsungTTSVoice_it_IT_f00@SamsungTTSVoice_it_IT_f00.apk@classes.dex]
+  [com.samsung.SMT.lang_nl_nl_m00]
+    path: /data/app/SamsungTTSVoice_nl_NL_m00_Removable/SamsungTTSVoice_nl_NL_m00_Removable.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/SamsungTTSVoice_nl_NL_m00_Removable/oat/arm64/SamsungTTSVoice_nl_NL_m00_Removable.odex]
+  [com.samsung.SMT.lang_pl_pl_f00]
+    path: /system/app/SamsungTTSVoice_pl_PL_f00/SamsungTTSVoice_pl_PL_f00.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@SamsungTTSVoice_pl_PL_f00@SamsungTTSVoice_pl_PL_f00.apk@classes.dex]
+  [com.samsung.SMT.lang_pt_br_f00]
+    path: /system/app/SamsungTTSVoice_pt_BR_f00/SamsungTTSVoice_pt_BR_f00.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@SamsungTTSVoice_pt_BR_f00@SamsungTTSVoice_pt_BR_f00.apk@classes.dex]
+  [com.samsung.SMT.lang_pt_pt_f00]
+    path: /data/app/SamsungTTSVoice_pt_PT_f00_Removable/SamsungTTSVoice_pt_PT_f00_Removable.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/SamsungTTSVoice_pt_PT_f00_Removable/oat/arm64/SamsungTTSVoice_pt_PT_f00_Removable.odex]
+  [com.samsung.SMT.lang_ro_ro_f00]
+    path: /data/app/SamsungTTSVoice_ro_RO_f00_Removable/SamsungTTSVoice_ro_RO_f00_Removable.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/SamsungTTSVoice_ro_RO_f00_Removable/oat/arm64/SamsungTTSVoice_ro_RO_f00_Removable.odex]
+  [com.samsung.SMT.lang_ru_ru_f00]
+    path: /system/app/SamsungTTSVoice_ru_RU_f00/SamsungTTSVoice_ru_RU_f00.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@SamsungTTSVoice_ru_RU_f00@SamsungTTSVoice_ru_RU_f00.apk@classes.dex]
+  [com.samsung.SMT.lang_sv_se_f00]
+    path: /data/app/SamsungTTSVoice_sv_SE_f00_Removable/SamsungTTSVoice_sv_SE_f00_Removable.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/SamsungTTSVoice_sv_SE_f00_Removable/oat/arm64/SamsungTTSVoice_sv_SE_f00_Removable.odex]
+  [com.samsung.SMT.lang_th_th_f00]
+    path: /system/app/SamsungTTSVoice_th_TH_f00/SamsungTTSVoice_th_TH_f00.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@SamsungTTSVoice_th_TH_f00@SamsungTTSVoice_th_TH_f00.apk@classes.dex]
+  [com.samsung.SMT.lang_tr_tr_f00]
+    path: /data/app/SamsungTTSVoice_tr_TR_f00_Removable/SamsungTTSVoice_tr_TR_f00_Removable.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/SamsungTTSVoice_tr_TR_f00_Removable/oat/arm64/SamsungTTSVoice_tr_TR_f00_Removable.odex]
+  [com.samsung.SMT.lang_vi_vn_f00]
+    path: /system/app/SamsungTTSVoice_vi_VN_f00/SamsungTTSVoice_vi_VN_f00.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@SamsungTTSVoice_vi_VN_f00@SamsungTTSVoice_vi_VN_f00.apk@classes.dex]
+  [com.samsung.SMT.lang_zh_cn_l02]
+    path: /data/app/SamsungTTSVoice_zh_CN_l02_Removable/SamsungTTSVoice_zh_CN_l02_Removable.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/SamsungTTSVoice_zh_CN_l02_Removable/oat/arm64/SamsungTTSVoice_zh_CN_l02_Removable.odex]
+  [com.samsung.aasaservice]
+    path: /system/app/AASAservice/AASAservice.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@AASAservice@AASAservice.apk@classes.dex]
+  [com.samsung.accessibility]
+    path: /system/priv-app/Accessibility/Accessibility.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@Accessibility@Accessibility.apk@classes.dex]
+  [com.samsung.accessory.budsunitemgr]
+    path: /system/priv-app/BudsUniteManager/BudsUniteManager.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@BudsUniteManager@BudsUniteManager.apk@classes.dex]
+  [com.samsung.advp.imssettings]
+    path: /system/app/ImsSettings/ImsSettings.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@ImsSettings@ImsSettings.apk@classes.dex]
+  [com.samsung.android.ConnectivityOverlay]
+  [com.samsung.android.ConnectivityUxOverlay]
+  [com.samsung.android.accessibility.talkback]
+    path: /system/priv-app/TalkbackSE/TalkbackSE.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@TalkbackSE@TalkbackSE.apk@classes.dex]
+  [com.samsung.android.aicore]
+    path: /system/priv-app/SamsungAiCore/SamsungAiCore.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SamsungAiCore@SamsungAiCore.apk@classes.dex]
+  [com.samsung.android.aircommandmanager]
+    path: /system/app/FactoryAirCommandManager/FactoryAirCommandManager.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@FactoryAirCommandManager@FactoryAirCommandManager.apk@classes.dex]
+  [com.samsung.android.allshare.service.mediashare]
+    path: /system/app/AllshareMediaShare/AllshareMediaShare.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@AllshareMediaShare@AllshareMediaShare.apk@classes.dex]
+  [com.samsung.android.app.aodservice]
+    path: /system/priv-app/AODService_v80/AODService_v80.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@AODService_v80@AODService_v80.apk@classes.dex]
+      used by other apps: [com.android.systemui (isa=arm64), com.samsung.android.smartsuggestions (isa=arm64)]
+  [com.samsung.android.app.camera.sticker.facearavatar.preload]
+    path: /system/priv-app/StickerFaceARAvatar/StickerFaceARAvatar.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@StickerFaceARAvatar@StickerFaceARAvatar.apk@classes.dex]
+  [com.samsung.android.app.clipboardedge]
+    path: /system/app/ClipboardEdge/ClipboardEdge.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@ClipboardEdge@ClipboardEdge.apk@classes.dex]
+  [com.samsung.android.app.contacts]
+    path: /system/priv-app/SamsungContacts/SamsungContacts.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SamsungContacts@SamsungContacts.apk@classes.dex]
+  [com.samsung.android.app.dofviewer]
+    path: /system/priv-app/DualOutFocusViewer_V/DualOutFocusViewer_V.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@DualOutFocusViewer_V@DualOutFocusViewer_V.apk@classes.dex]
+  [com.samsung.android.app.dressroom]
+    path: /system/priv-app/DressRoom/DressRoom.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@DressRoom@DressRoom.apk@classes.dex]
+  [com.samsung.android.app.earphonetypec]
+    path: /system/priv-app/EarphoneTypeC/EarphoneTypeC.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@EarphoneTypeC@EarphoneTypeC.apk@classes.dex]
+  [com.samsung.android.app.esimkeystring]
+    path: /system/priv-app/EsimKeyString/EsimKeyString.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@EsimKeyString@EsimKeyString.apk@classes.dex]
+  [com.samsung.android.app.find]
+    path: /data/app/~~2NEXy5sGT_umY_60hCTi3A==/com.samsung.android.app.find-Sbp80XT5uc5xY_VEoJWRTA==/base.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/~~2NEXy5sGT_umY_60hCTi3A==/com.samsung.android.app.find-Sbp80XT5uc5xY_VEoJWRTA==/oat/arm64/base.odex]
+  [com.samsung.android.app.interpreter]
+    path: /system/priv-app/BixbyInterpreter/BixbyInterpreter.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@BixbyInterpreter@BixbyInterpreter.apk@classes.dex]
+  [com.samsung.android.app.notes]
+    path: /data/app/~~okEcPA5XGW1Eoa57M0wRIA==/com.samsung.android.app.notes-ZHrHVy7koRT4N6HZo5DbnQ==/base.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/~~okEcPA5XGW1Eoa57M0wRIA==/com.samsung.android.app.notes-ZHrHVy7koRT4N6HZo5DbnQ==/oat/arm64/base.odex]
+  [com.samsung.android.app.omcagent]
+    path: /system/priv-app/OMCAgent5/OMCAgent5.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@OMCAgent5@OMCAgent5.apk@classes.dex]
+  [com.samsung.android.app.parentalcare]
+    path: /system/app/ParentalCare/ParentalCare.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@ParentalCare@ParentalCare.apk@classes.dex]
+  [com.samsung.android.app.readingglass]
+    path: /system/priv-app/AirReadingGlass/AirReadingGlass.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@AirReadingGlass@AirReadingGlass.apk@classes.dex]
+  [com.samsung.android.app.reminder]
+    path: /data/app/~~9lcWaAPs-c3lL3Nnof5xrw==/com.samsung.android.app.reminder-G9mnU4VN-N_HK4fpB4j0Xg==/base.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/~~9lcWaAPs-c3lL3Nnof5xrw==/com.samsung.android.app.reminder-G9mnU4VN-N_HK4fpB4j0Xg==/oat/arm64/base.odex]
+  [com.samsung.android.app.routines]
+    path: /system/priv-app/Routines/Routines.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@Routines@Routines.apk@classes.dex]
+    known secondary dex files:
+      /data/user/0/com.samsung.android.app.routines/cache/Generated_-164699367.jar
+        arm64: [status=verify] [reason=vdex] [primary-abi]
+          [location is /data/user/0/com.samsung.android.app.routines/cache/oat/arm64/Generated_-164699367.vdex]
+        class loader context: PCL[];PCL[/system/priv-app/Routines/Routines.apk]{PCL[/system/framework/org.apache.http.legacy.jar]#PCL[/system_ext/framework/androidx.window.extensions.jar]#PCL[/system_ext/framework/androidx.window.sidecar.jar]#PCL[/system_ext/framework/com.android.extensions.appfunctions.jar]}
+  [com.samsung.android.app.sharelive]
+    path: /system/priv-app/ShareLive/ShareLive.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@ShareLive@ShareLive.apk@classes.dex]
+  [com.samsung.android.app.sketchbook]
+    path: /system/app/SketchBook/SketchBook.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@SketchBook@SketchBook.apk@classes.dex]
+  [com.samsung.android.app.smartcapture]
+    path: /system/app/SmartCapture/SmartCapture.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@SmartCapture@SmartCapture.apk@classes.dex]
+  [com.samsung.android.app.soundpicker]
+    path: /system/app/SoundPicker_B/SoundPicker_B.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@SoundPicker_B@SoundPicker_B.apk@classes.dex]
+  [com.samsung.android.app.spage]
+    path: /data/app/MinusOnePage/MinusOnePage.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/MinusOnePage/oat/arm64/MinusOnePage.odex]
+  [com.samsung.android.app.taskedge]
+    path: /system/priv-app/TaskEdgePanel_v3.2/TaskEdgePanel_v3.2.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@TaskEdgePanel_v3.2@TaskEdgePanel_v3.2.apk@classes.dex]
+  [com.samsung.android.app.telephonyui]
+    path: /system/priv-app/TelephonyUI/TelephonyUI.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@TelephonyUI@TelephonyUI.apk@classes.dex]
+  [com.samsung.android.app.telephonyui.esimclient]
+    path: /system/priv-app/EsimClient/EsimClient.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@EsimClient@EsimClient.apk@classes.dex]
+  [com.samsung.android.app.tips]
+    path: /data/app/Tips/Tips.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/Tips/oat/arm64/Tips.odex]
+  [com.samsung.android.app.updatecenter]
+    path: /system/priv-app/AppUpdateCenter/AppUpdateCenter.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@AppUpdateCenter@AppUpdateCenter.apk@classes.dex]
+  [com.samsung.android.app.vex.scanner]
+    path: /system/priv-app/VexScanner/VexScanner.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@VexScanner@VexScanner.apk@classes.dex]
+  [com.samsung.android.app.watchmanager]
+    path: /data/app/GearManager/GearManager.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/GearManager/oat/arm64/GearManager.odex]
+  [com.samsung.android.app.watchmanagerstub]
+    path: /system/app/GearManagerStub/GearManagerStub.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@GearManagerStub@GearManagerStub.apk@classes.dex]
+  [com.samsung.android.appseparation]
+    path: /system/priv-app/SecAppSeparation/SecAppSeparation.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SecAppSeparation@SecAppSeparation.apk@classes.dex]
+  [com.samsung.android.aremoji]
+    path: /system/priv-app/AREmoji/AREmoji.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@AREmoji@AREmoji.apk@classes.dex]
+  [com.samsung.android.aremojieditor]
+    path: /system/priv-app/AREmojiEditor/AREmojiEditor.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@AREmojiEditor@AREmojiEditor.apk@classes.dex]
+  [com.samsung.android.audiomirroring]
+    path: /system/priv-app/AudioMirroring/AudioMirroring.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@AudioMirroring@AudioMirroring.apk@classes.dex]
+  [com.samsung.android.authfw]
+    path: /system/priv-app/AuthFramework/AuthFramework.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@AuthFramework@AuthFramework.apk@classes.dex]
+  [com.samsung.android.aware.service]
+    path: /system/app/AllShareAware/AllShareAware.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@AllShareAware@AllShareAware.apk@classes.dex]
+  [com.samsung.android.bbc.bbcagent]
+    path: /system/app/BBCAgent/BBCAgent.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@BBCAgent@BBCAgent.apk@classes.dex]
+  [com.samsung.android.beaconmanager]
+    path: /system/priv-app/BeaconManager/BeaconManager.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@BeaconManager@BeaconManager.apk@classes.dex]
+  [com.samsung.android.biometrics.app.setting]
+    path: /system/priv-app/BiometricSetting/BiometricSetting.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@BiometricSetting@BiometricSetting.apk@classes.dex]
+  [com.samsung.android.bixby.agent]
+    path: /system/priv-app/Bixby/Bixby.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@Bixby@Bixby.apk@classes.dex]
+    known secondary dex files:
+      /data/user/0/com.samsung.android.bixby.agent/cache/Generated_-164699367.jar
+        arm64: [status=verify] [reason=vdex] [primary-abi]
+          [location is /data/user/0/com.samsung.android.bixby.agent/cache/oat/arm64/Generated_-164699367.vdex]
+        class loader context: PCL[];PCL[/system/priv-app/Bixby/Bixby.apk]{PCL[/system/framework/org.apache.http.legacy.jar]#PCL[/system_ext/framework/androidx.window.extensions.jar]#PCL[/system_ext/framework/androidx.window.sidecar.jar]#PCL[/system_ext/framework/com.android.extensions.appfunctions.jar]}
+  [com.samsung.android.bixby.ondevice.enus]
+    path: /data/app/~~J3zXwKXalibssEsuCjSWNw==/com.samsung.android.bixby.ondevice.enus-tGsMkgkR6ESLemzAuD62yg==/base.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/~~J3zXwKXalibssEsuCjSWNw==/com.samsung.android.bixby.ondevice.enus-tGsMkgkR6ESLemzAuD62yg==/oat/arm64/base.odex]
+  [com.samsung.android.bixby.ondevice.thth]
+    path: /data/app/~~9us4lUzbF5930HBCeAlByw==/com.samsung.android.bixby.ondevice.thth-Vfw83oan1N_KzbaVDKz5Lg==/base.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/~~9us4lUzbF5930HBCeAlByw==/com.samsung.android.bixby.ondevice.thth-Vfw83oan1N_KzbaVDKz5Lg==/oat/arm64/base.odex]
+  [com.samsung.android.bixby.wakeup]
+    path: /system/app/BixbyWakeup/BixbyWakeup.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@BixbyWakeup@BixbyWakeup.apk@classes.dex]
+  [com.samsung.android.bixbyvision.framework]
+    path: /system/priv-app/BixbyVisionFramework3.5/BixbyVisionFramework3.5.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@BixbyVisionFramework3.5@BixbyVisionFramework3.5.apk@classes.dex]
+  [com.samsung.android.bluelightfilter]
+    path: /system/priv-app/BlueLightFilter/BlueLightFilter.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@BlueLightFilter@BlueLightFilter.apk@classes.dex]
+  [com.samsung.android.brightnessbackupservice]
+    path: /system/app/BrightnessBackupService/BrightnessBackupService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@BrightnessBackupService@BrightnessBackupService.apk@classes.dex]
+  [com.samsung.android.calendar]
+    path: /data/app/SamsungCalendar/SamsungCalendar.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/SamsungCalendar/oat/arm64/SamsungCalendar.odex]
+      used by other apps: [com.samsung.android.app.omcagent (isa=arm64), com.samsung.android.app.updatecenter (isa=arm64), com.samsung.android.honeyboard (isa=arm64), com.samsung.android.scloud (isa=arm64), com.sec.android.app.launcher (isa=arm64)]
+  [com.samsung.android.callassistant]
+    path: /system/priv-app/CallAssistant/CallAssistant.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@CallAssistant@CallAssistant.apk@classes.dex]
+  [com.samsung.android.callbgprovider]
+    path: /system/priv-app/CallBGProvider/CallBGProvider.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@CallBGProvider@CallBGProvider.apk@classes.dex]
+  [com.samsung.android.camerasdkservice]
+    path: /system/priv-app/SCameraSDKService/SCameraSDKService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SCameraSDKService@SCameraSDKService.apk@classes.dex]
+  [com.samsung.android.cameraxservice]
+    path: /system/priv-app/sec_camerax_service/sec_camerax_service.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@sec_camerax_service@sec_camerax_service.apk@classes.dex]
+  [com.samsung.android.carkey]
+    path: /system/priv-app/SamsungCarKeyFw/SamsungCarKeyFw.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SamsungCarKeyFw@SamsungCarKeyFw.apk@classes.dex]
+  [com.samsung.android.carriermatching]
+    path: /data/app/~~kObnUBC5fEVo_cwZUctdtw==/com.samsung.android.carriermatching-vToOMTrhA4FaygkVIaxCwA==/base.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/~~kObnUBC5fEVo_cwZUctdtw==/com.samsung.android.carriermatching-vToOMTrhA4FaygkVIaxCwA==/oat/arm64/base.odex]
+  [com.samsung.android.cidmanager]
+    path: /system/priv-app/CIDManager/CIDManager.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@CIDManager@CIDManager.apk@classes.dex]
+      used by other apps: [com.android.phone (isa=arm64)]
+  [com.samsung.android.container]
+    path: /system/app/ContainerService/ContainerService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@ContainerService@ContainerService.apk@classes.dex]
+  [com.samsung.android.da.daagent]
+    path: /system/app/DAAgent/DAAgent.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@DAAgent@DAAgent.apk@classes.dex]
+  [com.samsung.android.dbsc]
+    path: /system/priv-app/DeviceBasedServiceConsent/DeviceBasedServiceConsent.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@DeviceBasedServiceConsent@DeviceBasedServiceConsent.apk@classes.dex]
+  [com.samsung.android.dck.timesync]
+    path: /system_ext/priv-app/DckTimeSyncService/DckTimeSyncService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system_ext@priv-app@DckTimeSyncService@DckTimeSyncService.apk@classes.dex]
+  [com.samsung.android.dialer]
+    path: /system/priv-app/SamsungDialer/SamsungDialer.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SamsungDialer@SamsungDialer.apk@classes.dex]
+  [com.samsung.android.dkey]
+    path: /system/priv-app/DigitalKey/DigitalKey.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@DigitalKey@DigitalKey.apk@classes.dex]
+  [com.samsung.android.dqagent]
+    path: /system/priv-app/DeviceQualityAgent36/DeviceQualityAgent36.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@DeviceQualityAgent36@DeviceQualityAgent36.apk@classes.dex]
+  [com.samsung.android.dsms]
+    path: /system/app/DsmsAPK/DsmsAPK.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@DsmsAPK@DsmsAPK.apk@classes.dex]
+  [com.samsung.android.dynamiclock]
+    path: /system/priv-app/DynamicLockscreen/DynamicLockscreen.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@DynamicLockscreen@DynamicLockscreen.apk@classes.dex]
+      used by other apps: [com.android.systemui (isa=arm64)]
+  [com.samsung.android.easysetup]
+    path: /system/priv-app/EasySetup/EasySetup.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@EasySetup@EasySetup.apk@classes.dex]
+  [com.samsung.android.emergency]
+    path: /system/priv-app/EmergencySOS/EmergencySOS.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@EmergencySOS@EmergencySOS.apk@classes.dex]
+  [com.samsung.android.ese]
+    path: /system/priv-app/SamsungSeAgent/SamsungSeAgent.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SamsungSeAgent@SamsungSeAgent.apk@classes.dex]
+  [com.samsung.android.fmm]
+    path: /system/priv-app/Fmm/Fmm.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@Fmm@Fmm.apk@classes.dex]
+  [com.samsung.android.forest]
+    path: /system/priv-app/DigitalWellbeing/DigitalWellbeing.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@DigitalWellbeing@DigitalWellbeing.apk@classes.dex]
+  [com.samsung.android.game.gamehome]
+    path: /data/app/GameHome/GameHome.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/GameHome/oat/arm64/GameHome.odex]
+  [com.samsung.android.game.gametools]
+    path: /system/priv-app/GameTools_Dream/GameTools_Dream.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@GameTools_Dream@GameTools_Dream.apk@classes.dex]
+  [com.samsung.android.game.gos]
+    path: /system/priv-app/GameOptimizingService/GameOptimizingService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@GameOptimizingService@GameOptimizingService.apk@classes.dex]
+  [com.samsung.android.globalpostprocmgr]
+    path: /system/priv-app/GlobalPostProcMgr/GlobalPostProcMgr.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@GlobalPostProcMgr@GlobalPostProcMgr.apk@classes.dex]
+  [com.samsung.android.gru]
+    path: /system/app/GalaxyResourceUpdater/GalaxyResourceUpdater.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@GalaxyResourceUpdater@GalaxyResourceUpdater.apk@classes.dex]
+  [com.samsung.android.hdmapp]
+    path: /system/priv-app/HdmApk/HdmApk.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@HdmApk@HdmApk.apk@classes.dex]
+  [com.samsung.android.honeyboard]
+    path: /system/app/HoneyBoard/HoneyBoard.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@HoneyBoard@HoneyBoard.apk@classes.dex]
+  [com.samsung.android.hwresourceshare]
+    path: /system/priv-app/HWResourceShare/HWResourceShare.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@HWResourceShare@HWResourceShare.apk@classes.dex]
+  [com.samsung.android.hwresourceshare.storage]
+    path: /system/priv-app/StorageShare/StorageShare.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@StorageShare@StorageShare.apk@classes.dex]
+  [com.samsung.android.incallui]
+    path: /system/priv-app/SamsungInCallUI/SamsungInCallUI.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SamsungInCallUI@SamsungInCallUI.apk@classes.dex]
+  [com.samsung.android.inputshare]
+    path: /system/priv-app/MultiControl/MultiControl.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@MultiControl@MultiControl.apk@classes.dex]
+  [com.samsung.android.intellivoiceservice]
+    path: /system/priv-app/SamsungIntelliVoiceServices/SamsungIntelliVoiceServices.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SamsungIntelliVoiceServices@SamsungIntelliVoiceServices.apk@classes.dex]
+  [com.samsung.android.internal.overlay.config.default_contextual_search]
+  [com.samsung.android.ipsgeofence]
+    path: /system/priv-app/IpsGeofence/IpsGeofence.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@IpsGeofence@IpsGeofence.apk@classes.dex]
+  [com.samsung.android.kgclient]
+    path: /system/priv-app/KnoxGuard/KnoxGuard.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@KnoxGuard@KnoxGuard.apk@classes.dex]
+  [com.samsung.android.kidsinstaller]
+    path: /system/app/KidsHome_Installer/KidsHome_Installer.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@KidsHome_Installer@KidsHome_Installer.apk@classes.dex]
+  [com.samsung.android.kmxservice]
+    path: /system/priv-app/KmxService/KmxService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@KmxService@KmxService.apk@classes.dex]
+  [com.samsung.android.knox.analytics.uploader]
+    path: /system/priv-app/knoxanalyticsagent/knoxanalyticsagent.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@knoxanalyticsagent@knoxanalyticsagent.apk@classes.dex]
+  [com.samsung.android.knox.app.networkfilter]
+    path: /system/priv-app/KnoxNetworkFilter/KnoxNetworkFilter.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@KnoxNetworkFilter@KnoxNetworkFilter.apk@classes.dex]
+  [com.samsung.android.knox.attestation]
+    path: /system/priv-app/EnhancedAttestationAgent/EnhancedAttestationAgent.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@EnhancedAttestationAgent@EnhancedAttestationAgent.apk@classes.dex]
+  [com.samsung.android.knox.containercore]
+    path: /system/priv-app/KnoxCore/KnoxCore.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@KnoxCore@KnoxCore.apk@classes.dex]
+  [com.samsung.android.knox.er]
+    path: /system/priv-app/KnoxERAgent/KnoxERAgent.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@KnoxERAgent@KnoxERAgent.apk@classes.dex]
+  [com.samsung.android.knox.kfbp]
+    path: /system/priv-app/KnoxFrameBufferProvider/KnoxFrameBufferProvider.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@KnoxFrameBufferProvider@KnoxFrameBufferProvider.apk@classes.dex]
+  [com.samsung.android.knox.knnr]
+    path: /system/priv-app/KnoxNeuralNetworkRuntime/KnoxNeuralNetworkRuntime.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@KnoxNeuralNetworkRuntime@KnoxNeuralNetworkRuntime.apk@classes.dex]
+  [com.samsung.android.knox.kpecore]
+    path: /system/priv-app/KPECore/KPECore.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@KPECore@KPECore.apk@classes.dex]
+  [com.samsung.android.knox.mpos]
+    path: /system/priv-app/KnoxMposAgent/KnoxMposAgent.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@KnoxMposAgent@KnoxMposAgent.apk@classes.dex]
+  [com.samsung.android.knox.pushmanager]
+    path: /system/priv-app/KnoxPushManager/KnoxPushManager.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@KnoxPushManager@KnoxPushManager.apk@classes.dex]
+  [com.samsung.android.knox.sandbox]
+    path: /system/priv-app/KnoxSandbox/KnoxSandbox.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@KnoxSandbox@KnoxSandbox.apk@classes.dex]
+  [com.samsung.android.knox.zt.framework]
+    path: /system/priv-app/KnoxZtFramework/KnoxZtFramework.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@KnoxZtFramework@KnoxZtFramework.apk@classes.dex]
+  [com.samsung.android.liveeffectservice]
+    path: /system/priv-app/LiveEffectService/LiveEffectService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@LiveEffectService@LiveEffectService.apk@classes.dex]
+  [com.samsung.android.location]
+    path: /system/app/SLocation/SLocation.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@SLocation@SLocation.apk@classes.dex]
+  [com.samsung.android.lool]
+    path: /system/priv-app/SmartManager_v5/SmartManager_v5.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SmartManager_v5@SmartManager_v5.apk@classes.dex]
+  [com.samsung.android.mapsagent]
+    path: /system/app/MAPSAgent/MAPSAgent.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@MAPSAgent@MAPSAgent.apk@classes.dex]
+  [com.samsung.android.mcfds]
+    path: /system/priv-app/MCFDeviceSync/MCFDeviceSync.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@MCFDeviceSync@MCFDeviceSync.apk@classes.dex]
+  [com.samsung.android.mcfserver]
+    path: /system/priv-app/SamsungMultiConnectivity/SamsungMultiConnectivity.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SamsungMultiConnectivity@SamsungMultiConnectivity.apk@classes.dex]
+  [com.samsung.android.mdecservice]
+    path: /system/app/MdecService/MdecService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@MdecService@MdecService.apk@classes.dex]
+  [com.samsung.android.mdm]
+    path: /system/app/MDMApp/MDMApp.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@MDMApp@MDMApp.apk@classes.dex]
+  [com.samsung.android.mdx]
+    path: /system/priv-app/LinkToWindowsService/LinkToWindowsService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@LinkToWindowsService@LinkToWindowsService.apk@classes.dex]
+  [com.samsung.android.mdx.kit]
+    path: /system/app/MdxKitService/MdxKitService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@MdxKitService@MdxKitService.apk@classes.dex]
+  [com.samsung.android.messaging]
+    path: /system/priv-app/SamsungMessages/SamsungMessages.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SamsungMessages@SamsungMessages.apk@classes.dex]
+  [com.samsung.android.mhs.ai]
+    path: /system/app/MhsAiService/MhsAiService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@MhsAiService@MhsAiService.apk@classes.dex]
+  [com.samsung.android.mobileservice]
+    path: /system/priv-app/SamsungExperienceService/SamsungExperienceService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SamsungExperienceService@SamsungExperienceService.apk@classes.dex]
+  [com.samsung.android.mocca]
+    path: /system/app/MoccaMobile/MoccaMobile.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@MoccaMobile@MoccaMobile.apk@classes.dex]
+  [com.samsung.android.motionphoto.app]
+    path: /system/app/MotionPhoto/MotionPhoto.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@MotionPhoto@MotionPhoto.apk@classes.dex]
+  [com.samsung.android.mtp]
+    path: /system/priv-app/MtpApplication/MtpApplication.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@MtpApplication@MtpApplication.apk@classes.dex]
+      used by other apps: [com.android.providers.downloads (isa=arm64)]
+  [com.samsung.android.mydevice]
+    path: /system/app/MyDevice/MyDevice.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@MyDevice@MyDevice.apk@classes.dex]
+  [com.samsung.android.net.wifi.wifiguider]
+    path: /system/app/WifiGuider/WifiGuider.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@WifiGuider@WifiGuider.apk@classes.dex]
+  [com.samsung.android.networkdiagnostic]
+    path: /system/priv-app/NetworkDiagnostic/NetworkDiagnostic.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@NetworkDiagnostic@NetworkDiagnostic.apk@classes.dex]
+  [com.samsung.android.networkstack]
+  [com.samsung.android.networkstack.tethering.overlay]
+  [com.samsung.android.nfc]
+    path: /system/priv-app/SecNfc/SecNfc.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SecNfc@SecNfc.apk@classes.dex]
+      used by other apps: [com.android.nfc (isa=arm64)]
+  [com.samsung.android.nfc.resources.default]
+  [com.samsung.android.nmt.apps.t2t.languagepack.enth]
+    path: /data/app/TranslationLanguagepack_EnTh_Removable/TranslationLanguagepack_EnTh_Removable.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/TranslationLanguagepack_EnTh_Removable/oat/arm64/TranslationLanguagepack_EnTh_Removable.odex]
+  [com.samsung.android.offline.languagemodel]
+    path: /data/app/~~JQfqLvjki91Rdq0--zuDhg==/com.samsung.android.offline.languagemodel-L4emc5YpK6rk2KPKLDYulA==/base.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/~~JQfqLvjki91Rdq0--zuDhg==/com.samsung.android.offline.languagemodel-L4emc5YpK6rk2KPKLDYulA==/oat/arm64/base.odex]
+  [com.samsung.android.oneconnect]
+    path: /data/app/~~G1SfnkRT4Ese_Ug54OUx_A==/com.samsung.android.oneconnect-f8fNhlbvbvgMezMP2nsklA==/base.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/~~G1SfnkRT4Ese_Ug54OUx_A==/com.samsung.android.oneconnect-f8fNhlbvbvgMezMP2nsklA==/oat/arm64/base.odex]
+  [com.samsung.android.photoremasterservice]
+    path: /system/priv-app/PhotoRemasterService/PhotoRemasterService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@PhotoRemasterService@PhotoRemasterService.apk@classes.dex]
+  [com.samsung.android.privacydashboard]
+    path: /system/priv-app/PrivacyDashboard/PrivacyDashboard.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@PrivacyDashboard@PrivacyDashboard.apk@classes.dex]
+  [com.samsung.android.privateaccesstokens]
+    path: /system/app/PrivateAccessTokens/PrivateAccessTokens.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@PrivateAccessTokens@PrivateAccessTokens.apk@classes.dex]
+  [com.samsung.android.provider.filterprovider]
+    path: /system/app/FilterProvider/FilterProvider.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@FilterProvider@FilterProvider.apk@classes.dex]
+  [com.samsung.android.providers.contacts]
+    path: /system/priv-app/SamsungContactsProvider/SamsungContactsProvider.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SamsungContactsProvider@SamsungContactsProvider.apk@classes.dex]
+      used by other apps: [com.android.providers.blockednumber (isa=arm64)]
+  [com.samsung.android.providers.factory]
+    path: /system/priv-app/FactoryTestProvider/FactoryTestProvider.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@FactoryTestProvider@FactoryTestProvider.apk@classes.dex]
+  [com.samsung.android.providers.media]
+    path: /system/priv-app/SecMediaProvider/SecMediaProvider.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SecMediaProvider@SecMediaProvider.apk@classes.dex]
+  [com.samsung.android.providers.trash]
+    path: /system/priv-app/SecTrashProvider/SecTrashProvider.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SecTrashProvider@SecTrashProvider.apk@classes.dex]
+  [com.samsung.android.qmdservice]
+    path: /system/priv-app/QMDService/QMDService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@QMDService@QMDService.apk@classes.dex]
+  [com.samsung.android.rampart]
+    path: /system/app/Rampart/Rampart.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@Rampart@Rampart.apk@classes.dex]
+  [com.samsung.android.rubin.app]
+    path: /system/priv-app/RubinVersion37/RubinVersion37.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@RubinVersion37@RubinVersion37.apk@classes.dex]
+  [com.samsung.android.samsungpass]
+    path: /system/priv-app/SamsungPass/SamsungPass.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SamsungPass@SamsungPass.apk@classes.dex]
+  [com.samsung.android.samsungpassautofill]
+    path: /system/app/SamsungPassAutofill_v1/SamsungPassAutofill_v1.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@SamsungPassAutofill_v1@SamsungPassAutofill_v1.apk@classes.dex]
+  [com.samsung.android.samsungpositioning]
+    path: /system/priv-app/SamsungPositioning/SamsungPositioning.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SamsungPositioning@SamsungPositioning.apk@classes.dex]
+  [com.samsung.android.scloud]
+    path: /data/app/~~iWf5bzL1ET8ArjKqitzf9g==/com.samsung.android.scloud-zyjUvdwLFno_ftO0IZgcTw==/base.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/~~iWf5bzL1ET8ArjKqitzf9g==/com.samsung.android.scloud-zyjUvdwLFno_ftO0IZgcTw==/oat/arm64/base.odex]
+  [com.samsung.android.scpm]
+    path: /system/priv-app/SCPMAgent/SCPMAgent.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SCPMAgent@SCPMAgent.apk@classes.dex]
+  [com.samsung.android.scs]
+    path: /data/app/~~sPZ-Gevmcu3EDX8x8PisoA==/com.samsung.android.scs-9pjRaWTddNj8o6EzTkaP_Q==/SamsungCoreServices.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/~~sPZ-Gevmcu3EDX8x8PisoA==/com.samsung.android.scs-9pjRaWTddNj8o6EzTkaP_Q==/oat/arm64/SamsungCoreServices.odex]
+  [com.samsung.android.sdk.handwriting]
+    path: /system/app/HandwritingService/HandwritingService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@HandwritingService@HandwritingService.apk@classes.dex]
+  [com.samsung.android.sdk.ocr]
+    path: /system/app/OCRDataProvider/OCRDataProvider.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@OCRDataProvider@OCRDataProvider.apk@classes.dex]
+  [com.samsung.android.sdm.config]
+    path: /system/priv-app/SDMConfig/SDMConfig.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SDMConfig@SDMConfig.apk@classes.dex]
+  [com.samsung.android.sead]
+    path: /system/priv-app/EnvironmentAdaptiveDisplay/EnvironmentAdaptiveDisplay.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@EnvironmentAdaptiveDisplay@EnvironmentAdaptiveDisplay.apk@classes.dex]
+  [com.samsung.android.secsoundpicker]
+    path: /system/priv-app/SecSoundPicker/SecSoundPicker.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SecSoundPicker@SecSoundPicker.apk@classes.dex]
+  [com.samsung.android.server.wifi.mobilewips]
+    path: /system/priv-app/MobileWips/MobileWips.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@MobileWips@MobileWips.apk@classes.dex]
+  [com.samsung.android.service.aircommand]
+    path: /system/priv-app/AirCommand/AirCommand.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@AirCommand@AirCommand.apk@classes.dex]
+  [com.samsung.android.service.airviewdictionary]
+    path: /system/priv-app/SmartEye/SmartEye.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SmartEye@SmartEye.apk@classes.dex]
+  [com.samsung.android.service.peoplestripe]
+    path: /system/priv-app/PeopleStripe/PeopleStripe.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@PeopleStripe@PeopleStripe.apk@classes.dex]
+  [com.samsung.android.service.stplatform]
+    path: /system/priv-app/SmartThingsKit/SmartThingsKit.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SmartThingsKit@SmartThingsKit.apk@classes.dex]
+  [com.samsung.android.service.tagservice]
+    path: /system/priv-app/HashTagService/HashTagService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@HashTagService@HashTagService.apk@classes.dex]
+  [com.samsung.android.setting.multisound]
+    path: /system/priv-app/MultiSoundSetting/MultiSoundSetting.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@MultiSoundSetting@MultiSoundSetting.apk@classes.dex]
+  [com.samsung.android.settingshelper]
+    path: /system/priv-app/SHClient/SHClient.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SHClient@SHClient.apk@classes.dex]
+  [com.samsung.android.shortcutbackupservice]
+    path: /system/app/ShortcutBackupService/ShortcutBackupService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@ShortcutBackupService@ShortcutBackupService.apk@classes.dex]
+  [com.samsung.android.simagent]
+    path: /system/app/SimAgent/SimAgent.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@SimAgent@SimAgent.apk@classes.dex]
+  [com.samsung.android.singletake.service]
+    path: /system/priv-app/SingleTakeService/SingleTakeService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SingleTakeService@SingleTakeService.apk@classes.dex]
+  [com.samsung.android.sm.devicesecurity]
+    path: /system/app/SmartManager_v6_DeviceSecurity/SmartManager_v6_DeviceSecurity.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@SmartManager_v6_DeviceSecurity@SmartManager_v6_DeviceSecurity.apk@classes.dex]
+  [com.samsung.android.smartcallprovider]
+    path: /system/priv-app/SmartCallProvider/SmartCallProvider.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SmartCallProvider@SmartCallProvider.apk@classes.dex]
+  [com.samsung.android.smartface]
+    path: /system/priv-app/smartfaceservice/smartfaceservice.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@smartfaceservice@smartfaceservice.apk@classes.dex]
+  [com.samsung.android.smartface.overlay]
+  [com.samsung.android.smartmirroring]
+    path: /system/app/SmartMirroring/SmartMirroring.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@SmartMirroring@SmartMirroring.apk@classes.dex]
+  [com.samsung.android.smartsuggestions]
+    path: /system/priv-app/SamsungSmartSuggestions/SamsungSmartSuggestions.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SamsungSmartSuggestions@SamsungSmartSuggestions.apk@classes.dex]
+  [com.samsung.android.smartswitchassistant]
+    path: /system/priv-app/SmartSwitchAssistant/SmartSwitchAssistant.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SmartSwitchAssistant@SmartSwitchAssistant.apk@classes.dex]
+  [com.samsung.android.spayfw]
+    path: /system/priv-app/PaymentFramework/PaymentFramework.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@PaymentFramework@PaymentFramework.apk@classes.dex]
+  [com.samsung.android.ssco]
+    path: /system/priv-app/SemanticSearchCore/SemanticSearchCore.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SemanticSearchCore@SemanticSearchCore.apk@classes.dex]
+  [com.samsung.android.stickercenter]
+    path: /system/app/StickerCenter/StickerCenter.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@StickerCenter@StickerCenter.apk@classes.dex]
+  [com.samsung.android.svcagent]
+    path: /system/priv-app/SVCAgent/SVCAgent.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SVCAgent@SVCAgent.apk@classes.dex]
+  [com.samsung.android.themecenter]
+    path: /system/priv-app/ThemeCenter/ThemeCenter.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@ThemeCenter@ThemeCenter.apk@classes.dex]
+  [com.samsung.android.themestore]
+    path: /system/priv-app/ThemeStore/ThemeStore.apk
+      arm64: [status=verify] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@ThemeStore@ThemeStore.apk@classes.dex]
+  [com.samsung.android.uwb.resources]
+  [com.samsung.android.vexfwk.service]
+    path: /system/priv-app/vexfwk_service/vexfwk_service.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@vexfwk_service@vexfwk_service.apk@classes.dex]
+  [com.samsung.android.video]
+    path: /system/priv-app/SamsungVideoPlayer/SamsungVideoPlayer.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SamsungVideoPlayer@SamsungVideoPlayer.apk@classes.dex]
+  [com.samsung.android.vision.model]
+    path: /data/app/SamsungVisionModel/SamsungVisionModel.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/SamsungVisionModel/oat/arm64/SamsungVisionModel.odex]
+  [com.samsung.android.visionintelligence]
+    path: /system/app/VisionIntelligence3.7/VisionIntelligence3.7.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@VisionIntelligence3.7@VisionIntelligence3.7.apk@classes.dex]
+  [com.samsung.android.visual.cloudcore]
+    path: /system/app/VisualCloudCore/VisualCloudCore.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@VisualCloudCore@VisualCloudCore.apk@classes.dex]
+  [com.samsung.android.visualars]
+    path: /system/priv-app/SmartTouchCall/SmartTouchCall.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SmartTouchCall@SmartTouchCall.apk@classes.dex]
+  [com.samsung.android.voc]
+    path: /data/app/SamsungMembers/SamsungMembers.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/SamsungMembers/oat/arm64/SamsungMembers.odex]
+  [com.samsung.android.vtcamerasettings]
+    path: /system/app/VTCameraSetting/VTCameraSetting.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@VTCameraSetting@VTCameraSetting.apk@classes.dex]
+  [com.samsung.android.wallpaper.live]
+    path: /system/priv-app/SpriteWallpaper/SpriteWallpaper.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SpriteWallpaper@SpriteWallpaper.apk@classes.dex]
+  [com.samsung.android.wallpaper.res]
+  [com.samsung.android.wcmurlsnetworkstack]
+  [com.samsung.android.widget.pictureframe]
+    path: /system/priv-app/GalleryWidget/GalleryWidget.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@GalleryWidget@GalleryWidget.apk@classes.dex]
+  [com.samsung.android.wifi.ai]
+    path: /system/app/WifiAiService/WifiAiService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@WifiAiService@WifiAiService.apk@classes.dex]
+  [com.samsung.android.wifi.decrease.scan.interval.resources]
+  [com.samsung.android.wifi.h2e.resources]
+  [com.samsung.android.wifi.increase.scan.interval.resources]
+  [com.samsung.android.wifi.intelligence]
+    path: /system/app/WifiIntelligence/WifiIntelligence.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@WifiIntelligence@WifiIntelligence.apk@classes.dex]
+  [com.samsung.android.wifi.largetcpbuffer.resources]
+  [com.samsung.android.wifi.p2paware.resources]
+  [com.samsung.android.wifi.resources]
+  [com.samsung.android.wifi.resources.lls]
+  [com.samsung.android.wifi.resources.wifilock]
+  [com.samsung.android.wifi.saeupgradeoffload.resources]
+  [com.samsung.android.wifi.softap.resources]
+  [com.samsung.android.wifi.softapdualap.resources]
+  [com.samsung.android.wifi.softapowe.resources]
+  [com.samsung.android.wifi.softapqc.resources]
+  [com.samsung.android.wifi.softapsixghz.resources]
+  [com.samsung.android.wifi.softapwpathree.resources]
+  [com.samsung.app.newtrim]
+    path: /system/app/VideoTrimmer/VideoTrimmer.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@VideoTrimmer@VideoTrimmer.apk@classes.dex]
+  [com.samsung.cmh]
+    path: /system/priv-app/CMHProvider/CMHProvider.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@CMHProvider@CMHProvider.apk@classes.dex]
+  [com.samsung.crane]
+    path: /system/priv-app/Crane/Crane.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@Crane@Crane.apk@classes.dex]
+  [com.samsung.drmboost]
+    path: /system/priv-app/DrmEventapp/DrmEventapp.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@DrmEventapp@DrmEventapp.apk@classes.dex]
+  [com.samsung.ecomm.global.gbr]
+    path: /data/app/~~24RAGJmR7bxGTfuKQQ80Hw==/com.samsung.ecomm.global.gbr-LZCaeuRjsl59a1w31rwDAw==/base.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/~~24RAGJmR7bxGTfuKQQ80Hw==/com.samsung.ecomm.global.gbr-LZCaeuRjsl59a1w31rwDAw==/oat/arm64/base.odex]
+  [com.samsung.euicc]
+    path: /system/priv-app/EuiccService/EuiccService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@EuiccService@EuiccService.apk@classes.dex]
+  [com.samsung.faceservice]
+    path: /system/priv-app/FaceService/FaceService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@FaceService@FaceService.apk@classes.dex]
+  [com.samsung.gamedriver.sm8650]
+  [com.samsung.gpuwatchapp]
+    path: /system/priv-app/GpuWatchApp/GpuWatchApp.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@GpuWatchApp@GpuWatchApp.apk@classes.dex]
+  [com.samsung.internal.systemui.navbar.gestural_no_hint]
+  [com.samsung.internal.systemui.navbar.sec_gestural]
+  [com.samsung.internal.systemui.navbar.sec_gestural_no_hint]
+  [com.samsung.ipservice]
+    path: /system/priv-app/IPService/IPService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@IPService@IPService.apk@classes.dex]
+  [com.samsung.klmsagent]
+    path: /system/priv-app/KLMSAgent/KLMSAgent.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@KLMSAgent@KLMSAgent.apk@classes.dex]
+  [com.samsung.knox.securefolder]
+    path: /system/priv-app/SecureFolder/SecureFolder.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SecureFolder@SecureFolder.apk@classes.dex]
+  [com.samsung.mediasearch]
+    path: /system/priv-app/MediaSearch/MediaSearch.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@MediaSearch@MediaSearch.apk@classes.dex]
+  [com.samsung.mfcontents]
+    path: /system/priv-app/MFContents/MFContents.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@MFContents@MFContents.apk@classes.dex]
+  [com.samsung.oda.service]
+    path: /system/priv-app/OdaService/OdaService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@OdaService@OdaService.apk@classes.dex]
+  [com.samsung.petservice]
+    path: /system/priv-app/PetService/PetService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@PetService@PetService.apk@classes.dex]
+  [com.samsung.safetyinformation]
+    path: /system/app/SafetyInformation/SafetyInformation.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@SafetyInformation@SafetyInformation.apk@classes.dex]
+  [com.samsung.sait.sohservice]
+    path: /system/priv-app/SohService/SohService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SohService@SohService.apk@classes.dex]
+  [com.samsung.sec.android.application.csc]
+    path: /system/priv-app/CSC/CSC.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@CSC@CSC.apk@classes.dex]
+      used by other apps: [com.android.phone (isa=arm64)]
+  [com.samsung.sree]
+    path: /data/app/GlobalGoals/GlobalGoals.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/GlobalGoals/oat/arm64/GlobalGoals.odex]
+  [com.samsung.ssu]
+    path: /system/priv-app/SsuService/SsuService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SsuService@SsuService.apk@classes.dex]
+  [com.samsung.storyservice]
+    path: /system/priv-app/StoryService/StoryService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@StoryService@StoryService.apk@classes.dex]
+  [com.samsung.videoscan]
+    path: /system/priv-app/VideoScan/VideoScan.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@VideoScan@VideoScan.apk@classes.dex]
+  [com.sec.android.CcInfo]
+    path: /system/app/ccinfo/ccinfo.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@ccinfo@ccinfo.apk@classes.dex]
+  [com.sec.android.RilServiceModeApp]
+    path: /system/priv-app/ModemServiceMode/ModemServiceMode.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@ModemServiceMode@ModemServiceMode.apk@classes.dex]
+  [com.sec.android.app.RilPhoneNumberService]
+    path: /system/priv-app/PhoneNumberService/PhoneNumberService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@PhoneNumberService@PhoneNumberService.apk@classes.dex]
+  [com.sec.android.app.SecSetupWizard]
+    path: /system/priv-app/SecSetupWizard_Global/SecSetupWizard_Global.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SecSetupWizard_Global@SecSetupWizard_Global.apk@classes.dex]
+  [com.sec.android.app.billing]
+    path: /system/priv-app/SamsungBilling/SamsungBilling.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SamsungBilling@SamsungBilling.apk@classes.dex]
+  [com.sec.android.app.bluetoothagent]
+    path: /system/app/BluetoothAgent/BluetoothAgent.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@BluetoothAgent@BluetoothAgent.apk@classes.dex]
+  [com.sec.android.app.camera]
+    path: /system/priv-app/SamsungCamera/SamsungCamera.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SamsungCamera@SamsungCamera.apk@classes.dex]
+  [com.sec.android.app.chromecustomizations]
+    path: /system/app/ChromeCustomizations/ChromeCustomizations.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@ChromeCustomizations@ChromeCustomizations.apk@classes.dex]
+  [com.sec.android.app.clockpackage]
+    path: /data/app/ClockPackage/ClockPackage.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/ClockPackage/oat/arm64/ClockPackage.odex]
+      used by other apps: [com.samsung.android.app.omcagent (isa=arm64), com.samsung.android.app.updatecenter (isa=arm64), com.samsung.android.honeyboard (isa=arm64), com.sec.android.app.launcher (isa=arm64)]
+  [com.sec.android.app.desktoplauncher]
+    path: /system/priv-app/KnoxDesktopLauncher/KnoxDesktopLauncher.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@KnoxDesktopLauncher@KnoxDesktopLauncher.apk@classes.dex]
+  [com.sec.android.app.factorykeystring]
+    path: /system/priv-app/DeviceKeystring/DeviceKeystring.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@DeviceKeystring@DeviceKeystring.apk@classes.dex]
+  [com.sec.android.app.hwmoduletest]
+    path: /system/app/HMT/HMT.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@HMT@HMT.apk@classes.dex]
+  [com.sec.android.app.kidshome]
+    path: /data/app/KidsHome/KidsHome.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/KidsHome/oat/arm64/KidsHome.odex]
+  [com.sec.android.app.launcher]
+    path: /system/priv-app/TouchWizHome_2017/TouchWizHome_2017.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@TouchWizHome_2017@TouchWizHome_2017.apk@classes.dex]
+  [com.sec.android.app.magnifier]
+    path: /system/priv-app/SamsungMagnifier3/SamsungMagnifier3.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SamsungMagnifier3@SamsungMagnifier3.apk@classes.dex]
+  [com.sec.android.app.myfiles]
+    path: /system/priv-app/SecMyFiles2020/SecMyFiles2020.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SecMyFiles2020@SecMyFiles2020.apk@classes.dex]
+  [com.sec.android.app.parser]
+    path: /system/app/DRParser/DRParser.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@DRParser@DRParser.apk@classes.dex]
+  [com.sec.android.app.personalization]
+    path: /system/app/Personalization/Personalization.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@Personalization@Personalization.apk@classes.dex]
+  [com.sec.android.app.popupcalculator]
+    path: /data/app/SecCalculator_R/SecCalculator_R.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/SecCalculator_R/oat/arm64/SecCalculator_R.odex]
+  [com.sec.android.app.qsfastpairoverlay]
+  [com.sec.android.app.quicktool]
+    path: /system/app/CocktailQuickTool/CocktailQuickTool.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@CocktailQuickTool@CocktailQuickTool.apk@classes.dex]
+  [com.sec.android.app.safetyassurance]
+    path: /system/priv-app/SendHelpMessage/SendHelpMessage.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SendHelpMessage@SendHelpMessage.apk@classes.dex]
+  [com.sec.android.app.samsungapps]
+    path: /data/app/~~u_0tGHPavBg6pPehegwLng==/com.sec.android.app.samsungapps-YscPNrlJiaGdBhGIpyL55w==/base.apk
+      arm64: [status=verify] [reason=cmdline] [primary-abi]
+        [location is /data/app/~~u_0tGHPavBg6pPehegwLng==/com.sec.android.app.samsungapps-YscPNrlJiaGdBhGIpyL55w==/oat/arm64/base.odex]
+  [com.sec.android.app.sbrowser]
+    path: /data/app/~~Q7cSS8_5Dhv8AQ6SiaLiFQ==/com.sec.android.app.sbrowser-X2ceCaCwct5fplCmDUBuPg==/base.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/~~Q7cSS8_5Dhv8AQ6SiaLiFQ==/com.sec.android.app.sbrowser-X2ceCaCwct5fplCmDUBuPg==/oat/arm64/base.odex]
+      used by other apps: [com.sec.android.app.sbrowser (isolated) (isa=arm64)]
+  [com.sec.android.app.servicemodeapp]
+    path: /system/priv-app/serviceModeApp_FB/serviceModeApp_FB.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@serviceModeApp_FB@serviceModeApp_FB.apk@classes.dex]
+  [com.sec.android.app.setupwizardlegalprovider]
+    path: /system/app/SetupWizardLegalProvider/SetupWizardLegalProvider.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@SetupWizardLegalProvider@SetupWizardLegalProvider.apk@classes.dex]
+  [com.sec.android.app.shealth]
+    path: /data/app/SHealth6PAR/SHealth6PAR.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/SHealth6PAR/oat/arm64/SHealth6PAR.odex]
+  [com.sec.android.app.soundalive]
+    path: /system/priv-app/SoundAlive_B/SoundAlive_B.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SoundAlive_B@SoundAlive_B.apk@classes.dex]
+  [com.sec.android.app.uwbtest]
+    path: /system/app/UwbTest/UwbTest.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@UwbTest@UwbTest.apk@classes.dex]
+  [com.sec.android.app.ve.vebgm]
+    path: /system/app/BGMProvider/BGMProvider.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@BGMProvider@BGMProvider.apk@classes.dex]
+  [com.sec.android.app.vepreload]
+    path: /system/app/VideoEditorLite_Dream_N/VideoEditorLite_Dream_N.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@VideoEditorLite_Dream_N@VideoEditorLite_Dream_N.apk@classes.dex]
+  [com.sec.android.app.voicenote]
+    path: /data/app/~~NDPUjknbAMpKWSHdsiuzjA==/com.sec.android.app.voicenote-IoO-dcgpH1ViaN8RCjkhkw==/base.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/~~NDPUjknbAMpKWSHdsiuzjA==/com.sec.android.app.voicenote-IoO-dcgpH1ViaN8RCjkhkw==/oat/arm64/base.odex]
+  [com.sec.android.app.volumemonitorprovider]
+    path: /system/priv-app/VolumeMonitorProvider_B/VolumeMonitorProvider_B.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@VolumeMonitorProvider_B@VolumeMonitorProvider_B.apk@classes.dex]
+  [com.sec.android.app.wlantest]
+    path: /system/app/WlanTest/WlanTest.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@WlanTest@WlanTest.apk@classes.dex]
+  [com.sec.android.autodoodle.service]
+    path: /system/priv-app/AutoDoodle/AutoDoodle.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@AutoDoodle@AutoDoodle.apk@classes.dex]
+  [com.sec.android.daemonapp]
+    path: /system/app/SamsungWeather/SamsungWeather.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@SamsungWeather@SamsungWeather.apk@classes.dex]
+  [com.sec.android.desktopmode.uiservice]
+    path: /system/priv-app/DesktopModeUiService/DesktopModeUiService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@DesktopModeUiService@DesktopModeUiService.apk@classes.dex]
+  [com.sec.android.diagmonagent]
+    path: /system/priv-app/DiagMonAgent95/DiagMonAgent95.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@DiagMonAgent95@DiagMonAgent95.apk@classes.dex]
+  [com.sec.android.easyMover]
+    path: /data/app/~~fPdOHKXw5spf2Mp23lRnJA==/com.sec.android.easyMover-mFcGe1EFYFg3GpYvaEAaMw==/base.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/~~fPdOHKXw5spf2Mp23lRnJA==/com.sec.android.easyMover-mFcGe1EFYFg3GpYvaEAaMw==/oat/arm64/base.odex]
+  [com.sec.android.easyMover.Agent]
+    path: /system/app/SmartSwitchAgent/SmartSwitchAgent.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@SmartSwitchAgent@SmartSwitchAgent.apk@classes.dex]
+  [com.sec.android.easyonehand]
+    path: /system/app/EasyOneHand3/EasyOneHand3.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@EasyOneHand3@EasyOneHand3.apk@classes.dex]
+  [com.sec.android.emergencylauncher]
+    path: /system/app/EmergencyLauncher/EmergencyLauncher.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@EmergencyLauncher@EmergencyLauncher.apk@classes.dex]
+  [com.sec.android.gallery3d]
+    path: /system/priv-app/SamsungGallery2018/SamsungGallery2018.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SamsungGallery2018@SamsungGallery2018.apk@classes.dex]
+  [com.sec.android.iaft]
+    path: /system/priv-app/IAFDManagerService/IAFDManagerService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@IAFDManagerService@IAFDManagerService.apk@classes.dex]
+  [com.sec.android.mimage.avatarstickers]
+    path: /system/priv-app/AvatarEmojiSticker/AvatarEmojiSticker.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@AvatarEmojiSticker@AvatarEmojiSticker.apk@classes.dex]
+  [com.sec.android.mimage.photoretouching]
+    path: /system/priv-app/PhotoEditor_AIFull/PhotoEditor_AIFull.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@PhotoEditor_AIFull@PhotoEditor_AIFull.apk@classes.dex]
+  [com.sec.android.provider.badge]
+    path: /system/priv-app/BadgeProvider_N/BadgeProvider_N.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@BadgeProvider_N@BadgeProvider_N.apk@classes.dex]
+  [com.sec.android.sdhms]
+    path: /system/priv-app/SamsungDeviceHealthManagerService/SamsungDeviceHealthManagerService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SamsungDeviceHealthManagerService@SamsungDeviceHealthManagerService.apk@classes.dex]
+  [com.sec.android.smartfpsadjuster]
+    path: /system/priv-app/IntelligentDynamicFpsService/IntelligentDynamicFpsService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@IntelligentDynamicFpsService@IntelligentDynamicFpsService.apk@classes.dex]
+  [com.sec.android.soagent]
+    path: /system/priv-app/SOAgent76/SOAgent76.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SOAgent76@SOAgent76.apk@classes.dex]
+  [com.sec.android.widgetapp.easymodecontactswidget]
+    path: /system/app/EasymodeContactsWidget81/EasymodeContactsWidget81.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@EasymodeContactsWidget81@EasymodeContactsWidget81.apk@classes.dex]
+  [com.sec.app.RilErrorNotifier]
+    path: /system/priv-app/PhoneErrService/PhoneErrService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@PhoneErrService@PhoneErrService.apk@classes.dex]
+  [com.sec.automation]
+    path: /system/app/TetheringAutomation/TetheringAutomation.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@TetheringAutomation@TetheringAutomation.apk@classes.dex]
+  [com.sec.bcservice]
+    path: /system/priv-app/BCService/BCService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@BCService@BCService.apk@classes.dex]
+  [com.sec.enterprise.knox.cloudmdm.smdms]
+    path: /system/app/UniversalMDMClient/UniversalMDMClient.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@UniversalMDMClient@UniversalMDMClient.apk@classes.dex]
+  [com.sec.epdg]
+    path: /system/priv-app/EpdgService/EpdgService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@EpdgService@EpdgService.apk@classes.dex]
+  [com.sec.epdgtestapp]
+    path: /system/priv-app/SmartEpdgTestApp/SmartEpdgTestApp.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SmartEpdgTestApp@SmartEpdgTestApp.apk@classes.dex]
+  [com.sec.facatfunction]
+    path: /system/priv-app/FacAtFunction/FacAtFunction.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@FacAtFunction@FacAtFunction.apk@classes.dex]
+  [com.sec.factory.camera]
+    path: /system/app/FactoryCameraFB/FactoryCameraFB.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@FactoryCameraFB@FactoryCameraFB.apk@classes.dex]
+  [com.sec.hearingadjust]
+    path: /system/priv-app/AdaptSound_B/AdaptSound_B.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@AdaptSound_B@AdaptSound_B.apk@classes.dex]
+  [com.sec.imslogger]
+    path: /system/priv-app/ImsLogger/ImsLogger.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@ImsLogger@ImsLogger.apk@classes.dex]
+  [com.sec.imsservice]
+    path: /system/priv-app/imsservice/imsservice.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@imsservice@imsservice.apk@classes.dex]
+  [com.sec.location.nfwlocationprivacy]
+    path: /system/app/NfwLocationPrivacy/NfwLocationPrivacy.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@NfwLocationPrivacy@NfwLocationPrivacy.apk@classes.dex]
+  [com.sec.location.nsflp2]
+    path: /system/priv-app/NSFusedLocation_v6.0/NSFusedLocation_v6.0.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@NSFusedLocation_v6.0@NSFusedLocation_v6.0.apk@classes.dex]
+  [com.sec.mhs.smarttethering]
+    path: /system/app/SmartTethering/SmartTethering.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@SmartTethering@SmartTethering.apk@classes.dex]
+  [com.sec.modem.settings]
+    path: /system/app/SilentLog/SilentLog.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@SilentLog@SilentLog.apk@classes.dex]
+  [com.sec.nrsaentitlement]
+    path: /system/priv-app/NrsaEntitlement/NrsaEntitlement.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@NrsaEntitlement@NrsaEntitlement.apk@classes.dex]
+  [com.sec.penup]
+    path: /data/app/PENUP/PENUP.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/PENUP/oat/arm64/PENUP.odex]
+  [com.sec.phone]
+    path: /system/priv-app/SecFactoryPhoneTest/SecFactoryPhoneTest.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SecFactoryPhoneTest@SecFactoryPhoneTest.apk@classes.dex]
+  [com.sec.spp.push]
+    path: /system/priv-app/SPPPushClient/SPPPushClient.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SPPPushClient@SPPPushClient.apk@classes.dex]
+  [com.sec.sve]
+    path: /system/app/sveservice/sveservice.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@sveservice@sveservice.apk@classes.dex]
+  [com.sec.unifiedwfc]
+    path: /system/app/UnifiedWFC/UnifiedWFC.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@app@UnifiedWFC@UnifiedWFC.apk@classes.dex]
+  [com.sec.usbsettings]
+    path: /system/priv-app/USBSettings/USBSettings.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@USBSettings@USBSettings.apk@classes.dex]
+  [com.sec.vsim.ericssonnsds.webapp]
+    path: /system/priv-app/NSDSWebApp/NSDSWebApp.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@NSDSWebApp@NSDSWebApp.apk@classes.dex]
+  [com.sem.factoryapp]
+    path: /system/priv-app/SEMFactoryApp/SEMFactoryApp.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SEMFactoryApp@SEMFactoryApp.apk@classes.dex]
+  [com.skms.android.agent]
+    path: /system/priv-app/SKMSAgent/SKMSAgent.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@SKMSAgent@SKMSAgent.apk@classes.dex]
+  [com.spotify.music]
+    path: /data/app/~~Ls5NpJNZU6mJj_mjQLuWqQ==/com.spotify.music-n6VQA7cCeA0reHcirzixBQ==/base.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/~~Ls5NpJNZU6mJj_mjQLuWqQ==/com.spotify.music-n6VQA7cCeA0reHcirzixBQ==/oat/arm64/base.odex]
+    path: /data/app/~~Ls5NpJNZU6mJj_mjQLuWqQ==/com.spotify.music-n6VQA7cCeA0reHcirzixBQ==/split_audiomodelimpl_dynamic_wrapper.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/~~Ls5NpJNZU6mJj_mjQLuWqQ==/com.spotify.music-n6VQA7cCeA0reHcirzixBQ==/oat/arm64/split_audiomodelimpl_dynamic_wrapper.odex]
+    path: /data/app/~~Ls5NpJNZU6mJj_mjQLuWqQ==/com.spotify.music-n6VQA7cCeA0reHcirzixBQ==/split_listening_party_message_source_dynamic_wrapper.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/app/~~Ls5NpJNZU6mJj_mjQLuWqQ==/com.spotify.music-n6VQA7cCeA0reHcirzixBQ==/oat/arm64/split_listening_party_message_source_dynamic_wrapper.odex]
+  [com.swiftkey.swiftkeyconfigurator]
+    path: /prism/app/SwiftKeyFactorySettings-samsung/SwiftKeyFactorySettings-samsung.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/prism@app@SwiftKeyFactorySettings-samsung@SwiftKeyFactorySettings-samsung.apk@classes.dex]
+  [com.touchtype.swiftkey]
+    path: /prism/app/SwiftKey-market-arm64-v8a-release/SwiftKey-market-arm64-v8a-release.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/prism@app@SwiftKey-market-arm64-v8a-release@SwiftKey-market-arm64-v8a-release.apk@classes.dex]
+  [com.wsomacp]
+    path: /system/priv-app/OmaCP/OmaCP.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@OmaCP@OmaCP.apk@classes.dex]
+  [com.wssyncmldm]
+    path: /system/priv-app/FotaAgent/FotaAgent.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/system@priv-app@FotaAgent@FotaAgent.apk@classes.dex]
+  [vendor.qti.data.txpwradmin]
+    path: /vendor/app/TxPwrAdmin/TxPwrAdmin.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/vendor@app@TxPwrAdmin@TxPwrAdmin.apk@classes.dex]
+  [vendor.qti.hardware.cacert.server]
+    path: /vendor/app/CACertService/CACertService.apk
+      arm64: [status=speed] [reason=cmdline] [primary-abi]
+        [location is /data/dalvik-cache/arm64/vendor@app@CACertService@CACertService.apk@classes.dex]
+  
+  Current GC: CollectorTypeCMC
+
+SPEG state:
