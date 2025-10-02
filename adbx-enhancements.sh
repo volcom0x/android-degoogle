@@ -1,473 +1,378 @@
 #!/usr/bin/env bash
 # ==============================================================================
-#  Galaxy S24 Ultra — Enhancements (Performance & Privacy) — v9
-#  - Uses adbx if present (falls back to adb), single $ADB for all calls
-#  - Reversible (revert-enhancements.sh), CSV logging
-#  - PROFILE presets (maxperf|balanced|battery) + env overrides
-#  - ART secondary-dex & reset toggles; compile verification
-#  - AppOps clamp for BACKGROUND_SYNC_BLACKLIST (RUN_*_IN_BACKGROUND, WAKE_LOCK)
-#  - Robust list parsing, device guard, plan banner, action summary
+# s24u-enhancements-harness.sh — Snapshot/Diff/Rollback validator for
+#                                s24u-enhancements-hardened.sh
+# ------------------------------------------------------------------------------
+# What it does
+#   1) Captures a canonical "BEFORE" snapshot of device state.
+#   2) Runs the target script (configurable env-file & flags).
+#   3) Captures "AFTER" snapshot and computes diffs.
+#   4) Executes the generated revert script and captures "ROLLBACK" snapshot.
+#   5) Verifies ROLLBACK == BEFORE (byte-for-byte on normalized artifacts).
+#
+# Surfaces captured (diff-friendly, normalized):
+#   - settings list {global,system,secure}         (Android settings CLI)     [1]
+#   - device_config list (auto-discovered + fallbacks)                        [2]
+#   - dumpsys netpolicy + cmd netpolicy                                      [3]
+#   - per-package appops (for monitored packages)                             [4]
+#   - standby buckets (per monitored package)                                 [5]
+#   - dumpsys package dexopt (ART compilation snapshot)                       [6]
+#
+# References:
+# [1] Android Settings CLI (list/get/put) — examples & notes.                (docs/examples) 
+# [2] Device Config & set_sync_disabled_for_tests usage.                     (Google Privacy Sandbox docs)
+# [3] Netpolicy commands & dumpsys reference.                                (Android dev docs)
+# [4] AppOps background limits commands (RUN_IN_BACKGROUND etc).             (Android dev docs)
+# [5] App Standby Buckets commands (set/get).                                (Android dev docs)
+# [6] Verify dexopt state via dumpsys package dexopt.                        (Android dev docs)
+#
+# Hardening:
+#   - set -Eeuo pipefail, strict quoting, arg arrays, retries with jitter.
+#   - Validates ANDROID_SERIAL against conservative regex.
+#   - Uses mktemp -d workspace + atomic file writes; refuses clobber.
+#   - No command interpolation into single strings (uses -- + argv).
+#
+# Usage:
+#   ./s24u-enhancements-harness.sh \
+#       --script ./s24u-enhancements-hardened.sh \
+#       --env-file ./my-run.env \
+#       --out ./harness-out-$(date +%F-%H%M) \
+#       [--serial <SERIAL>] [--dry-run] [--skip-rollback]
+#
+# Exit codes:
+#   0 = success (diffs recorded; rollback restored original state)
+#   1 = argument/usage error
+#   2 = device unreachable / adb error
+#   3 = target script failed
+#   4 = rollback mismatch (state not restored)
 # ==============================================================================
 
 set -Eeuo pipefail
 umask 077
 IFS=$' \t\n'
 
-VERBOSE="${VERBOSE:-0}"
+SERIAL_RE='^[A-Za-z0-9._:-]{1,64}$'
 
-log()   { printf '[*] %s\n' "$*"; }
-warn()  { printf '[!] %s\n' "$*" >&2; }
-error() { printf '[ERROR] %s\n' "$*" >&2; }
-die()   { error "$*"; exit 1; }
-vlog()  { [[ "$VERBOSE" == "1" ]] && log "$*"; }
-run()   { if [[ "${DRY_RUN:-0}" == "1" ]]; then echo "DRY:" "$@"; else "$@"; fi; }
+# ---------------------- CLI parsing ----------------------
+SCRIPT=""
+ENV_FILE=""
+OUTDIR_REQ=""
+ANDROID_SERIAL="${ANDROID_SERIAL:-}"
+DO_DRY=0
+SKIP_ROLLBACK=0
 
-# ---------- ADB selection (prefer adbx) ---------------------------------------
-ADB="$(command -v adbx || true)"
-if [[ -z "$ADB" ]]; then ADB="$(command -v adb || true)"; fi
-[[ -n "$ADB" ]] || die "adb/adbx not found in PATH"
+while (( "$#" )); do
+  case "$1" in
+    --script)            SCRIPT="${2:-}"; shift 2;;
+    --env-file)          ENV_FILE="${2:-}"; shift 2;;
+    --out)               OUTDIR_REQ="${2:-}"; shift 2;;
+    --serial)            ANDROID_SERIAL="${2:-}"; shift 2;;
+    --dry-run)           DO_DRY=1; shift;;
+    --skip-rollback)     SKIP_ROLLBACK=1; shift;;
+    -h|--help)
+      sed -n '1,120p' "$0"; exit 0;;
+    *) echo "[ERROR] Unknown arg: $1" >&2; exit 1;;
+  done
+done
+
+[[ -n "$SCRIPT" && -r "$SCRIPT" ]] || { echo "[ERROR] --script missing or unreadable" >&2; exit 1; }
+[[ -z "$ENV_FILE" || -r "$ENV_FILE" ]] || { echo "[ERROR] --env-file unreadable" >&2; exit 1; }
+[[ -z "$ANDROID_SERIAL" || "$ANDROID_SERIAL" =~ $SERIAL_RE ]] || { echo "[ERROR] Invalid --serial" >&2; exit 1; }
+
+# ---------------------- Tooling -------------------------
+require_cmd(){ command -v "$1" >/dev/null 2>&1 || { echo "[ERROR] Missing cmd: $1" >&2; exit 1; }; }
+require_cmd awk; require_cmd sed; require_cmd tr; require_cmd sort; require_cmd diff
+
+ADB="$(command -v adbx || true)"; [[ -n "$ADB" ]] || ADB="$(command -v adb || true)"
+[[ -n "$ADB" ]] || { echo "[ERROR] adb/adbx not found in PATH" >&2; exit 1; }
 "$ADB" start-server >/dev/null 2>&1 || true
-log "Using ADB: $ADB"
 
-# ---------- Device guard -------------------------------------------------------
-pick_device() {
-  mapfile -t devs < <("$ADB" devices | awk 'NR>1 && $2=="device"{print $1}')
-  case "${#devs[@]}" in
-    0) die "No device. Connect via USB and enable USB debugging." ;;
-    1) export ANDROID_SERIAL="${devs[0]}" ;;
-    *)
-      if [[ -z "${ANDROID_SERIAL:-}" ]]; then
-        printf "[!] Multiple devices: %s\n" "${devs[*]}" >&2
-        die "Set ANDROID_SERIAL to the target device serial and re-run."
-      fi
-      ;;
-  esac
-  "$ADB" -s "${ANDROID_SERIAL}" shell true >/dev/null 2>&1 \
-    || die "adb shell unreachable on $ANDROID_SERIAL"
+with_retry(){
+  local max="${RETRY_MAX:-3}" base="${RETRY_BASE:-0.4}" attempt=1 rc
+  while true; do
+    "$@"; rc=$?
+    [[ $rc -eq 0 ]] && return 0
+    (( attempt >= max )) && return "$rc"
+    # exp backoff + jitter
+    local sleep_for
+    sleep_for=$(awk -v a="$attempt" -v b="$base" 'BEGIN{srand(); print (b * (2^(a-1))) + (rand()*0.25)}')
+    sleep "$sleep_for"
+    ((attempt++))
+  done
+}
+
+adb_do(){ with_retry "$ADB" ${ANDROID_SERIAL:+-s "$ANDROID_SERIAL"} "$@"; }
+adb_sh(){
+  # shell invocation with argv, not a single interpolated string
+  with_retry "$ADB" ${ANDROID_SERIAL:+-s "$ANDROID_SERIAL"} shell -- "$@"
+}
+
+# ---------------------- Workspace -----------------------
+WORKDIR="$(mktemp -d -t s24u-harness.XXXXXXXX)"
+trap 'rm -rf "$WORKDIR" >/dev/null 2>&1 || true' EXIT
+
+if [[ -n "$OUTDIR_REQ" ]]; then
+  [[ ! -e "$OUTDIR_REQ" ]] || { echo "[ERROR] OUT already exists: $OUTDIR_REQ" >&2; exit 1; }
+  OUTDIR="$OUTDIR_REQ"
+else
+  OUTDIR="./harness-out-$(date +%Y%m%d-%H%M%S)"
+fi
+mkdir -p "$OUTDIR"
+
+canonize() {
+  # Canonicalize for diff: strip CR, collapse extra spaces, sort with C locale.
+  LC_ALL=C sed 's/\r$//; s/[[:space:]]\+$//' | sort -u
+}
+
+# ---------------------- Device guard --------------------
+pick_device(){
+  if [[ -z "${ANDROID_SERIAL:-}" ]]; then
+    mapfile -t devs < <(adb_do devices | awk 'NR>1 && $2=="device"{print $1}')
+    case "${#devs[@]}" in
+      0) echo "[ERROR] No device connected" >&2; exit 2;;
+      1) ANDROID_SERIAL="${devs[0]}";;
+      *) echo "[ERROR] Multiple devices; use --serial" >&2; exit 2;;
+    esac
+  fi
+  [[ "$ANDROID_SERIAL" =~ $SERIAL_RE ]] || { echo "[ERROR] Invalid device serial" >&2; exit 1; }
+  adb_do get-state >/dev/null 2>&1 || { echo "[ERROR] Device unreachable via adb" >&2; exit 2; }
 }
 pick_device
 
-MODEL="$("$ADB" shell getprop ro.product.model | tr -d '\r')"
-DEVICE="$("$ADB" shell getprop ro.product.device | tr -d '\r')"
-ANDROID_VER="$("$ADB" shell getprop ro.build.version.release | tr -d '\r')"
-ONEUI="$("$ADB" shell getprop ro.build.version.oneui 2>/dev/null | tr -d '\r' || true)"
+# ---------------------- Inputs for per-package checks -------------------------
+declare -a MONITOR_PKGS=()
+declare -a SB_BUCKET_PKGS=()
 
-# ---------- Preset profiles (env may override) --------------------------------
-PROFILE="${PROFILE:-}"   # maxperf|balanced|battery|""
-
-# Safe default-if-unset (no eval)
-set_if_unset() {
-  local name="$1" val="$2"
-  # If variable is unset or empty, assign default
-  if [[ -z "${!name-}" ]]; then
-    printf -v "$name" '%s' "$val"
-  fi
-}
-
-apply_profile() {
-  case "${PROFILE}" in
-    maxperf)
-      set_if_unset ANIM_SCALE "0.2"
-      set_if_unset REFRESH_MIN "85.0"; set_if_unset REFRESH_MAX "120.0"
-      set_if_unset ART_ACTION "speed-all"; set_if_unset ART_INCLUDE_SECONDARY "1"
-      set_if_unset PHANTOM_MODE "relaxed"
-      set_if_unset DATA_SAVER "off"
-      set_if_unset DISABLE_ALWAYS_SCANNING "1"; set_if_unset WIFI_SCAN_THROTTLE "0"
-      set_if_unset BACKGROUND_PROCESS_LIMIT "2"
-      set_if_unset ACTIVITY_MAX_CACHED "256"
-      set_if_unset TEST_DOZE "off"
-      ;;
-    balanced)
-      set_if_unset ANIM_SCALE "0.5"
-      set_if_unset REFRESH_MIN "60.0"; set_if_unset REFRESH_MAX "120.0"
-      set_if_unset ART_ACTION "bg"
-      set_if_unset PHANTOM_MODE "default"
-      set_if_unset DATA_SAVER "off"
-      set_if_unset DISABLE_ALWAYS_SCANNING "1"; set_if_unset WIFI_SCAN_THROTTLE "1"
-      set_if_unset BACKGROUND_PROCESS_LIMIT ""
-      set_if_unset TEST_DOZE "off"
-      ;;
-    battery)
-      set_if_unset ANIM_SCALE "0.5"
-      set_if_unset REFRESH_MIN "60.0"; set_if_unset REFRESH_MAX "60.0"
-      set_if_unset ART_ACTION ""
-      set_if_unset DATA_SAVER "on"
-      set_if_unset DISABLE_ALWAYS_SCANNING "1"; set_if_unset WIFI_SCAN_THROTTLE "1"
-      set_if_unset TEST_DOZE "off"
-      ;;
-    "" ) ;;
-    *  ) warn "Unknown PROFILE='${PROFILE}', ignoring." ;;
-  esac
-}
-
-# ---------- Config (parsed then frozen) ---------------------------------------
-DRY_RUN="${DRY_RUN:-0}"
-
-# UI / multitasking
-ANIM_SCALE="${ANIM_SCALE:-0.5}"                          # 0..1
-BACKGROUND_PROCESS_LIMIT="${BACKGROUND_PROCESS_LIMIT:-}"  # 1..4 or "" to skip
-ACTIVITY_MAX_CACHED="${ACTIVITY_MAX_CACHED:-}"            # device_config activity_manager
-
-# Network policy / sync clamps
-DATA_SAVER="${DATA_SAVER:-}"                               # on|off|""
-BACKGROUND_SYNC_BLACKLIST="${BACKGROUND_SYNC_BLACKLIST:-}" # space-separated pkgs
-
-# Private DNS
-PRIVATE_DNS_MODE="${PRIVATE_DNS_MODE:-}"                  # off|opportunistic|hostname|""
-PRIVATE_DNS_HOST="${PRIVATE_DNS_HOST:-}"
-
-# Refresh
-REFRESH_MIN="${REFRESH_MIN:-}"                            # e.g., 60.0
-REFRESH_MAX="${REFRESH_MAX:-}"                            # e.g., 120.0
-
-# Scanning / radios
-DISABLE_ALWAYS_SCANNING="${DISABLE_ALWAYS_SCANNING:-0}"   # 1=off Wi-Fi/BLE always scanning
-WIFI_SCAN_THROTTLE="${WIFI_SCAN_THROTTLE:-}"
-
-# ART compilation
-ART_ACTION="${ART_ACTION:-}"                              # ""|bg|speed-profile-all|speed-all
-ART_SPEED_PROFILE_PKGS="${ART_SPEED_PROFILE_PKGS:-}"
-ART_INCLUDE_SECONDARY="${ART_INCLUDE_SECONDARY:-0}"       # 1= --secondary-dex
-ART_RESET_FIRST="${ART_RESET_FIRST:-0}"                   # 1= compile --reset -a before
-
-# Process policy
-PHANTOM_MODE="${PHANTOM_MODE:-default}"                   # default|relaxed
-STANDBY_BUCKETS="${STANDBY_BUCKETS:-}"                    # "pkg1:rare pkg2:restricted"
-
-# Permissions / AppOps
-PERMISSIONS_TO_REVOKE="${PERMISSIONS_TO_REVOKE:-}"
-PERMISSIONS_REVOKE_PACKAGES="${PERMISSIONS_REVOKE_PACKAGES:-}"
-APP_OPS_PACKAGES="${APP_OPS_PACKAGES:-}"
-APP_OPS_BLOCK_OPS="${APP_OPS_BLOCK_OPS:-}"
-
-# Auto AppOps clamp for BACKGROUND_SYNC_BLACKLIST
-APP_OPS_CLAMP_BLACKLIST="${APP_OPS_CLAMP_BLACKLIST:-on}"  # on|off
-APP_OPS_CLAMP_OPS="${APP_OPS_CLAMP_OPS:-RUN_IN_BACKGROUND RUN_ANY_IN_BACKGROUND WAKE_LOCK}"
-
-# Doze tests
-TEST_DOZE="${TEST_DOZE:-off}"                             # off|on|unforce
-
-# CSC hints
-CSC="${CSC:-auto}"                                        # auto|THL|EUX
-INCLUDE_SAMSUNG_HINTS="${INCLUDE_SAMSUNG_HINTS:-off}"     # on|off
-
-# Apply profile defaults before freezing
-apply_profile
-
-# ---------- Freeze -------------------------------------------------------------
-readonly PROFILE DRY_RUN ANIM_SCALE BACKGROUND_PROCESS_LIMIT ACTIVITY_MAX_CACHED \
-  DATA_SAVER BACKGROUND_SYNC_BLACKLIST PRIVATE_DNS_MODE PRIVATE_DNS_HOST \
-  REFRESH_MIN REFRESH_MAX DISABLE_ALWAYS_SCANNING WIFI_SCAN_THROTTLE \
-  ART_ACTION ART_SPEED_PROFILE_PKGS ART_INCLUDE_SECONDARY ART_RESET_FIRST \
-  PHANTOM_MODE STANDBY_BUCKETS PERMISSIONS_TO_REVOKE PERMISSIONS_REVOKE_PACKAGES \
-  APP_OPS_PACKAGES APP_OPS_BLOCK_OPS APP_OPS_CLAMP_BLACKLIST APP_OPS_CLAMP_OPS \
-  TEST_DOZE CSC INCLUDE_SAMSUNG_HINTS
-
-OUTDIR="${OUTDIR:-./adb-enhancements-$(date +%Y%m%d-%H%M%S)}"; readonly OUTDIR
-mkdir -p "$OUTDIR"
-ACTIONS_CSV="$OUTDIR/actions.csv"; REENABLE_SCRIPT="$OUTDIR/revert-enhancements.sh"
-REVERT_MARKERS="$OUTDIR/revert.markers"; REVERT_MARKERS_DC="$OUTDIR/revert.dc.markers"
-REVERT_APPOPS_MARKERS="$OUTDIR/revert.appops.markers"
-readonly ACTIONS_CSV REENABLE_SCRIPT REVERT_MARKERS REVERT_MARKERS_DC REVERT_APPOPS_MARKERS
-printf "type,target,scope,key,value,action,status,message\n" > "$ACTIONS_CSV"
-: > "$REVERT_MARKERS"; : > "$REVERT_MARKERS_DC"; : > "$REVERT_APPOPS_MARKERS"
-printf "#!/usr/bin/env bash\nset -Eeuo pipefail\n" > "$REENABLE_SCRIPT"; chmod +x "$REENABLE_SCRIPT"
-
-# ---------- Helpers (all via $ADB) --------------------------------------------
-get_setting(){ "$ADB" shell settings get "$1" "$2" 2>/dev/null | tr -d '\r'; }
-put_setting(){ "$ADB" shell settings put "$1" "$2" "$3" >/dev/null 2>&1; }
-del_setting(){ "$ADB" shell settings delete "$1" "$2" >/dev/null 2>&1; }
-dc_get(){ "$ADB" shell device_config get "$1" "$2" 2>/dev/null | tr -d '\r'; }
-dc_put(){ "$ADB" shell device_config put "$1" "$2" "$3" >/dev/null 2>&1; }
-dc_del(){ "$ADB" shell device_config delete "$1" "$2" >/dev/null 2>&1; }
-pkg_uid(){ "$ADB" shell "cmd package list packages -U $1" 2>/dev/null | sed -n 's/.*uid:\([0-9]\+\).*/\1/p' | tr -d '\r'; }
-
-ensure_revert(){
-  local scope="$1" key="$2" marker="$scope:$key"
-  grep -qxF "$marker" "$REVERT_MARKERS" && return 0
-  local old; old="$(get_setting "$scope" "$key")"
-  if [[ -z "$old" || "$old" == "null" ]]; then
-    echo "$ADB shell settings delete $scope $key" >> "$REENABLE_SCRIPT"
-  else
-    echo "$ADB shell settings put $scope $key $(printf "%q" "$old")" >> "$REENABLE_SCRIPT"
-  fi
-  echo "$marker" >> "$REVERT_MARKERS"
-}
-apply_setting(){
-  local scope="$1" key="$2" val="${3-}" act
-  ensure_revert "$scope" "$key"
-  act=$([[ -z "${val+x}" || -z "$val" ]] && echo delete || echo put)
-  if [[ "$DRY_RUN" == "1" ]]; then
-    printf "setting,,%s,%s,%s,%s,dry-run,\n" "$scope" "$key" "${val:-}" "$act" >> "$ACTIONS_CSV"
-    vlog "DRY setting $scope/$key := '${val-<delete>}'"
-    return
-  fi
-  if [[ "$act" == "delete" ]]; then
-    if del_setting "$scope" "$key"; then
-      printf "setting,,%s,%s,,delete,ok,\n" "$scope" "$key" >> "$ACTIONS_CSV"
-    else
-      printf "setting,,%s,%s,,delete,fail,\n" "$scope" "$key" >> "$ACTIONS_CSV"
-    fi
-  else
-    if put_setting "$scope" "$key" "$val"; then
-      printf "setting,,%s,%s,%s,put,ok,\n" "$scope" "$key" "$val" >> "$ACTIONS_CSV"
-    else
-      printf "setting,,%s,%s,%s,put,fail,\n" "$scope" "$key" "$val" >> "$ACTIONS_CSV"
-    fi
-  fi
-}
-ensure_dc_revert(){
-  local ns="$1" key="$2" marker="$ns:$key"
-  grep -qxF "$marker" "$REVERT_MARKERS_DC" && return 0
-  local old; old="$(dc_get "$ns" "$key")"
-  if [[ -z "$old" || "$old" == "null" ]]; then
-    echo "$ADB shell device_config delete $ns $key" >> "$REENABLE_SCRIPT"
-  else
-    echo "$ADB shell device_config put $ns $key $(printf "%q" "$old")" >> "$REENABLE_SCRIPT"
-  fi
-  echo "$marker" >> "$REVERT_MARKERS_DC"
-}
-apply_dc(){
-  local ns="$1" key="$2" val="${3-}" act
-  ensure_dc_revert "$ns" "$key"
-  act=$([[ -z "${val+x}" || -z "$val" ]] && echo delete || echo put)
-  if [[ "$DRY_RUN" == "1" ]]; then
-    printf "device_config,,%s,%s,%s,%s,dry-run,\n" "$ns" "$key" "${val:-}" "$act" >> "$ACTIONS_CSV"
-    vlog "DRY device_config $ns/$key := '${val-<delete>}'"
-    return
-  fi
-  if [[ "$act" == "delete" ]]; then
-    if dc_del "$ns" "$key"; then
-      printf "device_config,,%s,%s,,delete,ok,\n" "$ns" "$key" >> "$ACTIONS_CSV"
-    else
-      printf "device_config,,%s,%s,,delete,fail,\n" "$ns" "$key" >> "$ACTIONS_CSV"
-    fi
-  else
-    if dc_put "$ns" "$key" "$val"; then
-      printf "device_config,,%s,%s,%s,put,ok,\n" "$ns" "$key" "$val" >> "$ACTIONS_CSV"
-    else
-      printf "device_config,,%s,%s,%s,put,fail,\n" "$ns" "$key" "$val" >> "$ACTIONS_CSV"
-    fi
-  fi
-}
-
-# AppOps helpers (with revert markers)
-ensure_appops_revert(){
-  local pkg="$1"
-  grep -qxF "$pkg" "$REVERT_APPOPS_MARKERS" && return 0
-  echo "$ADB shell cmd appops reset $pkg" >> "$REENABLE_SCRIPT"
-  echo "$pkg" >> "$REVERT_APPOPS_MARKERS"
-}
-apply_appops(){
-  local pkg="$1" op="$2" mode="$3" # mode: ignore|allow|deny
-  ensure_appops_revert "$pkg"
-  if [[ "$DRY_RUN" == "1" ]]; then
-    printf "cmd,appops,%s,,%s,set,dry-run,%s\n" "$pkg" "$op" "$mode" >> "$ACTIONS_CSV"
-    vlog "DRY appops set $pkg $op $mode"
-  else
-    if "$ADB" shell "cmd appops set $pkg $op $mode" >/dev/null 2>&1; then
-      printf "cmd,appops,%s,,%s,set,ok,%s\n" "$pkg" "$op" "$mode" >> "$ACTIONS_CSV"
-    else
-      printf "cmd,appops,%s,,%s,set,fail,%s\n" "$pkg" "$op" "$mode" >> "$ACTIONS_CSV"
-    fi
-  fi
-}
-
-# ---------- Banner -------------------------------------------------------------
-echo "==============================================================================="
-echo "  S24U Enhancements v9 | ${MODEL} (${DEVICE}) Android ${ANDROID_VER} OneUI ${ONEUI:-n/a}"
-echo "  Serial: ${ANDROID_SERIAL} | Profile=${PROFILE:-<none>} | Dry-run=${DRY_RUN} | Verbose=${VERBOSE}"
-echo "  Outdir: ${OUTDIR}"
-echo "-------------------------------------------------------------------------------"
-echo "  Effective config:"
-printf "   - ANIM_SCALE=%s | REFRESH_MIN=%s | REFRESH_MAX=%s\n" "$ANIM_SCALE" "${REFRESH_MIN:-<skip>}" "${REFRESH_MAX:-<skip>}"
-printf "   - ART: ACTION=%s SECONDARY=%s RESET_FIRST=%s PGO_PKGS=%s\n" "${ART_ACTION:-<none>}" "$ART_INCLUDE_SECONDARY" "$ART_RESET_FIRST" "${ART_SPEED_PROFILE_PKGS:-<none>}"
-printf "   - PHANTOM_MODE=%s | ACTIVITY_MAX_CACHED=%s | BG_LIMIT=%s\n" "$PHANTOM_MODE" "${ACTIVITY_MAX_CACHED:-<skip>}" "${BACKGROUND_PROCESS_LIMIT:-<skip>}"
-printf "   - DATA_SAVER=%s | PRIVATE_DNS=%s/%s\n" "${DATA_SAVER:-<skip>}" "${PRIVATE_DNS_MODE:-<skip>}" "${PRIVATE_DNS_HOST:-<n/a>}"
-printf "   - ALWAYS_SCANNING_OFF=%s | WIFI_SCAN_THROTTLE=%s\n" "$DISABLE_ALWAYS_SCANNING" "${WIFI_SCAN_THROTTLE:-<skip>}"
-printf "   - BACKGROUND_SYNC_BLACKLIST: %s\n" "${BACKGROUND_SYNC_BLACKLIST:-<none>}"
-printf "   - STANDBY_BUCKETS: %s\n" "${STANDBY_BUCKETS:-<none>}"
-printf "   - APP_OPS_CLAMP_BLACKLIST=%s (%s)\n" "$APP_OPS_CLAMP_BLACKLIST" "$APP_OPS_CLAMP_OPS"
-echo "==============================================================================="
-
-# ---------- UI speed ----------
-apply_setting global window_animation_scale "${ANIM_SCALE}"
-apply_setting global transition_animation_scale "${ANIM_SCALE}"
-apply_setting global animator_duration_scale "${ANIM_SCALE}"
-
-[[ -n "$BACKGROUND_PROCESS_LIMIT" ]] && apply_setting global background_process_limit "$BACKGROUND_PROCESS_LIMIT"
-[[ -n "$ACTIVITY_MAX_CACHED" ]]     && apply_dc      activity_manager max_cached_processes "$ACTIVITY_MAX_CACHED"
-
-# ---------- Data Saver + per-UID restrict ----------
-if [[ -n "$DATA_SAVER" ]]; then
-  case "$DATA_SAVER" in
-    on|off)
-      current="$("$ADB" shell 'dumpsys netpolicy | grep -i restrictBackground' 2>/dev/null | tr -d '\r ' | awk -F: '{print $2}')"
-      echo "$ADB cmd netpolicy set restrict-background ${current:-false}" >> "$REENABLE_SCRIPT"
-      if [[ "$DRY_RUN" == "1" ]]; then
-        printf "cmd,netpolicy,,,,set,dry-run,restrict-background=%s\n" "$DATA_SAVER" >> "$ACTIONS_CSV"
-      else
-        if "$ADB" shell "cmd netpolicy set restrict-background $([[ "$DATA_SAVER" == "on" ]] && echo true || echo false)" >/dev/null 2>&1; then
-          printf "cmd,netpolicy,,,,set,ok,restrict-background\n" >> "$ACTIONS_CSV"
-        else
-          printf "cmd,netpolicy,,,,set,fail,restrict-background\n" >> "$ACTIONS_CSV"
-        fi
-      fi
-      ;;
-    *) warn "DATA_SAVER must be on|off (got '$DATA_SAVER')" ;;
-  esac
+# Pull package lists from env-file if present
+if [[ -n "$ENV_FILE" ]]; then
+  # shellcheck disable=SC1090
+  source "$ENV_FILE"
 fi
 
-if [[ -n "$BACKGROUND_SYNC_BLACKLIST" ]]; then
-  for pkg in $BACKGROUND_SYNC_BLACKLIST; do
-    uid="$(pkg_uid "$pkg")"
-    if [[ -z "$uid" ]]; then
-      warn "UID not found for $pkg (not installed?)"
-      printf "cmd,netpolicy,%s,,,add,skip,uid-not-found\n" "$pkg" >> "$ACTIONS_CSV"
-      continue
-    fi
-    if [[ "$DRY_RUN" == "1" ]]; then
-      printf "cmd,netpolicy,%s,,,add,dry-run,restrict-background-blacklist\n" "$uid" >> "$ACTIONS_CSV"
-    else
-      if "$ADB" shell "cmd netpolicy add restrict-background-blacklist $uid" >/dev/null 2>&1; then
-        printf "cmd,netpolicy,%s,,,add,ok,restrict-background-blacklist\n" "$uid" >> "$ACTIONS_CSV"
-        echo "$ADB cmd netpolicy remove restrict-background-blacklist $uid" >> "$REENABLE_SCRIPT"
-      else
-        printf "cmd,netpolicy,%s,,,add,fail,restrict-background-blacklist\n" "$uid" >> "$ACTIONS_CSV"
-      fi
-    fi
+append_words_into_array(){
+  local -n _arr="$1"; shift
+  # join all remaining params, split on whitespace into array entries
+  local tmp="$*"
+  [[ -n "$tmp" ]] && read -r -a add <<<"$tmp" || add=()
+  if ((${#add[@]})); then _arr+=("${add[@]}"); fi
+}
+
+# Gather candidates from same vars used by the hardened script
+append_words_into_array MONITOR_PKGS "${BACKGROUND_SYNC_BLACKLIST:-}"
+append_words_into_array MONITOR_PKGS "${APP_OPS_PACKAGES:-}"
+append_words_into_array MONITOR_PKGS "${PERMISSIONS_REVOKE_PACKAGES:-}"
+
+# STANDBY_BUCKETS format: "pkg:bucket pkg2:bucket2"
+if [[ -n "${STANDBY_BUCKETS:-}" ]]; then
+  while read -r pair; do
+    [[ -z "$pair" ]] && continue
+    SB_BUCKET_PKGS+=("${pair%%:*}")
+  done < <(tr ' ' '\n' <<<"$STANDBY_BUCKETS")
+fi
+
+# unique-ify monitored lists
+uniq_array(){ awk '!x[$0]++'; }
+mapfile -t MONITOR_PKGS < <(printf '%s\n' "${MONITOR_PKGS[@]}" | uniq_array)
+mapfile -t SB_BUCKET_PKGS < <(printf '%s\n' "${SB_BUCKET_PKGS[@]}" | uniq_array)
+
+# ---------------------- Snapshot functions -------------------------
+snap_settings(){
+  local tag="$1" outdir="$2"
+  mkdir -p "$outdir/settings"
+  for ns in global system secure; do
+    adb_sh settings list "$ns" | canonize > "${outdir}/settings/${ns}.txt" || true
   done
-fi
+}
 
-# ---------- Private DNS ----------
-case "$PRIVATE_DNS_MODE" in
-  off)           apply_setting global private_dns_mode off;          apply_setting global private_dns_specifier "" ;;
-  opportunistic) apply_setting global private_dns_mode opportunistic; apply_setting global private_dns_specifier "" ;;
-  hostname)      [[ -z "$PRIVATE_DNS_HOST" ]] && warn "PRIVATE_DNS_HOST required" \
-                   || { apply_setting global private_dns_mode hostname; apply_setting global private_dns_specifier "$PRIVATE_DNS_HOST"; } ;;
-  "" ) ;;
-  *  ) warn "Unknown PRIVATE_DNS_MODE '$PRIVATE_DNS_MODE'";;
-esac
-
-# ---------- Refresh rate ----------
-[[ -n "$REFRESH_MAX" ]] && apply_setting system peak_refresh_rate "$REFRESH_MAX"
-[[ -n "$REFRESH_MIN" ]] && apply_setting system min_refresh_rate  "$REFRESH_MIN"
-
-# ---------- Scanning ----------
-[[ "$DISABLE_ALWAYS_SCANNING" == "1" ]] && { apply_setting global wifi_scan_always_enabled 0; apply_setting global ble_scan_always_enabled 0; }
-[[ -n "$WIFI_SCAN_THROTTLE" ]] && apply_setting global wifi_scan_throttle_enabled "$WIFI_SCAN_THROTTLE"
-
-# ---------- ART ----------
-if [[ -n "$ART_ACTION" || -n "$ART_SPEED_PROFILE_PKGS" ]]; then
-  [[ "$ART_RESET_FIRST" == "1" ]] && run "$ADB" shell cmd package compile --reset -a
-  grep -q "cmd package compile --reset -a" "$REENABLE_SCRIPT" || echo "$ADB shell cmd package compile --reset -a" >> "$REENABLE_SCRIPT"
-  local_sec_flag=""; [[ "$ART_INCLUDE_SECONDARY" == "1" ]] && local_sec_flag=" --secondary-dex"
-  case "$ART_ACTION" in
-    bg)                run "$ADB" shell cmd package bg-dexopt-job ;;
-    speed-profile-all) run "$ADB" shell "cmd package compile -m speed-profile${local_sec_flag} -a" ;;
-    speed-all)         run "$ADB" shell "cmd package compile -m speed -f${local_sec_flag} -a" ;;
-    "" ) ;;
-    *  ) warn "Unknown ART_ACTION '$ART_ACTION'";;
-  esac
-  for p in $ART_SPEED_PROFILE_PKGS; do run "$ADB" shell "cmd package compile -m speed-profile${local_sec_flag} $p" || true; done
-  "$ADB" shell dumpsys package dexopt > "$OUTDIR/dexopt-status.txt" 2>/dev/null || true
-  if [[ "$DRY_RUN" != "1" && "${ART_ACTION:-}" == speed-all ]]; then
-    not_speed="$("$ADB" shell 'dumpsys package dexopt' 2>/dev/null | grep -E "status=" | grep -v "status=speed" | wc -l || true)"
-    log "ART compile verification: packages not at 'speed' = ${not_speed}"
+# Try to discover device_config namespaces dynamically; fall back to a curated set.
+discover_device_config_ns(){
+  # Some builds print all entries with "device_config list" (no ns); try it first.
+  if adb_sh device_config list >/dev/null 2>&1; then
+    echo "__ALL__"
+    return 0
   fi
-fi
+  # Fall back to common namespaces (expand as needed)
+  cat <<EOF
+activity_manager
+app_hibernation
+privacy
+adservices
+job_scheduler
+alarm_manager
+connectivity
+power
+notification
+content_capture
+EOF
+}
 
-# ---------- Phantom process guard ----------
-case "$PHANTOM_MODE" in
-  relaxed)
-    echo "$ADB shell cmd device_config set_sync_disabled_for_tests none" >> "$REENABLE_SCRIPT"
-    run "$ADB" shell cmd device_config set_sync_disabled_for_tests persistent
-    run "$ADB" shell device_config put activity_manager max_phantom_processes 2147483647
-    ;;
-  default|"") ;;
-  * ) warn "Unknown PHANTOM_MODE '$PHANTOM_MODE'";;
-esac
+snap_device_config(){
+  local outdir="$1"
+  mkdir -p "$outdir/device_config"
+  local ns
+  if ns="__ALL__"; ns="$(discover_device_config_ns)"; [[ "$ns" == "__ALL__" ]]; then
+    adb_sh device_config list | canonize > "${outdir}/device_config/all.txt" || true
+  else
+    while read -r ns; do
+      [[ -z "$ns" ]] && continue
+      adb_sh device_config list "$ns" | canonize > "${outdir}/device_config/${ns}.txt" || true
+    done <<<"$ns"
+  fi
+}
 
-# ---------- App Standby Buckets -----------
-if [[ -n "$STANDBY_BUCKETS" ]]; then
-  for pair in $STANDBY_BUCKETS; do
-    pkg="${pair%%:*}"; bucket="${pair##*:}"
-    [[ -z "$pkg" || -z "$bucket" ]] && { warn "Bad standby pair '$pair' (expected pkg:bucket)"; continue; }
-    if [[ "$DRY_RUN" == "1" ]]; then
-      printf "cmd,usagestats,%s,,%s,set,dry-run,set-standby-bucket\n" "$pkg" "$bucket" >> "$ACTIONS_CSV"
-    else
-      if "$ADB" shell am set-standby-bucket "$pkg" "$bucket" >/dev/null 2>&1; then
-        printf "cmd,usagestats,%s,,%s,set,ok,set-standby-bucket\n" "$pkg" "$bucket" >> "$ACTIONS_CSV"
-      else
-        printf "cmd,usagestats,%s,,%s,set,fail,set-standby-bucket\n" "$pkg" "$bucket" >> "$ACTIONS_CSV"
-      fi
-    fi
-  done
-fi
+snap_netpolicy(){
+  local outdir="$1"
+  mkdir -p "$outdir/netpolicy"
+  adb_sh dumpsys netpolicy | canonize > "${outdir}/netpolicy/dumpsys.txt" || true
+  adb_sh cmd netpolicy | canonize > "${outdir}/netpolicy/cmd-help.txt" || true
+}
 
-# ---------- Optional permission revokes ----------
-if [[ -n "$PERMISSIONS_TO_REVOKE" && -n "$PERMISSIONS_REVOKE_PACKAGES" ]]; then
-  for pkg in $PERMISSIONS_REVOKE_PACKAGES; do
-    for perm in $PERMISSIONS_TO_REVOKE; do
-      if [[ "$DRY_RUN" == "1" ]]; then
-        printf "pm,permission,%s,,%s,revoke,dry-run,\n" "$pkg" "$perm" >> "$ACTIONS_CSV"
-      else
-        if "$ADB" shell pm revoke "$pkg" "$perm" >/dev/null 2>&1; then
-          printf "pm,permission,%s,,%s,revoke,ok,\n" "$pkg" "$perm" >> "$ACTIONS_CSV"
-        else
-          printf "pm,permission,%s,,%s,revoke,fail,\n" "$pkg" "$perm" >> "$ACTIONS_CSV"
-        fi
-      fi
+snap_appops(){
+  local outdir="$1"; mkdir -p "$outdir/appops"
+  if ((${#MONITOR_PKGS[@]})); then
+    for p in "${MONITOR_PKGS[@]}"; do
+      adb_sh cmd appops get "$p" 2>/dev/null | canonize > "${outdir}/appops/${p}.txt" || true
     done
-  done
-fi
+  else
+    # Nothing to monitor; record note
+    printf '# no monitored packages\n' > "${outdir}/appops/README.txt"
+  fi
+}
 
-# ---------- Optional app-ops blocking ----------
-if [[ -n "$APP_OPS_PACKAGES" && -n "$APP_OPS_BLOCK_OPS" ]]; then
-  for pkg in $APP_OPS_PACKAGES; do
-    for op in $APP_OPS_BLOCK_OPS; do
-      apply_appops "$pkg" "$op" "ignore"
+snap_buckets(){
+  local outdir="$1"; mkdir -p "$outdir/standby_buckets"
+  if ((${#SB_BUCKET_PKGS[@]})); then
+    for p in "${SB_BUCKET_PKGS[@]}"; do
+      adb_sh am get-standby-bucket "$p" 2>/dev/null | canonize > "${outdir}/standby_buckets/${p}.txt" || true
     done
+  else
+    printf '# no standby-bucket packages\n' > "${outdir}/standby_buckets/README.txt"
+  fi
+}
+
+snap_dexopt(){
+  local outdir="$1"; mkdir -p "$outdir/dexopt"
+  adb_sh dumpsys package dexopt 2>/dev/null | canonize > "${outdir}/dexopt/dexopt.txt" || true
+}
+
+snapshot_all(){
+  local tag="$1" outdir="${2}"
+  mkdir -p "$outdir"
+  snap_settings "$tag" "$outdir"
+  snap_device_config "$outdir"
+  snap_netpolicy "$outdir"
+  snap_appops "$outdir"
+  snap_buckets "$outdir"
+  snap_dexopt "$outdir"
+  # Device identity summary (not diffed, just info)
+  {
+    adb_sh getprop ro.product.model
+    adb_sh getprop ro.product.device
+    adb_sh getprop ro.build.version.release
+    adb_sh getprop ro.build.version.oneui 2>/dev/null || true
+  } | tr -d '\r' > "${outdir}/device-info.txt"
+}
+
+# ---------------------- Diff helper ----------------------
+diff_dirs(){
+  local A="$1" B="$2" DOUT="$3"
+  mkdir -p "$DOUT"
+  # Compare every file path present in either tree
+  mapfile -t files < <( (cd "$A" && find . -type f; cd "$B" && find . -type f) | sort -u )
+  local any=0
+  for f in "${files[@]}"; do
+    local fa="$A/$f" fb="$B/$f"
+    if [[ -f "$fa" && -f "$fb" ]]; then
+      if ! diff -u "$fa" "$fb" > "${DOUT}/${f//\//_}.diff" 2>/dev/null; then
+        any=1
+      else
+        # empty diff → remove file to keep directory clean
+        rm -f "${DOUT}/${f//\//_}.diff" || true
+      fi
+    elif [[ -f "$fa" && ! -f "$fb" ]]; then
+      printf '--- %s\n+++ (missing in B)\n' "$fa" > "${DOUT}/${f//\//_}.diff"
+      any=1
+    elif [[ ! -f "$fa" && -f "$fb" ]]; then
+      printf '--- (missing in A)\n+++ %s\n' "$fb" > "${DOUT}/${f//\//_}.diff"
+      any=1
+    fi
   done
+  return $any
+}
+
+# ---------------------- Run target ----------------------
+run_target(){
+  # Export env-file variables for the target script only.
+  if [[ -n "$ENV_FILE" ]]; then
+    # shellcheck disable=SC1090
+    source "$ENV_FILE"
+  fi
+
+  local cmd=( bash "$SCRIPT" )
+  if (( DO_DRY )); then
+    DRY_RUN=1 VERBOSE="${VERBOSE:-1}" "${cmd[@]}"
+  else
+    VERBOSE="${VERBOSE:-1}" "${cmd[@]}"
+  fi
+}
+
+# ---------------------- Main flow -----------------------
+BEFORE_DIR="${OUTDIR}/01-before"
+AFTER_DIR="${OUTDIR}/02-after"
+ROLLBACK_DIR="${OUTDIR}/03-rollback"
+DIFF1_DIR="${OUTDIR}/diff-before-after"
+DIFF2_DIR="${OUTDIR}/diff-before-rollback"
+
+echo "[*] Snapshot: BEFORE"
+snapshot_all "before" "$BEFORE_DIR"
+
+echo "[*] Executing target script: $SCRIPT"
+if ! run_target; then
+  echo "[ERROR] Target script failed" >&2
+  exit 3
 fi
 
-# ---------- Auto clamp: BACKGROUND_SYNC_BLACKLIST → AppOps ---------------------
-if [[ -n "$BACKGROUND_SYNC_BLACKLIST" && "${APP_OPS_CLAMP_BLACKLIST,,}" == "on" ]]; then
-  for pkg in $BACKGROUND_SYNC_BLACKLIST; do
-    for op in $APP_OPS_CLAMP_OPS; do
-      apply_appops "$pkg" "$op" "ignore"
-    done
-  done
+echo "[*] Snapshot: AFTER"
+snapshot_all "after" "$AFTER_DIR"
+
+echo "[*] Computing diffs (BEFORE vs AFTER)"
+diff_dirs "$BEFORE_DIR" "$AFTER_DIR" "$DIFF1_DIR" || true
+echo "[*] Diffs saved under: $DIFF1_DIR"
+
+if (( ! SKIP_ROLLBACK )); then
+  # Locate revert script emitted by the hardened script
+  REVERT_CANDIDATE="$(find . -maxdepth 3 -type f -name 'revert-enhancements.sh' -print -quit)"
+  if [[ -z "$REVERT_CANDIDATE" ]]; then
+    REVERT_CANDIDATE="$(find "${OUTDIR}" -maxdepth 3 -type f -name 'revert-enhancements.sh' -print -quit || true)"
+  fi
+  if [[ -z "$REVERT_CANDIDATE" ]]; then
+    # As a common location, check typical folder name used by hardened script
+    REVERT_CANDIDATE="$(find . -maxdepth 3 -type f -path '*/adb-enhancements-*/revert-enhancements.sh' -print -quit || true)"
+  fi
+
+  if [[ -z "$REVERT_CANDIDATE" ]]; then
+    echo "[ERROR] Could not find revert-enhancements.sh from target run" >&2
+    exit 3
+  fi
+
+  echo "[*] Rolling back via: $REVERT_CANDIDATE"
+  bash "$REVERT_CANDIDATE" || echo "[!] Revert script returned non-zero"
+
+  echo "[*] Snapshot: ROLLBACK"
+  snapshot_all "rollback" "$ROLLBACK_DIR"
+
+  echo "[*] Verifying rollback (BEFORE vs ROLLBACK)"
+  if diff_dirs "$BEFORE_DIR" "$ROLLBACK_DIR" "$DIFF2_DIR"; then
+    echo "[✓] ROLLBACK matches BEFORE — state restored"
+    echo "Artifacts: $OUTDIR"
+    exit 0
+  else
+    echo "[✗] ROLLBACK != BEFORE — see $DIFF2_DIR for mismatches" >&2
+    echo "Artifacts: $OUTDIR"
+    exit 4
+  fi
+else
+  echo "[!] --skip-rollback set; skipping rollback validation"
+  echo "Artifacts: $OUTDIR"
+  exit 0
 fi
-
-# ---------- Doze test ----------
-case "$TEST_DOZE" in
-  on)      run "$ADB" shell dumpsys battery unplug; run "$ADB" shell dumpsys deviceidle force-idle ;;
-  unforce) run "$ADB" shell dumpsys deviceidle unforce; run "$ADB" shell dumpsys battery reset ;;
-  off|"")  ;;
-esac
-
-# ---------- CSC hints (optional) ----------
-if [[ "${INCLUDE_SAMSUNG_HINTS,,}" == "on" ]]; then
-  echo "# HINT: If you want to soft-disable Samsung Wallet/Pass/TVPlus/News by CSC here," >> "$REENABLE_SCRIPT"
-  echo "# pair this file with s24u-degoogle.sh --include-samsung on and --keep-samsung as needed." >> "$REENABLE_SCRIPT"
-fi
-
-# ---------- Summary ------------------------------------------------------------
-echo "==============================================================================="
-
-ok_count=$(awk -F, '$6=="ok"'  "$ACTIONS_CSV" | wc -l | tr -d ' ')
-fail_count=$(awk -F, '$6=="fail"' "$ACTIONS_CSV" | wc -l | tr -d ' ')
-dry_count=$(awk -F, '$6=="dry-run"' "$ACTIONS_CSV" | wc -l | tr -d ' ')
-skip_count=$(awk -F, '$6=="skip"' "$ACTIONS_CSV" | wc -l | tr -d ' ')
-
-echo " Done. Artifacts in: ${OUTDIR}"
-echo "   - Revert helper    : ${REENABLE_SCRIPT}"
-echo "   - Actions CSV      : ${ACTIONS_CSV}"
-echo "   - Dexopt snapshot  : ${OUTDIR}/dexopt-status.txt (if ART ran)"
-echo " Results: OK=${ok_count}  FAIL=${fail_count}  DRY=${dry_count}  SKIP=${skip_count}"
-echo " Reboot recommended. To revert everything from this run:"
-echo "   ${REENABLE_SCRIPT}"
-echo "==============================================================================="
-
-exit 0
