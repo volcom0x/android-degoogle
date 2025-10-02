@@ -1,9 +1,0 @@
-global:window_animation_scale
-global:transition_animation_scale
-global:animator_duration_scale
-global:background_process_limit
-global:private_dns_mode
-global:private_dns_specifier
-system:peak_refresh_rate
-system:min_refresh_rate
-global:wifi_scan_throttle_enabled
